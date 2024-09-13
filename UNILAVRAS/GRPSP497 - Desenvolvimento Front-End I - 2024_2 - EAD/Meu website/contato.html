@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sinval Silva Junior - Contato</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Cabeçalho com navegação -->
+    <header>
+      <h1>Sinval Silva Junior</h1>
+      <h4>
+        Estudante do curso de Análise e Desenvolvimento de Sistemas - Unilavras
+      </h4>
+      <nav>
+        <ul>
+          <li><a href="index.html">Apresentação</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="extra.html">Página Extra</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Formulário de contato -->
+    <section class="redes-sociais">
+      <h2>Redes Sociais</h2>
+      <div class="icones">
+        <a
+          href="https://www.instagram.com/kjunda01"
+          target="_blank"
+          aria-label="Instagram"
+        >
+          <img src="imagens/instagram.png"Instagram">
+        </a>
+        <a
+          href="https://www.facebook.com/kjunda01"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <img src="imagens/facebook.png" alt="Facebook" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@kjunda01"
+          target="_blank"
+          aria-label="TikTok"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"
+            alt="TikTok"
+          />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/kjunda01"
+          target="_blank"
+          aria-label="LinkedIn"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png"
+            alt="LinkedIn"
+          />
+        </a>
+        <a
+          href="https://github.com/kjunda01"
+          target="_blank"
+          aria-label="GitHub"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/733/733609.png"
+            alt="GitHub"
+          />
+        </a>
+      </div>
+    </section>
+    <section class="contato">
+      <h2>Contato</h2>
+      <form id="form-contato" action="index.html" method="GET">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2024 Sinval Silva Junior. Todos os direitos reservados.</p>
+    </footer>
+  </body>
+</html>

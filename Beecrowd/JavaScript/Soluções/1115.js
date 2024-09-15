@@ -39,7 +39,28 @@ y negativo = 3º ou 4º quadrante
 
 //let num = parseFloat(lines.shift());
 
-let num = "2 4"
-let coordenadas = parseFloat(Map(num));
-console.log(coordenadas)
+export function problem(lines) {
+    //var input = require("fs").readFileSync("/dev/stdin", "utf8");
+    //var lines = input.split("\n");
+    
+    // Lista para armazenar as coordenadas
+    var coordinates = [];
 
+    // Itera sobre cada linha do array lines
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+
+        // Ignora linhas vazias
+        if (line === "") continue;
+
+        // Divide a linha em dois valores e converte para números
+        var [x, y] = line.split(" ").map(Number);
+
+        // Adiciona as coordenadas à lista
+        coordinates.push([x, y]);
+    }
+
+    // Exibe as coordenadas
+    console.log("Coordenadas recebidas:");
+    coordinates.forEach((coord) => console.log(coord.join(" ")));
+}

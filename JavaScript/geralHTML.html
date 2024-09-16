@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt- BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="geralJavaScript.js"></script>
-    <title>Geral - JS</title>
-</head>
-<body>
-    <h1>Este é o site</h1>
-    <p>Testando!</p>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Geral - JS</title>
+    </head>
+    <body>
+        <h1>Este é o site</h1>
+        <p>Testando!</p>
+        <script>
+            let nome = prompt("Informe seu nome")
+            document.body.innerHTML += `Seu nome completo é <b>${nome}<b /><br />`;
+            document.body.innerHTML += `Seu nome tem <b>${nome.length}<b /> letras.<br />`;
+            document.body.innerHTML += `Seu nome tem <b>${nome.split(" ").length - 1}<b /> sobrenomes.<br />`;
+            document.body.innerHTML += `A segunda letra do seu nome é <b>${nome[1].toUpperCase()}<b />.<br />`;
+            document.body.innerHTML += `Qual o primeiro índice da letra A no seu nome? Índice <b>${nome.toLowerCase().indexOf("a")}<b />.<br />`;
+            document.body.innerHTML += `Qual o último índice da letra A no seu nome? Índice <b>${nome.toLowerCase().lastIndexOf("a")}<b />.<br />`;
+            
+            
+        </script>
+    </body>
 </html>

@@ -25,17 +25,30 @@ Exemplo de Entrada 	Exemplo de Saída
 97 98 99 
 */
 
-var input = require("fs").readFileSync("stdin", "utf8");
-var lines = input.split("\n");
+// Leitura da entrada padrão
+const fs = require('fs');
 
-let tamanho = lines.length;
+// Leitura do arquivo stdin (entrada padrão)
+const input = fs.readFileSync('stdin', 'utf8');
 
-for (let i = 0; i < tamanho; i++) {
-    let partes = lines[i].split(" ");
+// Divide a entrada em linhas
+const dadosIniciais = input.trim().split('\n');
 
-    let x = Number(partes[0]);
-    let y = Number(partes[1]);
+// Converte as linhas em números inteiros
+const x = parseInt(dadosIniciais[0], 10); // Número de elementos por linha
+const y = parseInt(dadosIniciais[1], 10); // Número total de elementos
 
+let numeroAtual = 1;  // Inicia com o número 1
+
+while (numeroAtual <= y) {
+    let lineNumbers = [];
     
+    // Adiciona números à linha
+    for (let i = 0; i < x; i++) {
+        if (numeroAtual > y) break;
+        lineNumbers.push(numeroAtual++);
+    }
     
+    // Imprime a linha formatada
+    console.log(lineNumbers.join(' '));
 }

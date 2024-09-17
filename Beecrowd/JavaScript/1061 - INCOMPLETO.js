@@ -38,17 +38,21 @@ Dia 9
 */
 var input = require("fs").readFileSync("stdin", "utf8");
 var lines = input.split("\n");
+//lines = ["Dia 5", "08 : 12 : 23", "Dia 9", "06 : 13 : 23"];
 
 let A = lines[0];
 let B = lines[1];
 let C = lines[2];
 let D = lines[3];
 
-let horas;
-let dias;
+let dias = 0;
+let horas = 0;
+let minutos = 0;
+let segundos = 0;
+let saldoDias = -1;
 
-let diaInicio = Number(A.charAt(4));
-let diaFinal = Number(C.charAt(4));
+let diaInicial = Number(A.slice(4, 6));
+let diaFinal = Number(C.slice(4, 6));
 
 let horaInicial = Number(B.slice(0, 2));
 let minutoInicial = Number(B.slice(5, 7));
@@ -58,23 +62,47 @@ let horaFinal = Number(D.slice(0, 2));
 let minutoFinal = Number(D.slice(5, 7));
 let segundoFinal = Number(D.slice(10, 12));
 
-let segundos = segundoFinal - segundoInicial;
-let minutos = minutoFinal - minutoInicial;
-
-if (diaInicio > diaFinal) {
-    dias = 30 + diaFinal - diaInicio;
+if (segundoInicial === segundoFinal) {
+    segundos = 0;
 } else {
-    dias = diaFinal - diaInicio;
+    if (segundoFinal > segundoInicial) {
+        segundos = segundoFinal - segundoInicial;
+    } else {
+        segundos = 60 - segundoInicial + segundoFinal;
+    }
 }
 
-if (horaInicial > horaFinal) {
-    horas = 24 + horaFinal - horaInicial;
-    dias -= 1;
+if (minutoInicial === minutoFinal) {
+    minutos = 0;
 } else {
-    horas = horaFinal - horaInicial;
+    if (minutoFinal > minutoInicial) {
+        minutos = minutoFinal - minutoInicial;
+    } else {
+        minutos = 60 - minutoInicial + minutoFinal;
+    }
+}
+
+if (horaInicial === horaFinal) {
+    horas = 0;
+} else {
+    if (horaFinal > horaInicial) {
+        horas = horaFinal - horaInicial;
+    } else {
+        horas = 24 - horaInicial + horaFinal;
+    }
+}
+
+if (diaInicial === diaFinal) {
+    dias = 0;
+} else {
+    if (diaFinal > diaInicial) {
+        dias = diaFinal - diaInicial + saldoDias;;
+    } else {
+        dias = 30 - diaInicial + diaFinal 
+    }
 }
 
 console.log(`${dias} dia(s)
 ${horas} hora(s)
 ${minutos} minuto(s)
-${segundos} segundo(s) `);
+${segundos} segundo(s)`);

@@ -1,0 +1,80 @@
+const { isNumberObject } = require("util/types");
+
+/*
+ beecrowd | 1061
+Tempo de um Evento
+
+Adaptado por Neilor Tonin, URI Brasil
+Timelimit: 1
+
+Pedrinho está organizando um evento em sua Universidade. O evento deverá ser no mês de Abril, iniciando e terminando dentro do mês. O problema é que Pedrinho quer calcular o tempo que o evento vai durar, uma vez que ele sabe quando inicia e quando termina o evento.
+
+Sabendo que o evento pode durar de poucos segundos a vários dias, você deverá ajudar Pedrinho a calcular a duração deste evento.
+Entrada
+
+Como entrada, na primeira linha vai haver a descrição “Dia”, seguido de um espaço e o dia do mês no qual o evento vai começar. Na linha seguinte, será informado o momento no qual o evento vai iniciar, no formato hh : mm : ss. Na terceira e quarta linha de entrada haverá outra informação no mesmo formato das duas primeiras linhas, indicando o término do evento.
+Saída
+
+Na saída, deve ser apresentada a duração do evento, no seguinte formato:
+
+W dia(s)
+X hora(s)
+Y minuto(s)
+Z segundo(s)
+
+Obs: Considere que o evento do caso de teste para o problema tem duração mínima de 1 minuto.
+Exemplo de Entrada 	Exemplo de Saída
+
+Dia 5
+08 : 12 : 23
+Dia 9
+06 : 13 : 23
+	
+
+3 dia(s)
+22 hora(s)
+1 minuto(s)
+0 segundo(s) 
+*/
+var input = require("fs").readFileSync("stdin", "utf8");
+var lines = input.split("\n");
+
+let A = lines[0];
+let B = lines[1];
+let C = lines[2];
+let D = lines[3];
+
+let horas;
+let dias;
+
+let diaInicio = Number(A.charAt(4));
+let diaFinal = Number(C.charAt(4));
+
+let horaInicial = Number(B.slice(0, 2));
+let minutoInicial = Number(B.slice(5, 7));
+let segundoInicial = Number(B.slice(10, 12));
+
+let horaFinal = Number(D.slice(0, 2));
+let minutoFinal = Number(D.slice(5, 7));
+let segundoFinal = Number(D.slice(10, 12));
+
+let segundos = segundoFinal - segundoInicial;
+let minutos = minutoFinal - minutoInicial;
+
+if (diaInicio > diaFinal) {
+    dias = 30 + diaFinal - diaInicio;
+} else {
+    dias = diaFinal - diaInicio;
+}
+
+if (horaInicial > horaFinal) {
+    horas = 24 + horaFinal - horaInicial;
+    dias -= 1;
+} else {
+    horas = horaFinal - horaInicial;
+}
+
+console.log(`${dias} dia(s)
+${horas} hora(s)
+${minutos} minuto(s)
+${segundos} segundo(s) `);

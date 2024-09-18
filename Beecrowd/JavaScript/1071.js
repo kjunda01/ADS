@@ -39,18 +39,11 @@ var lines = input.split("\n");
 let X = Number(lines[0]);
 let Y = Number(lines[1]);
 
-if (X < 0) {
-    X *= -1;
-}
-if (Y < 0) {
-    Y *= -1;
-}
-
 let valorMenor = Math.min(Y,X);
 let valorMaior = Math.max(Y,X);
 let impares = 0;
 
-for (let i = valorMenor; i < valorMaior; i++) {
+for (let i = valorMenor +1; i < valorMaior; i++) {
     if (i % 2 !== 0) {
         impares += i;
     }

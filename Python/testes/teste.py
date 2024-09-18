@@ -106,7 +106,7 @@ FUNÇÃO COM ARGUMENTOS
 #     for x in val:
 #         quadrados.append(x ** 2)
 #     return quadrados
-<<<<<<< HEAD
+
 
 
 
@@ -119,7 +119,6 @@ def dinheiro(valor):
 
 if __name__ == "__main__":
     print(dinheiro(1234.56))
-=======
 
 # if __name__ == "__main__":
 #     pass
@@ -174,4 +173,22 @@ if __name__ == "__main":
     case 3:
       print('Até logo!')
       quit()
->>>>>>> 2fcdb63c71276617f3c229555b380862fc8fa5a1
+
+
+
+
+
+
+#entrada = int(input("Informe um número: "))
+numero = 5
+
+for i in range(1, numero+1):
+    # Escada
+    #print(" "* (numero - i)*2, end="")
+    #Piramide 
+    #print(" "* (numero - i), end=" ")
+    
+    for j in range(1, i+1):
+        print(j, end=" ")
+    print('')
+

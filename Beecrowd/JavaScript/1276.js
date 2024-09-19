@@ -75,5 +75,3 @@ var input = require('fs').readFileSync('stdin', 'utf8').trim().split("\n");
 for (let linha of input){
     processaLinha(linha)
 }
-
-

@@ -35,25 +35,35 @@ Logolas bonecos 10
 Contest de Natal 2020
 */
 
-var input = require('fs').readFileSync('stdin', 'utf8');
-var lines = input.split('\n');
+var entrada = require("fs").readFileSync("stdin", "utf8");
+var linhas = entrada.split("\n");
 
-let duendes = parseInt(lines[0]);
-let b = 0, a = 0, m = 0, d = 0;
+let duendes = parseInt(linhas[0]);
 
-for (let i = 1; i <= duendes;i++){
-    let [nome, tipo, horas] = lines[i].split(" ");
-    horas = parseInt(horas);
-    
-    if (tipo === "bonecos"){
-        b += horas;
-    }else if (tipo === "arquitetos"){
-        a += horas;
-    } else if (tipo === "musicos"){
-        m += horas;
-    } else{
-        d += horas;
+let bonecos = 0;
+let arquitetos = 0;
+let musicos = 0;
+let desenhistas = 0;
+
+for (let i = 1; i <= duendes; i++) {
+    let partes = linhas[i].split(" ");
+    let tipo = partes[1];
+    let horas = parseInt(partes[2]);
+
+    if (tipo === "bonecos") {
+        bonecos += horas;
+    } else if (tipo === "arquitetos") {
+        arquitetos += horas;
+    } else if (tipo === "musicos") {
+        musicos += horas;
+    } else if (tipo === "desenhistas") {
+        desenhistas += horas;
     }
 }
 
-console.log(Math.floor(b/8) + Math.floor(a / 4) + Math.floor(m / 6) + Math.floor(d / 12))
+let resultBonecos = Math.floor(bonecos / 8);
+let resultArquitetos = Math.floor(arquitetos / 4);
+let resultMusicos = Math.floor(musicos / 6);
+let resultDesenhistas = Math.floor(desenhistas / 12);
+
+console.log(resultBonecos + resultArquitetos + resultMusicos + resultDesenhistas);

@@ -37,29 +37,49 @@ let paresConsecutivos = 5;
 let numeroAtual;
 let primeiroPar;
 let soma = [];
+let par = [];
+let impar = [];
 
-for (let i = 0; i < input.length; i++) {
-    numeroAtual = Number(input[i]);
-    if (numeroAtual === parar) break;
+for (let numeroAtual of input) {
+    numeroAtual = Number(numeroAtual);
+    if (Number(numeroAtual) === parar) break;
     else {
         // aqui começa o programa
-        console.log();
-        console.log(`Passou aqui com o número: ${numeroAtual}`);
 
-        for (let j = 0; j < paresConsecutivos; j++) {
-            console.log(
-                `Passou aqui com o número: ${numeroAtual}, ${j + 1} vez(es).`
-            );
-            soma.push(j);
+        console.log();
+
+        console.log(`Passou aqui com o número: ${Number(numeroAtual)}`);
+
+        if (Number(numeroAtual) % 2 === 0){
+            for (let j = 0; j < paresConsecutivos; j++) {
+                console.log(`PAR. Passou aqui com o número: ${numeroAtual}, ${j + 1} vez(es).`);
+                par.push(Number(numeroAtual));
+                
+            }
+        }else if (Number(numeroAtual) % 2 !== 0){
+            numeroAtual = numeroAtual + 1
+            for (let j = 0; j < paresConsecutivos; j++) {
+                console.log(`IMPAR. Passou aqui com o número: ${numeroAtual}, ${j + 1} vez(es).`);
+                impar.push(numeroAtual += 2);
+                
+            }
         }
+        
     }
 }
 
-for (let linha of input) {
-    console.log(linha);
+console.log();
+
+for (let imprimirPar in par){
+    console.log(par);
+
 }
 
-for (let i = 0; i < input.length; i++) {
-    numeroAtual = Number(input[i]);
-    console.log(numeroAtual)
+console.log();
+
+for (let imprimirImpar in impar){
+    console.log(impar);
 }
+
+console.log([1, 2, 3, 4].reduce((a, b) => a + b, 0));
+console.log([].reduce((a, b) => a + b, 0));

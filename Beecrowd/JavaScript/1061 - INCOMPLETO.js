@@ -1,5 +1,3 @@
-const { isNumberObject } = require("util/types");
-
 /*
  beecrowd | 1061
 Tempo de um Evento
@@ -36,7 +34,7 @@ Dia 9
 1 minuto(s)
 0 segundo(s) 
 */
-var input = require("fs").readFileSync("stdin", "utf8");
+var input = require("fs").readFileSync("stdin", "utf8").trim();
 var lines = input.split("\n");
 //lines = ["Dia 5", "08 : 12 : 23", "Dia 9", "06 : 13 : 23"];
 
@@ -49,18 +47,18 @@ let dias = 0;
 let horas = 0;
 let minutos = 0;
 let segundos = 0;
-let saldoDias = -1;
+let saldoDias = 0;
 
-let diaInicial = Number(A.slice(4, 6));
-let diaFinal = Number(C.slice(4, 6));
+let diaInicial = parseInt(A.slice(4, 6));
+let diaFinal = parseInt(C.slice(4, 6));
 
-let horaInicial = Number(B.slice(0, 2));
-let minutoInicial = Number(B.slice(5, 7));
-let segundoInicial = Number(B.slice(10, 12));
+let horaInicial = parseInt(B.slice(0, 2));
+let minutoInicial = parseInt(B.slice(5, 7));
+let segundoInicial = parseInt(B.slice(10, 12));
 
-let horaFinal = Number(D.slice(0, 2));
-let minutoFinal = Number(D.slice(5, 7));
-let segundoFinal = Number(D.slice(10, 12));
+let horaFinal = parseInt(D.slice(0, 2));
+let minutoFinal = parseInt(D.slice(5, 7));
+let segundoFinal = parseInt(D.slice(10, 12));
 
 if (segundoInicial === segundoFinal) {
     segundos = 0;
@@ -96,9 +94,9 @@ if (diaInicial === diaFinal) {
     dias = 0;
 } else {
     if (diaFinal > diaInicial) {
-        dias = diaFinal - diaInicial + saldoDias;;
+        dias = diaFinal - diaInicial + saldoDias;
     } else {
-        dias = 30 - diaInicial + diaFinal 
+        dias = 30 - diaInicial + diaFinal;
     }
 }
 

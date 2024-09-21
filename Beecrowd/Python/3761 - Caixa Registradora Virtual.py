@@ -64,8 +64,36 @@ Desconto: R$ 36.90
 Valor final: R$ 147.60
 '''
 
-numeroDeItens = 0
-while numeroDeItens >= 0:
-    numeroDeItens = int(input())
-    precoUnitario = float(input())
-    quantidadeComprada = int(input())
+def informaDados(valorTotal, valorDoDesconto, valorFinal):
+    print(f'''Total: R$ {valorTotal:.2f}
+Desconto: R$ {valorDoDesconto:.2f}
+Valor final: R$ {valorFinal:.2f}''')
+
+# Inicia o dicionário vazio
+produtos = {}
+numeroDeItens = int(input())
+
+# Loop principal, vai fazer o loop "numeroDeItens" vezes, no caso 3.
+for i in range(numeroDeItens):
+    # pede o preço e a quantidade comprada
+    preco = float(input())
+    quantidade = int(input())
+    
+    # adiciona os itens no dicionário
+    produtos[i + 1] = {'preco': preco,'quantidade': quantidade} 
+
+# pede o desconto
+informaDesconto = float(input()) / 100
+
+# passa pelos itens do dicionário para fazer os calculos
+total = 0
+desconto = 0
+for j in produtos:
+    total += produtos[j].get("preco") * produtos[j].get("quantidade")
+    desconto = informaDesconto * total
+
+# calcula o valor final
+final = total - desconto
+
+#chama a função que vai mostrar os dados.
+informaDados(total, desconto, final)

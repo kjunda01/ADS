@@ -1,0 +1,27 @@
+h1 {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    padding: 10px;
+}
+
+* {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+
+    font-size: 20px;
+}
+
+h1,
+form {
+    padding: 10px;
+    gap: 10px;
+}
+
+.btnEnviar {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 233, 207);
+    padding: 10px;
+    border-radius: 5px;
+}

@@ -2,6 +2,8 @@
 :root {
     --cor-primaria: rgb(17, 86, 102);
     --cor-azul-claro: rgb(0, 102, 204);
+    --cor-vermelha: rgb(100, 0, 0);
+    --cor-verde-sucesso: rgb(109, 255, 182);
 }
 * {
     box-sizing: border-box;
@@ -36,21 +38,21 @@ form button {
     display: flex;
     justify-content: center;
 }
-.subtituloPrincipal {
-    padding-top: 5px;
-    font-size: 40px;
-}
+
 form input,
-form label,
-form button {
+form label {
     display: block;
     width: 100%;
     margin-bottom: 10px;
 }
 
+form button {
+    display: block;
+}
+
 form input {
-    font-size: 24px;
-    height: 30px;
+    font-size: 15px;
+    height: 40px;
 }
 
 form input:focus {
@@ -77,8 +79,10 @@ form button:active {
     background: green;
 }
 
-.tabelaPrincipal, td, th{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+.tabelaPrincipal,
+td,
+th {
+    font-family: monospace;
     width: 50%;
     border: 1px solid;
     border-collapse: collapse;
@@ -88,17 +92,21 @@ form button:active {
 th {
     height: 30px;
     background-color: beige;
-  }
-
-.resultado{
-    padding: 5px;
-    background-color: aquamarine;
-    display: flex;
-    justify-content: center;
-    
 }
-.botoes{
+
+.botoes {
     display: flex;
     gap: 10px;
-    
+}
+
+.paragrafo-resultado {
+    background: var(--cor-verde-sucesso);
+    padding: 10px 20px;
+    color: rgb(10, 0, 144);
+}
+
+.paragrafo-incorreto {
+    background: var(--cor-vermelha);
+    padding: 10px 20px;
+    color: bisque;
 }

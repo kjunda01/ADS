@@ -13,13 +13,13 @@ body {
     padding: 0;
     background: var(--cor-primaria);
     font-family: "Ubuntu", monospace;
-    font-size: 0.8em;
-    line-height: 1em;
+    font-size: 1em;
+    line-height: 1.2em;
 }
 
 .container {
-    max-width: 60%;
-    margin: 40px auto;
+    max-width: 90%;
+    margin: 20px auto;
     background-color: #fff;
     padding: 10px;
 }
@@ -27,19 +27,19 @@ body {
 .container,
 form input,
 form button {
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .tituloPrincipal,
-.textoPrincipal {
+.tabelaIMC,
+.subtituloPrincipal {
     display: flex;
     justify-content: center;
 }
-
-.textoPrincipal {
-    text-align: justify;
+.subtituloPrincipal {
+    padding-top: 5px;
+    font-size: 40px;
 }
-
 form input,
 form label,
 form button {
@@ -75,4 +75,30 @@ form button:hover {
 
 form button:active {
     background: green;
+}
+
+.tabelaPrincipal, td, th{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 50%;
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th {
+    height: 30px;
+    background-color: beige;
+  }
+
+.resultado{
+    padding: 5px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    
+}
+.botoes{
+    display: flex;
+    gap: 10px;
+    
 }

@@ -3,9 +3,9 @@ Este repositório contém diversos projetos em Python e JavaScript, além de mat
 
 ## Como Usar
 1. Clone o repositório:
-git clone https://github.com/kjunda01/ADS
+`git clone https://github.com/kjunda01/ADS`
 
-2. Consulte a pasta `vscode-config/` para usar as configurações do VS Code.
+2. Consulte a pasta `vscode-config` para usar as configurações do VS Code.
 
 
 ## Licença

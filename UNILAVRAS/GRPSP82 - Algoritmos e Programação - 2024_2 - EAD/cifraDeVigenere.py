@@ -18,110 +18,40 @@ mantém o resultado dentro do intervalo de 0 a 25
 #p = c - k + % 26
 
 '''
-dicionario = {
-    "A": 0,
-    "B": 1,
-    "C": 2,
-    "D": 3,
-    "E": 4,
-    "F": 5,
-    "G": 6,
-    "H": 7,
-    "I": 8,
-    "J": 9,
-    "K": 10,
-    "L": 11,
-    "M": 12,
-    "N": 13,
-    "O": 14,
-    "P": 15,
-    "Q": 16,
-    "R": 17,
-    "S": 18,
-    "T": 19,
-    "U": 20,
-    "V": 21,
-    "W": 22,
-    "X": 23,
-    "Y": 24,
-    "Z": 25
-}
+# Dicionário de letras para índices
+dicionario = {chr(i + 65): i for i in range(26)}  # A = 0, B = 1, ..., Z = 25
 
-#textoOriginal = 'OLA?'
-textoOriginal = input().upper()
-#textoChave = 'ABCD'
-textoChave = input().upper()
+# Função para codificar e decodificar a mensagem
+def criptografar(mensagem, chave):
+    if len(mensagem) != len(chave):
+        return "Mensagem / chave com tamanhos divergentes!"
 
-if len(textoOriginal) != len(textoChave):
-    print("Mensagem / chave com tamanhos divergentes!")
-
-else:
-    listaOriginal = []
-    listaChave = []
     listaCodificada = []
     listaDecodificada = []
-    mensagemOriginal = []
-    mensagemCriptografada = []
-    mensagemDescriptografada = []
-
-    def acharNumeroOriginal():
-        for i in range(len(textoOriginal)):
-            for chave, valor in dicionario.items():
-                if chave == textoOriginal[i]:
-                    listaOriginal.append(valor)
-                    mensagemOriginal.append(chave)
-
-
-    def acharNumeroChave():               
-        for j in range(len(textoChave)):
-            for chave, valor in dicionario.items():
-                if chave == textoChave[j]:
-                    listaChave.append(valor)
-
-
-    def mensagemCodificada():
-        for k in range(len(listaOriginal)):
-            cifra = (listaOriginal[k] + listaChave[k]) % 26
-            for chave, valor in dicionario.items():
-                if valor == cifra:
-                    listaCodificada.append(valor)
-                    mensagemCriptografada.append(chave)
-                    
-
-    def decodificarMensagem():
-        for l in range(len(listaOriginal)):
-            textoDecodificado = (listaCodificada[l] - listaChave[l])  % 26
-            for chave, valor in dicionario.items():
-                if valor == textoDecodificado:
-                    listaDecodificada.append(valor)
-                    mensagemDescriptografada.append(chave)
-
-
-    def mostrarMensagemOriginal():
-        print('Mensagem original:\n')
-        for i in mensagemOriginal:
-            print(i, end='')
-
-
-    def mostrarMensagemCriptografada():
-        print('Mensagem criptografada:\n')
-        for j in mensagemCriptografada:
-            print(j, end='')
-
-
-    def mostrarMensagemDescriptografada():
-        print('Mensagem descriptografada:\n')
-        for k in mensagemDescriptografada:
-            print(k, end='')
-        
-
-    acharNumeroOriginal()
-    acharNumeroChave()
-    mensagemCodificada()
-    decodificarMensagem()
-    mostrarMensagemOriginal()
-    mostrarMensagemCriptografada()
-    mostrarMensagemDescriptografada()
     
+    for i in range(len(mensagem)):
+        letra_original = dicionario.get(mensagem[i])
+        letra_chave = dicionario.get(chave[i])
+        
+        # Codificação
+        if letra_original is not None and letra_chave is not None:
+            cifra = (letra_original + letra_chave) % 26
+            listaCodificada.append(chr(cifra + 65))  # Converte de volta para letra
 
+            # Decodificação
+            texto_decodificado = (cifra - letra_chave) % 26
+            listaDecodificada.append(chr(texto_decodificado + 65))  # Converte de volta para letra
 
+    return "".join(listaCodificada), "".join(listaDecodificada)
+
+# Entrada do usuário
+textoOriginal = input().upper()
+textoChave = input().upper()
+
+# Executar criptografia e descriptografia
+mensagem_criptografada, mensagem_descriptografada = criptografar(textoOriginal, textoChave)
+
+# Mostrar resultados
+print('Mensagem original:\n', textoOriginal)
+print('Mensagem criptografada:\n', mensagem_criptografada)
+print('Mensagem descriptografada:\n', mensagem_descriptografada)

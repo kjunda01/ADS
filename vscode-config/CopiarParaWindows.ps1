@@ -12,3 +12,6 @@ Copy-Item "$SOURCE_DIR\keybindings.json" -Destination $DEST_DIR -Force
 
 # Mensagem de sucesso
 Write-Host "Configurações do VS Code coladas em $DEST_DIR"
+
+
+Get-Content extensions.txt | ForEach-Object { code --install-extension $_ }

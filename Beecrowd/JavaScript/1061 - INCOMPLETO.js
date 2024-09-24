@@ -34,73 +34,39 @@ Dia 9
 1 minuto(s)
 0 segundo(s) 
 */
-var input = require("fs").readFileSync("stdin", "utf8").trim();
-var lines = input.split("\n");
-//lines = ["Dia 5", "08 : 12 : 23", "Dia 9", "06 : 13 : 23"];
+//var input = require("fs").readFileSync("stdin", "utf8").trim();
+//var lines = input.split("\n");
+lines = ["Dia 5", "08 : 12 : 23", "Dia 9", "06 : 13 : 23"];
 
-let A = lines[0];
-let B = lines[1];
-let C = lines[2];
-let D = lines[3];
+/*
+const data = new Date();
 
-let dias = 0;
-let horas = 0;
-let minutos = 0;
-let segundos = 0;
-let saldoDias = 0;
+console.log(data);
+console.log();
+console.log(data.toString());
+console.log();
+console.log(data.toDateString());
+console.log();
 
-let diaInicial = parseInt(A.slice(4, 6));
-let diaFinal = parseInt(C.slice(4, 6));
-
-let horaInicial = parseInt(B.slice(0, 2));
-let minutoInicial = parseInt(B.slice(5, 7));
-let segundoInicial = parseInt(B.slice(10, 12));
-
-let horaFinal = parseInt(D.slice(0, 2));
-let minutoFinal = parseInt(D.slice(5, 7));
-let segundoFinal = parseInt(D.slice(10, 12));
-
-if (segundoInicial === segundoFinal) {
-    segundos = 0;
-} else {
-    if (segundoFinal > segundoInicial) {
-        segundos = segundoFinal - segundoInicial;
-    } else {
-        segundos = 60 - segundoInicial + segundoFinal;
-    }
+function zeroAEsquerda(num) {
+    return num >= 10 ? num : `0${num}`;
 }
 
-if (minutoInicial === minutoFinal) {
-    minutos = 0;
-} else {
-    if (minutoFinal > minutoInicial) {
-        minutos = minutoFinal - minutoInicial;
-    } else {
-        minutos = 60 - minutoInicial + minutoFinal;
-    }
+function formataData(data) {
+    const dia = zeroAEsquerda(data.getDate());
+    const mes = zeroAEsquerda(data.getMonth() + 1);
+    const ano = zeroAEsquerda(data.getFullYear());
+    const hora = zeroAEsquerda(data.getHours());
+    const min = zeroAEsquerda(data.getMinutes());
+    const seg = zeroAEsquerda(data.getSeconds());
+
+    return `${dia}/${mes}/${ano} ${hora}:${min}:${seg}`;
 }
 
-if (horaInicial === horaFinal) {
-    horas = 0;
-} else {
-    if (horaFinal > horaInicial) {
-        horas = horaFinal - horaInicial;
-    } else {
-        horas = 24 - horaInicial + horaFinal;
-    }
-}
+const dataBrasil = formataData(data);
+console.log(dataBrasil);
+*/
 
-if (diaInicial === diaFinal) {
-    dias = 0;
-} else {
-    if (diaFinal > diaInicial) {
-        dias = diaFinal - diaInicial + saldoDias;
-    } else {
-        dias = 30 - diaInicial + diaFinal;
-    }
-}
-
-console.log(`${dias} dia(s)
-${horas} hora(s)
-${minutos} minuto(s)
-${segundos} segundo(s)`);
+const diaInicial = lines[0].trim().split(" ")[1];
+const horaInicial = 
+const diaFinal = lines[2].trim().split(" ")[1];

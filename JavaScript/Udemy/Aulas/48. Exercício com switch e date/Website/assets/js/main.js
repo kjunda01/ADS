@@ -76,26 +76,8 @@ function meuEscopo() {
             return mes;
         }
 
-        function hora(valor) {
-            if (data.getHours() < 10) {
-                return `0${data.getHours()}`;
-            } else {
-                return data.getHours();
-            }
-        }
-        function minuto(valor) {
-            if (data.getMinutes() < 10) {
-                return `0${data.getMinutes()}`;
-            } else {
-                return data.getMinutes();
-            }
-        }
-        function segundo(valor) {
-            if (data.getSeconds() < 10) {
-                return `0${data.getSeconds()}`;
-            } else {
-                return data.getSeconds();
-            }
+        function zeroAEquerda(valor) {
+            return valor >= 10 ? valor : `0${valor}`;
         }
 
         const diaSemana = data.getDay();
@@ -104,10 +86,7 @@ function meuEscopo() {
 
         textoSite.innerHTML = `<h1>${diaDaSemana(
             diaSemana
-        )}, ${data.getDate()} de ${mes} de ${data.getFullYear()}</h1>
-        ${hora(data.getHours())}:${minuto(data.getMinutes())}:${segundo(
-            data.getSeconds()
-        )}`;
+        )}, ${data.getDate()} de ${mes} de ${data.getFullYear()}</h1>${zeroAEquerda(data.getHours())}:${zeroAEquerda(data.getMinutes())}:${zeroAEquerda(data.getSeconds())}`;
     }, 1000);
 }
 meuEscopo();

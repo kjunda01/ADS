@@ -7,28 +7,30 @@ console.log(numeroFinal);
 console.log(alvo);
 
 function busca_binaria(inicio, fim, alvo) {
-    const meio = Math.floor((inicio + fim) / 2);
-
     if (alvo < inicio || alvo > fim) {
-        return `Número ${alvo} não encontrado.`;
+        return false;
     }
-    contador = 0;
+
+    passo = 1;
     while (inicio <= fim) {
-        console.log(`passou aqui ${contador} vezes.`);
-        contador++;
-        
-        if (alvo > meio) {
-            inicio = meio + 1;
-        } else if (alvo < meio) {
-            fim = meio - 1;
-        } else {
+        const meio = Math.floor((inicio + fim) / 2);
+        console.log(
+            `Passo ${passo}: Intervalo [${inicio}, ${fim}], Meio=${meio}`
+        );
+        passo++;
+
+        if (alvo === meio) {
             return true;
+        } else if (alvo > meio) {
+            inicio = meio + 1;
+        } else {
+            fim = meio - 1;
         }
     }
 }
 
 if (busca_binaria(numeroInicial, numeroFinal, alvo)) {
-    console.log(busca_binaria(numeroInicial, numeroFinal, alvo));
+    console.log(console.log(`Número ${alvo} encontrado.`));
 } else {
-    console.log(busca_binaria(numeroInicial, numeroFinal, alvo));
+    console.log(`Número ${alvo} não encontrado.`);
 }

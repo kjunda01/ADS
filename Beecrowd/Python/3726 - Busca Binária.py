@@ -82,34 +82,48 @@ Número 42 encontrado
 1
 50
 25
-	
 
-Passo 1: Intervalo [1, 50], Meio=25
-Número 25 encontrado'''
-
-intervaloInicio = int(input())
-intervaloFinal = int(input())
-numeroProcurado = int(input())
-
-def getValorDoMeio(comeco, fim):
-    valorMeio = (comeco // 2) + (fim // 2)
-    return valorMeio
-
-def getIntervaloAoMeio(meio):
-    valorIntervaloAoMeio = meio / 2
-    return valorIntervaloAoMeio
-
-
-def busca_binaria(inicio, final, alvo):
-
-
-
-
-busca_binaria(intervaloInicio, intervaloFinal, numeroProcurado)
-
-'''
 A lógica da busca binária envolve dividir a lista ao meio e determinar se a letra desejada está
 na metade inferior ou superior da lista, repetindo o processo até encontrar a letra
-ou determinar que ela não está presente.
-
+ou determinar que ela não está presente.	
 '''
+
+# listaPadrao = []
+# while len(listaPadrao) < 3:
+#     numero = int(input())
+#     listaPadrao.append(numero)
+
+# valorInicial = listaPadrao[0]
+# valorFinal = listaPadrao[1]
+# numeroProcurado = listaPadrao[2]
+
+def busca_binaria(inicio, fim, alvo):
+    if alvo < inicio or alvo > fim:
+        return False
+    
+    passo = 1
+    while inicio <= fim:
+        meio = (inicio + fim) // 2
+        print(f"Passo {passo}: Intervalo [{inicio}, {fim}], Meio={meio}")
+        
+        if meio == alvo:
+            return True
+        elif meio < alvo:
+            inicio = meio + 1
+        else:
+            fim = meio - 1
+            
+        passo += 1
+        
+    return False
+
+# Solicita a entrada do usuário
+inicio = int(input("Digite o início do intervalo: "))
+fim = int(input("Digite o fim do intervalo: "))
+alvo = int(input("Digite o número alvo: "))
+
+# Chama a função de busca binária e exibe o resultado
+if busca_binaria(inicio, fim, alvo):
+    print(f"Número {alvo} encontrado")
+else:
+    print(f"Número {alvo} não encontrado")

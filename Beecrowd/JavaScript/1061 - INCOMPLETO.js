@@ -34,39 +34,77 @@ Dia 9
 1 minuto(s)
 0 segundo(s) 
 */
-//var input = require("fs").readFileSync("stdin", "utf8").trim();
-//var lines = input.split("\n");
-lines = ["Dia 5", "08 : 12 : 23", "Dia 9", "06 : 13 : 23"];
+
+var input = require("fs").readFileSync("stdin", "utf8").trim();
+var lines = input.split("\n");
+//lines = ["Dia 5", "08 : 12 : 23", "Dia 9", "06 : 13 : 23"];
+
+const [diaInicialBruto, horaInicialBruta, diaFinalBruto, horaFinalBruta] =
+    lines;
+
+let diaInicial = diaInicialBruto.split(" ")[1];
+let horaInicial = horaInicialBruta.split(" ")[0];
+let minutoInicial = horaInicialBruta.split(" ")[2];
+let segundoInicial = horaInicialBruta.split(" ")[4];
+
+let diaFinal = diaFinalBruto.split(" ")[1];
+let horaFinal = horaFinalBruta.split(" ")[0];
+let minutoFinal = horaFinalBruta.split(" ")[2];
+let segundoFinal = horaFinalBruta.split(" ")[4];
+
+// console.log(diaInicial);
+// console.log(horaInicial);
+// console.log(minutoInicial);
+console.log(segundoInicial);
+console.log();
+// console.log(diaFinal);
+// console.log(horaFinal);
+// console.log(minutoFinal);
+console.log(segundoFinal);
 
 /*
-const data = new Date();
-
-console.log(data);
-console.log();
-console.log(data.toString());
-console.log();
-console.log(data.toDateString());
-console.log();
-
-function zeroAEsquerda(num) {
-    return num >= 10 ? num : `0${num}`;
-}
-
-function formataData(data) {
-    const dia = zeroAEsquerda(data.getDate());
-    const mes = zeroAEsquerda(data.getMonth() + 1);
-    const ano = zeroAEsquerda(data.getFullYear());
-    const hora = zeroAEsquerda(data.getHours());
-    const min = zeroAEsquerda(data.getMinutes());
-    const seg = zeroAEsquerda(data.getSeconds());
-
-    return `${dia}/${mes}/${ano} ${hora}:${min}:${seg}`;
-}
-
-const dataBrasil = formataData(data);
-console.log(dataBrasil);
+Dia 5
+08 : 12 : 23
+Dia 9
+06 : 13 : 23
 */
+let dia = 0,
+    hora = 0,
+    minuto = 0,
+    segundo = 0;
 
-const diaInicial = lines[0].trim().split(" ")[1];
-const horaInicial = 
-const diaFinal = lines[2].trim().split(" ")[1];
+if (segundoInicial > segundoFinal) {
+    segundo = 60 - (segundoInicial - segundoFinal);
+    minuto += 1
+}
+if (segundoInicial < segundoFinal) {
+    segundo = segundoFinal - segundoInicial;
+} else {
+    segundo = 0;
+}
+
+if (minutoInicial + minuto > minutoFinal + minuto) {
+    minuto = 60 - (minutoInicial - minutoFinal);
+    hora += 1
+}
+if (minutoInicial + minuto < minutoFinal + minuto) {
+    minuto = minutoFinal - minutoInicial;
+} else {
+    minuto = 0;
+}
+
+if (horaInicial > horaFinal) {
+    hora = 60 - (horaInicial - horaFinal);
+    hora += 1
+}
+if (minutoInicial < minutoFinal) {
+    minuto = minutoFinal - minutoInicial;
+} else {
+    minuto = 0;
+}
+
+
+console.log(`${dia} dia(s)
+${hora} hora(s)
+${minuto} minuto(s)
+${segundo} segundo(s) `);

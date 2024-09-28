@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     --cor-primaria: rgb(17, 86, 102);
-    --cor-azul-claro: rgb(0, 102, 204);
 }
 * {
     box-sizing: border-box;
@@ -12,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     background: var(--cor-primaria);
-    font-family: "Ubuntu", monospace;
+    font-family: Montserrat;
     font-size: 0.8em;
     line-height: 1em;
 }
@@ -22,57 +21,7 @@ body {
     margin: 40px auto;
     background-color: #fff;
     padding: 10px;
-}
-
-.container,
-form input,
-form button {
     border-radius: 4px;
-}
-
-.tituloPrincipal,
-.textoPrincipal {
     display: flex;
     justify-content: center;
-}
-
-.textoPrincipal {
-    text-align: justify;
-}
-
-form input,
-form label,
-form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-form input {
-    font-size: 24px;
-    height: 30px;
-}
-
-form input:focus {
-    outline: 2px solid var(--cor-primaria);
-}
-
-form button {
-    border: none;
-    background: var(--cor-primaria);
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    height: 50px;
-    cursor: pointer;
-    width: 50%;
-    margin: 20px auto;
-}
-
-form button:hover {
-    background: var(--cor-azul-claro);
-}
-
-form button:active {
-    background: green;
 }

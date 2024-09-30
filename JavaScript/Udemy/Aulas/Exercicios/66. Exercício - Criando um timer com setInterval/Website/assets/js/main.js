@@ -3,45 +3,44 @@ const select_btnPausar = document.querySelector("#btnPausar");
 const select_btnResetar = document.querySelector("#btnResetar");
 const select_timer = document.querySelector(".timer");
 
-let IDIntervalo;
-let tempo = new Date(0);
-let ms = 1
+let segundos = 0;
+let timer;
 
-function timer(ms = 1) {
-    tempo.setMilliseconds(ms * 1000);
-    return tempo.toLocaleTimeString("pt-BR", { timeZone: "UTC" });
+function criaHoraDosSegundos(segundos) {
+    let hora = new Date(segundos * 1000);
+    return hora.toLocaleTimeString("pt-BR", { hour12: false, timeZone: "UTC" });
 }
 
-function iniciaTimer() {
-    if (!IDIntervalo) {
-        IDIntervalo = setInterval((select_timer.innerHTML = timer(ms)), 1000);
-    }
-}
-
-function pausarTimer() {
-    clearInterval(IDIntervalo);
-    IDIntervalo = null;
-}
-
-function zerarTimer() {
-    const zerarTempo = new Date(0);
-    return (select_timer.innerHTML = zerarTempo.toLocaleTimeString("pt-BR", {
-        timeZone: "UTC",
-    }));
+function iniciarTimer() {
+    timer = setInterval(function () {
+        segundos++;
+        select_timer.innerHTML = criaHoraDosSegundos(segundos);
+    }, 100);
 }
 
 select_btnIniciar.addEventListener("click", function (event) {
-    console.log("clicou no Iniciar");
-    iniciaTimer();
+    select_timer.classList.remove('pausado');
+    select_timer.classList.add('normal');
+    console.log("Clicou no Iniciar");
+    clearInterval(timer);
+    iniciarTimer();
 });
 
 select_btnPausar.addEventListener("click", function (event) {
-    console.log("clicou no Pausar");
-    pausarTimer();
+    console.log("Clicou no Pausar");
+    clearInterval(timer);
+    select_timer.classList.remove('zerado');
+    select_timer.classList.remove('normal');
+    select_timer.classList.add('pausado');
 });
 
 select_btnResetar.addEventListener("click", function (event) {
-    console.log("clicou no Resetar");
-    console.clear()
-    zerarTimer();
+    console.log("Clicou no Resetar");
+    console.clear();
+    clearInterval(timer);
+    select_timer.innerHTML = "00:00:00";
+    segundos = 0;
+    select_timer.classList.remove('pausado');
+    select_timer.classList.remove('normal');
+    select_timer.classList.add('zerado');
 });

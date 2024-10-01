@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --cor-primaria: rgb(17, 86, 102);
+}
+* {
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--cor-primaria);
+    font-family: Montserrat;
+    font-size: 0.8em;
+    line-height: 1em;
+}
+
+.container {
+    max-width: 60%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    display: block;
+}
+
+.tituloPrincipal, .boxConteudo{
+    display: flex;
+    justify-content: center;
+}
+
+.boxConteudo{
+    gap: 10px;
+}

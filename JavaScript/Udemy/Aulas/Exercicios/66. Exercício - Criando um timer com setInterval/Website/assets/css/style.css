@@ -11,19 +11,20 @@
 body {
     background: var(--cor-primaria);
     font-family: Montserrat;
-    display: flex;
-    justify-content: center;
+    display: block;
 }
 
-body,
 .tituloPrincipal,
 .timer,
-.botoes {
+.botoes,
+.titulo-marcacoes,
+.marcacoes {
     display: flex;
     justify-content: center;
 }
 
-.container {
+.container,
+.marcas {
     width: 90%;
     margin: 40px auto;
     background-color: #d8d8d8;
@@ -53,6 +54,10 @@ body,
     color: antiquewhite;
 }
 
+.marcacoes{
+    size: 10px;
+}
+
 #btnIniciar {
     background: blue;
 }
@@ -65,14 +70,18 @@ body,
     background: red;
 }
 
+#btnMarcar{
+    color: blueviolet;
+}
+
 .pausado {
     color: rgb(112, 112, 19);
 }
 
 .zerado {
-    color: blue;
+    color: red;
 }
 
 .normal {
-    color: black;
+    color: blue;
 }

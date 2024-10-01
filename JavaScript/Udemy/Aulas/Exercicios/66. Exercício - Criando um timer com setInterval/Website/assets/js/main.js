@@ -1,9 +1,12 @@
 const select_btnIniciar = document.querySelector("#btnIniciar");
 const select_btnPausar = document.querySelector("#btnPausar");
 const select_btnResetar = document.querySelector("#btnResetar");
+const select_btnMarcar = document.querySelector("#btnMarcar");
+const select_txtMarcacoes = document.querySelector(".marcacoes");
 const select_timer = document.querySelector(".timer");
 
 let segundos = 0;
+let numeroMarcacao = 1;
 let timer;
 
 function criaHoraDosSegundos(segundos) {
@@ -15,32 +18,52 @@ function iniciarTimer() {
     timer = setInterval(function () {
         segundos++;
         select_timer.innerHTML = criaHoraDosSegundos(segundos);
-    }, 100);
+    }, 1000);
 }
 
-select_btnIniciar.addEventListener("click", function (event) {
-    select_timer.classList.remove('pausado');
-    select_timer.classList.add('normal');
-    console.log("Clicou no Iniciar");
-    clearInterval(timer);
-    iniciarTimer();
-});
+function limpaTimer() {
+    return clearInterval(timer);
+}
 
-select_btnPausar.addEventListener("click", function (event) {
-    console.log("Clicou no Pausar");
-    clearInterval(timer);
-    select_timer.classList.remove('zerado');
-    select_timer.classList.remove('normal');
-    select_timer.classList.add('pausado');
-});
+function coresDoTimer(cor) {
+    const cores = ["normal", "pausado", "zerado"];
+    for (i of cores) {
+        select_timer.classList.remove(i);
+    }
+    select_timer.classList.add(cor);
+}
 
-select_btnResetar.addEventListener("click", function (event) {
-    console.log("Clicou no Resetar");
-    console.clear();
-    clearInterval(timer);
-    select_timer.innerHTML = "00:00:00";
-    segundos = 0;
-    select_timer.classList.remove('pausado');
-    select_timer.classList.remove('normal');
-    select_timer.classList.add('zerado');
+document.addEventListener("click", function (e) {
+    const elementoClicado = e.target;
+
+    if (elementoClicado === select_btnIniciar) {
+        coresDoTimer("normal");
+        limpaTimer();
+        iniciarTimer();
+    }
+
+    if (elementoClicado === select_btnPausar) {
+        coresDoTimer("pausado");
+        limpaTimer();
+    }
+
+    if (elementoClicado === select_btnResetar) {
+        let resposta = confirm("Deseja resetar?");
+        if (resposta) {
+            coresDoTimer("zerado");
+            //console.clear();
+            limpaTimer();
+            select_timer.innerHTML = "00:00:00";
+            select_txtMarcacoes.innerHTML = "";
+            segundos = 0;
+            numeroMarcacao = 1;
+        }
+    }
+
+    if (elementoClicado === select_btnMarcar) {
+        select_txtMarcacoes.innerHTML += `Marcação ${numeroMarcacao}: ${criaHoraDosSegundos(
+            segundos
+        )}</br>`;
+        numeroMarcacao++;
+    }
 });

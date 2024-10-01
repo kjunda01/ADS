@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
     --cor-primaria: rgb(17, 86, 102);
 }
+
 * {
     box-sizing: border-box;
     outline: 0;
@@ -25,11 +27,23 @@ body {
     display: block;
 }
 
-.tituloPrincipal, .boxConteudo{
+.tituloPrincipal,
+.boxAddTarefa {
     display: flex;
     justify-content: center;
 }
 
-.boxConteudo{
-    gap: 10px;
+.tituloPrincipal {
+    font-size: xx-large;
+}
+
+.itens {
+    display: block;
+}
+
+button {
+    margin-left: 10px;
+}
+div li button {
+    margin-top: 10px;
 }

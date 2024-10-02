@@ -97,34 +97,27 @@ ou determinar que ela não está presente.
 # valorFinal = listaPadrao[1]
 # numeroProcurado = listaPadrao[2]
 
-def busca_binaria(inicio, fim, alvo):
-
-    if alvo < inicio or alvo > fim:
+def busca_binaria(inicial, final, numeroProcurado):
+    if numeroProcurado < inicial or numeroProcurado > final:
         return False
-    
     passo = 1
-    while inicio <= fim:
-
-        meio = (inicio + fim) // 2
-        
-        print(f"Passo {passo}: Intervalo [{inicio}, {fim}], Meio={meio}")
-        
-        if meio == alvo:
+    while inicial <= final:
+        meio = (inicial + final) // 2
+        print(f"Passo {passo}: Intervalo [{inicial}, {final}], Meio={meio}")
+        if meio == numeroProcurado:
             return True
-        elif meio < alvo:
-            inicio = meio + 1
+        elif meio < numeroProcurado:
+            inicial = meio + 1
         else:
-            fim = meio - 1
-            
+            final = meio - 1
         passo += 1
-        
     return False
 
-numeroInicial = int(input())
-numeroFinal = int(input())
-numeroProcurado = int(input())
+numInicial = int(input())
+numFinal = int(input())
+numProcurado = int(input())
 
-if busca_binaria(numeroInicial, numeroFinal, numeroProcurado):
-    print(f"Número {numeroProcurado} encontrado")
+if busca_binaria(numInicial, numFinal, numProcurado):
+    print(f"Número {numProcurado} encontrado")
 else:
-    print(f"Número {numeroProcurado} não encontrado")
+    print(f"Número {numProcurado} não encontrado")

@@ -25,24 +25,34 @@ Exemplo de Entrada 	Exemplo de Saída
 9.3 
 */
 
+// Importa o módulo 'fs' para ler a entrada
 var input = require("fs").readFileSync("/dev/stdin", "utf8").trim();
 var lines = input.split("\n");
 
-const peso = [2, 3, 5];
-const numeroDeTestes = Number(lines[0]);
-let contador = 1;
-let media = 0;
-somaDosPesos = peso[0] + peso[1] + peso[2];
-
-function mediaPonderada(lista) {
-    for (let i = 0; i <= lista.length; i++) {
-        console.log(i);
-        console.log(lista.split(" "));
-    }
+// Função para calcular a média ponderada
+function calcularMediaPonderada(a, b, c) {
+    const pesoA = 2;
+    const pesoB = 3;
+    const pesoC = 5;
+    const somaPesos = pesoA + pesoB + pesoC;
+    
+    return ((a * pesoA) + (b * pesoB) + (c * pesoC)) / somaPesos;
 }
 
-while (contador <= numeroDeTestes) {
-    media += mediaPonderada(lines[contador]);
-    contador++;
+// Primeira linha é o número de casos
+const N = parseInt(lines[0], 10);
+
+// Inicializa um array para armazenar as médias
+const medias = [];
+
+// Processa cada caso de teste
+for (let i = 1; i <= N; i++) {
+    const valores = lines[i].split(" ").map(Number);
+    const media = calcularMediaPonderada(valores[0], valores[1], valores[2]);
+    medias.push(media);
 }
-console.log(media);
+
+// Exibe os resultados
+medias.forEach(media => {
+    console.log(media.toFixed(1));
+});

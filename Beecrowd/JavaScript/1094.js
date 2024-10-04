@@ -36,55 +36,52 @@ Percentual de ratos: 43.48 %
 Percentual de sapos: 25.00 %
 */
 
-var input = require("fs").readFileSync("stdin", "utf8");
+var input = require("fs").readFileSync("/dev/stdin", "utf8");
 var lines = input.split("\n");
 
+const listaTotal = [],
+    listaCoelhos = [],
+    listaRatos = [],
+    listaSapos = [];
+
 const casosTeste = lines[0];
-let listaCoelhos = [];
-function acharCoelhos(texto) {
+
+function acharAnimais(texto) {
     for (let i = 1; i <= casosTeste; i++) {
-        if (lines[i].lastIndexOf("C") > 0) {
-            listaCoelhos.push(lines[i]);
-            listaCoelhos.replace(' C', '')
-        }
-    }
-    return listaCoelhos;
-}
-
-function replaceC(lista){
-    console.log(lista.replace(' C', ''))
-}
-
-
-
-
-function acharRatos(texto) {
-    for (let i = 1; i <= casosTeste; i++) {
-        if (lines[i].lastIndexOf("R") > 0) {
-            console.log(lines[i]);
+        if (lines[i].lastIndexOf(texto) > 0) {
+            let t = lines[i].replace(" ", "");
+            let u = t.replace(texto, "");
+            if (texto === "C") listaCoelhos.push(u);
+            if (texto === "R") listaRatos.push(u);
+            if (texto === "S") listaSapos.push(u);
+            listaTotal.push(u);
         }
     }
 }
 
-function acharSapos(texto) {
-    for (let i = 1; i <= casosTeste; i++) {
-        if (lines[i].lastIndexOf("S") > 0) {
-            console.log(lines[i]);
-        }
-    }
+function acharTotal(lista) {
+    let soma = 0;
+    lista.forEach((element) => {
+        soma += Number(element);
+    });
+    return soma;
 }
 
+function achaPorcentagem(lista) {
+    const porcentagem = Number((lista / acharTotal(listaTotal)) * 100).toFixed(
+        2
+    );
+    return porcentagem;
+}
 
-console.log(acharCoelhos(lines));
-acharRatos(lines);
-acharSapos(lines);
+acharAnimais("C");
+acharAnimais("R");
+acharAnimais("S");
 
-/*
-console.log(`Total: 92 cobaias
-Total de coelhos: ${coelhos}
-Total de ratos: ${ratos}
-Total de sapos: ${sapos}
-Percentual de coelhos: 31.52 %
-Percentual de ratos: 43.48 %
-Percentual de sapos: 25.00 %`);
-*/
+console.log(`Total: ${acharTotal(listaTotal)} cobaias
+Total de coelhos: ${acharTotal(listaCoelhos)}
+Total de ratos: ${acharTotal(listaRatos)}
+Total de sapos: ${acharTotal(listaSapos)}
+Percentual de coelhos: ${achaPorcentagem(acharTotal(listaCoelhos))} %
+Percentual de ratos: ${achaPorcentagem(acharTotal(listaRatos))} %
+Percentual de sapos: ${achaPorcentagem(acharTotal(listaSapos))} %`);

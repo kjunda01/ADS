@@ -21,8 +21,7 @@
     },
     "code-runner.clearPreviousOutput": true,
     "code-runner.executorMap": {
-
-        "javascript": "node",
+        "javascript": "cd $dir && node $fileName",
         "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
         "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "zig": "zig run",

@@ -66,4 +66,6 @@ let resultArquitetos = Math.floor(arquitetos / 4);
 let resultMusicos = Math.floor(musicos / 6);
 let resultDesenhistas = Math.floor(desenhistas / 12);
 
-console.log(resultBonecos + resultArquitetos + resultMusicos + resultDesenhistas);
+console.log(
+    resultBonecos + resultArquitetos + resultMusicos + resultDesenhistas
+);

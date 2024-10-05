@@ -45,3 +45,26 @@ Exemplo de Entrada 	Exemplo de Saída
 
 12
 */
+var input = require("fs").readFileSync("stdin", "utf8");
+var lines = input.split("\n");
+
+const casosTeste = Number(lines[0]);
+let impar = 0;
+
+function achaImpar(lista) {
+    const novalista = lista.split(" ");
+    novalista.sort();
+    let inicio = Number(novalista[0]);
+    let final = Number(novalista[1]);
+
+    for (let i = inicio; i < final; i++) {
+        if (i % 2 !== 0) {
+            impar += i;
+        }
+    }
+    return impar;
+}
+
+for (let i = 1; i < casosTeste; i++) {
+    console.log(achaImpar(lines[i]));
+}

@@ -55,12 +55,12 @@ Samples Input	Samples Output
 (4, 6)
 '''
 
-#primeiraLinha = int(input())
-primeiraLinha = 4
-#segundaLinha = input().split(" ")
-segundaLinha = "10 20 30 40".split(" ")
-#numeroAlvo = int(input())
-numeroAlvo = 50
+primeiraLinha = int(input())
+#primeiraLinha = 4
+segundaLinha = input().split(" ")
+#segundaLinha = "10 20 30 40".split(" ")
+numeroAlvo = int(input())
+#numeroAlvo = 50
 listaNumeros = []
 listaDeTuplas = []
 
@@ -79,12 +79,13 @@ for numero in range(len(listaNumeros)):
 
         # se for igual o numero procurado ele cria uma lista de tuplas
         if numeroAnalisado + numeroAtual == numeroAlvo:
-            # ordena as duplas de tuplas em ordem numerica
 
-            tupla = (numeroAtual, numeroAnalisado)
-            
-            #cria a lista de tuplas
-            listaDeTuplas.append(tupla)
+            # ordena as duplas de tuplas em ordem numerica
+            if numeroAtual > numeroAnalisado:
+                tupla = (numeroAnalisado, numeroAtual)
+                
+                #cria a lista de tuplas
+                listaDeTuplas.append(tupla)
         
 # Organiza em ordem numérica a lista final para imprimir
 listaDeTuplas.sort()

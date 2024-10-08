@@ -22,7 +22,7 @@ c = float(listaDosValores[2])
 delta = (b ** 2) - (4 * a * (c))
 print(delta)
 
-r1 = 
-r2 = 
+# r1 = 
+# r2 = 
 
 print(f'R1 = {r1:.5f}\nR2 = {r2:.5f}')

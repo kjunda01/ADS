@@ -26,23 +26,25 @@ Exemplo de Entrada 	Exemplo de Saída
 var input = require("fs").readFileSync("/dev/stdin", "utf8").trim();
 var lines = input.split("\n");
 
-//function calculaFatorial(numero){
-let numero = 4;
-let fat = numero
+function fatorial(numero) {
+    let fat = numero;
+    if (fat === 0 || fat === 1) {
+        return 1;
+    }
+    if (fat === 2) {
+        return 2;
+    }
 
-while (numero >= 1) {
-    fat += numero * (numero-1)
-    numero -= 1;
+    while (numero >= 2) {
+        fat = fat * (numero - 1);
+        numero -= 1;
+    }
+    return fat;
 }
-console.log(fat)
 
-//}
+for (let i = 0; i < lines.length; i++) {
+    let numeroFatorial1 = Number(lines[i][0]);
+    let numeroFatorial2 = Number(lines[i][2]);
 
-// for (let i = 0; i < lines.length; i++) {
-//     let numeroFatorial1 = Number(lines[i][0]);
-//     let numeroFatorial2 = Number(lines[i][2]);
-//     console.log(`Tentativa número: ${i}`)
-//     console.log(`Fatorial 1: ${numeroFatorial1} - Fatorial 2: ${numeroFatorial2}`)
-//     //console.log(calculaFatorial(numeroFatorial1))
-
-// }
+    console.log(fatorial(numeroFatorial1) + fatorial(numeroFatorial2));
+}

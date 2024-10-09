@@ -43,25 +43,25 @@ var input = require("fs").readFileSync("/dev/stdin", "utf8");
 var lines = input.split("\n");
 
 lines.forEach(str => {
-    let balance = 0;
-    let isCorrect = true;
+    let saldo = 0;
+    let estaCorreto = true;
 
-    for (let char of str) {
-        if (char === '(') {
-            balance++; // Incrementa para cada '('
-        } else if (char === ')') {
-            balance--; // Decrementa para cada ')'
+    for (let caracter of str) {
+        if (caracter === '(') {
+            saldo++; // Incrementa para cada '('
+        } else if (caracter === ')') {
+            saldo--; // Decrementa para cada ')'
         }
         
         // Se o balance ficar negativo, temos um ')' sem '(' correspondente
-        if (balance < 0) {
-            isCorrect = false;
+        if (saldo < 0) {
+            estaCorreto = false;
             break; // Não precisa verificar o restante
         }
     }
 
     // Verifica se o balance final é zero
-    if (isCorrect && balance === 0) {
+    if (estaCorreto && saldo === 0) {
         console.log("correct");
     } else {
         console.log("incorrect");

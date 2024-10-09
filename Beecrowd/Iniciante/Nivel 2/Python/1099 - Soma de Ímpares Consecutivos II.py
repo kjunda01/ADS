@@ -45,16 +45,32 @@ Exemplo de Entrada 	Exemplo de Saída
 
 12
 '''
-#casosTeste = int(input())
-casosTeste = 2
-linhas = input().split(" ")
-paraOrdenar = []
-impar = 0
+casosTeste = int(input())
 
-for i in range(casosTeste-1):
-    linhas = list(map(int, input().split(" ")))
+listaNumero = []
+for linhas in range(casosTeste):
+    caso = list(map(int, input().split(" ")))
+    listaNumero.append(caso)
 
-for numeros in linhas:
-    if numeros % 2 != 0:
-        impar += numeros
+    # coloca em ordem crescente para fazer o range
+    caso.sort()
+
+
+
+for i in range(len(listaNumero)):  
+    # define o valor inicial para o impar
+    impar = 0
+
+    # listaNumero[i] = [4, 5]
+
+    #define qual o range vai ser iterado
+    numMenor = listaNumero[i][0]
+    numMaior = listaNumero[i][1]
+
+    #itera dentro do range de cada par de numeros
+    for j in range(numMenor+1, numMaior):
+        if j % 2 != 0:
+            impar += j
+    
+    # por fim, imprime a soma dos impares do intervalo
     print(impar)

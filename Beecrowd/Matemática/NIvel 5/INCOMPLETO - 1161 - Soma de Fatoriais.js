@@ -48,3 +48,4 @@ for (let i = 0; i < lines.length; i++) {
 
     console.log(fatorial(numeroFatorial1) + fatorial(numeroFatorial2));
 }
+z

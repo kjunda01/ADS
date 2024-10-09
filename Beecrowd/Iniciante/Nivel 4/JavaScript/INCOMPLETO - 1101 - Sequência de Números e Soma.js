@@ -22,27 +22,18 @@ Exemplo de Entrada 	Exemplo de Saída
 2 3 4 5 Sum=14
 3 4 5 6 Sum=18 
 */
-var input = require("fs").readFileSync("/dev/stdin", "utf8").trim();
+var input = require("fs").readFileSync("dev/stdin", "utf8").trim();
 var lines = input.split("\n");
-listaTemp = [];
 
-function fazRange(inicial, final) {
-    for (let i = inicial; i <= final; i++) {
-        console.log(`${i}`);
-    }
-}
+lines.forEach(element => {
+    valorInicial = element.split(" ")[0]
+    valorFinal = element.split(" ")[1]
 
-for (i of lines) {
-    let teste = i.split(" ");
-    if (Number(teste[0]) > Number(teste[1])) {
-        valorInicial = Number(teste[1]);
-        valorFinal = Number(teste[0]);
-    } else {
-        valorInicial = Number(teste[0]);
-        valorFinal = Number(teste[1]);
-    }
-
-    console.log(`Inicial: ${valorInicial} - Final: ${valorFinal}`);
-}
-fazRange(valorInicial, valorFinal);
-
+    if (valorInicial > valorFinal){
+        valorInicial = element.split(" ")[1]
+        valorFinal = element.split(" ")[0]
+    } 
+    console.log(valorInicial, valorFinal)
+    
+    
+});

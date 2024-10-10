@@ -24,28 +24,37 @@ Exemplo de Entrada 	Exemplo de Saída
 3 
 */
 var input = require("fs").readFileSync("/dev/stdin", "utf8").trim();
-var lines = input.split("\n");
+var lines = input.split(/\r?\n/);
 
-function fatorial(numero) {
-    let fat = numero;
-    if (fat === 0 || fat === 1) {
-        return 1;
-    }
-    if (fat === 2) {
-        return 2;
+function fatorial(linha) {
+    const fat1 = parseInt(linha[0]);
+    const fat2 = parseInt(linha[1]);
+
+    function calculaFatorial(numero) {
+        let numeroAtual = numero;
+        let fat = 0;
+        while (numeroAtual >= 2) {
+            // AQUI QUE TEM QUE SER FEITO O CÁLCULO DO FATORIAL
+            fat += numeroAtual * (numeroAtual - 1);
+
+            numeroAtual--;
+        }
+        return fat;
     }
 
-    while (numero >= 2) {
-        fat = fat * (numero - 1);
-        numero -= 1;
-    }
-    return fat;
+    return calculaFatorial(fat1);
 }
 
-for (let i = 0; i < lines.length; i++) {
-    let numeroFatorial1 = Number(lines[i][0]);
-    let numeroFatorial2 = Number(lines[i][2]);
-
-    console.log(fatorial(numeroFatorial1) + fatorial(numeroFatorial2));
+for (let i in lines) {
+    // vai mandar a linha para a função
+    const num = lines[i].split(" ");
+    console.log(fatorial(num));
 }
-z
+
+// for (i in linha){
+//     let numeroAtual = linha[i];
+//     let fat = numeroAtual;
+//     fat = numeroAtual * (numeroAtual - 1);
+//     if (fat === 0) return 1;
+//     return fat;
+// }

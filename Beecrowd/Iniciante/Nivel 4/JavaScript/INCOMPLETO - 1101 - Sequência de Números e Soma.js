@@ -22,18 +22,66 @@ Exemplo de Entrada 	Exemplo de Saída
 2 3 4 5 Sum=14
 3 4 5 6 Sum=18 
 */
-var input = require("fs").readFileSync("dev/stdin", "utf8").trim();
-var lines = input.split("\n");
+var input = require("fs").readFileSync("/dev/stdin", "utf8").trim();
+var lines = input.split(/\r?\n/);
 
-lines.forEach(element => {
-    valorInicial = element.split(" ")[0]
-    valorFinal = element.split(" ")[1]
+function getRange(linha) {
+    const listaTemp = [];
+    listaTemp.push(Number(linha[0]));
+    listaTemp.push(Number(linha[1]));
+    listaTemp.sort();
+    return listaTemp;
+}
 
-    if (valorInicial > valorFinal){
-        valorInicial = element.split(" ")[1]
-        valorFinal = element.split(" ")[0]
-    } 
-    console.log(valorInicial, valorFinal)
-    
-    
+function sequencia(listaTemp) {
+    const listaSeq = [];
+    for (let i = listaTemp[0]; i <= listaTemp[1]; i++) {
+        listaSeq.push(i.toString());
+    }
+    if (listaTemp[0] > 0) {
+        return listaSeq;
+    } else {
+        return "";
+    }
+}
+
+function somaNumeros(sequencia) {
+    let soma = 0;
+    if (sequencia !== "") {
+        for (let j of sequencia) {
+            soma += Number(j);
+        }
+        return `Sum=${soma}`;
+    }
+}
+
+function criaResposta(sequencia, somaNumeros) {
+    let resp = "";
+    if (sequencia !== "") {
+        for (let k in sequencia) {
+            resp += `${sequencia[k]} `;
+        }
+        return `${resp}${somaNumeros}`;
+    }
+}
+
+// Processa cada linha de entrada
+lines.forEach((linha) => {
+    // separa os valores da lines
+    const num = linha.split(" ");
+
+    // Ordena de menor para maior cada linha
+    const passo1 = getRange(num);
+
+    // manda uma lista com os numeros ja na sequencia
+    const passo2 = sequencia(passo1);
+
+    // faz a soma de todos os numeros da sequencia
+    const passo3 = somaNumeros(passo2);
+
+    // cria as respostas concatenando a soma com os numeros
+    const passo4 = criaResposta(passo2, passo3);
+
+    // Imprime na tela os resultados
+    const passo5 = passo4 === undefined ? "" : console.log(passo4);
 });

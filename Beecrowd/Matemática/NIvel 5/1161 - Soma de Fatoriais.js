@@ -52,3 +52,4 @@ lines.forEach(line => {
     // Imprime na tela os resultados
     console.log(fatorial(num));
 });
+

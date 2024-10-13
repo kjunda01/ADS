@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+    --cor-primaria: rgb(17, 86, 102);
+}
+* {
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--cor-primaria);
+    font-family: Montserrat;
+    font-size: 0.8em;
+    line-height: 1em;
+}
+
+.container {
+    max-width: 60%;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+.calculadora {
+    width: 400px;
+}
+
+.display {
+    font-size: 2em;
+    width: 100%;
+    text-align: right;
+}
+
+.btn {
+    width: 100%;
+    height: 50px;
+    font-size: 2em;
+    border: none;
+    background: #dfdfdf;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #9e9e9e;
+}
+
+.btn-clear {
+    background: red;
+    color: #ffffff;
+}
+
+.btn-clear:hover {
+    background: rgb(112, 0, 0);
+}
+
+.btn-eq {
+    background: royalblue;
+}
+
+.btn-eq:hover {
+    background: rgb(27, 54, 136);
+}

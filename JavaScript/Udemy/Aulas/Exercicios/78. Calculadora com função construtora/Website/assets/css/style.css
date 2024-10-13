@@ -1,0 +1,76 @@
+:root {
+    --cor-primaria: rgb(17, 86, 102);
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ajusta a altura para 100% da altura da tela */
+    background: var(--cor-primaria);
+    font-family: Montserrat;
+    font-size: 0.8em;
+    line-height: 1em;
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.container {
+    width: 600px; /* Aumenta o tamanho da calculadora */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destacar */
+}
+
+.tituloPrincipal {
+    text-align: center;
+    font-size: 3em; /* Aumenta o tamanho do texto "Calculadora" */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.calculadora {
+    width: 100%;
+}
+
+.display {
+    font-size: 3em; /* Aumenta o tamanho do texto no display */
+    height: 80px; /* Aumenta a altura do display */
+    text-align: right;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* O display ocupa toda a largura */
+    box-sizing: border-box; /* Inclui o padding dentro do tamanho do elemento */
+}
+
+.btn {
+    width: 100%;
+    height: 80px; /* Aumenta a altura dos botões */
+    font-size: 2.5em; /* Aumenta o tamanho da fonte dos botões */
+    border: none;
+    background: #dfdfdf;
+    cursor: pointer;
+    transition: background 0.3s ease; /* Adiciona transição suave ao hover */
+    
+}
+
+.btn:hover {
+    background: #9e9e9e;
+}
+
+.btn-clear {
+    background: red;
+    color: #ffffff;
+}
+
+.btn-clear:hover {
+    background: rgb(112, 0, 0);
+}
+
+.btn-eq {
+    background: royalblue;
+    color: #ffffff;
+}
+
+.btn-eq:hover {
+    background: rgb(27, 54, 136);
+}

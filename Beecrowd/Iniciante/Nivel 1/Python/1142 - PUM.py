@@ -28,10 +28,12 @@ Exemplo de Entrada 	Exemplo de Saída
 linhas = int(input())
 
 contador = 1
-for linha in range(linhas):    
-    for i in range(contador, contador+4):
+for linha in range(linhas):
+    elementos = []  # Lista para armazenar os elementos da linha
+    for i in range(contador, contador + 4):
         if i % 4 == 0:
-            i = 'PUM'
-        print(i, end=(' '))
+            elementos.append("PUM")
+        else:
+            elementos.append(str(i))  # Converte para string para a junção
+    print(" ".join(elementos))  # Imprime a linha sem espaço extra
     contador += 4
-    print()

@@ -86,39 +86,40 @@ Samples Input	Samples Output
 [9, 9, 9, 9]
 '''
 
-# linha1 = list(map(int, input().split(' ')))
-# print(f'Primeira linha: {linha1}\n')
+# espera receber 3 linhas com as informações
+linhas = [list(map(int, input().split())) for _ in range(3)]
+linha1, linha2, linha3 = linhas
 
-# linha2 = list(map(int, input().split(' ')))
-# print(f'Segunda linha: {linha2}\n')
-
-# linha3 = list(map(int, input().split(' ')))
-# print(f'Terceira linha: {linha3}\n')
-
-linha1 = [3,3]
-linha2 = [1,2,3,4,5,6,7,8,9]
-linha3 = [9,8,7,6,5,4,3,2,1]
-
-
+# numeros para utilizar abaixo
 qtdDeListas = linha1[0]
 itensPorLista = linha1[1]
-A = []
-B = []
 
+def criaLista(linha):
+    # lista para fila
+    listaTemp = []
+    # trata a linha que ta recebendo
+    linha = list(map(int, linha))
+    
+    # faz um loop pela quantidade de listas
+    for i in range(qtdDeListas):
+        # monta uma lista dentro da lista maior
+        listaAtual = linha[:itensPorLista]
+        listaTemp.append(listaAtual)
+        # remove os itens que foram adicionados para iterar novamente
+        for i in range(itensPorLista):
+            linha.pop(0)
+    # retorna a lista de listas, a matriz
+    return(listaTemp)
 
+A = criaLista(linha2)
+B = criaLista(linha3)
+
+# itera a quantidade de listas
 for i in range(qtdDeListas):
-    listaAtual = linha2[:itensPorLista]
-    A.append(listaAtual)
+    listaTemp = []
+    
+    # itera a quantidade de itens na lista
     for j in range(itensPorLista):
-        linha2.pop(0)
-
-for i in range(qtdDeListas):
-    listaAtual = linha3[:itensPorLista]
-    B.append(listaAtual)
-    for j in range(itensPorLista):
-        linha3.pop(0)
-
-for i in range(qtdDeListas):
-    for j in range(itensPorLista):
-        print(sum([A[i][j], B[i][j]]))
-        
+        # realiza a soma dos itens específicos
+        listaTemp.append((A[i][j] + B[i][j]))
+    print(listaTemp)

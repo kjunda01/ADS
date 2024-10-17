@@ -1,38 +1,25 @@
-'''
-2 2
-1 2 3 4
-5 6 7 8
+# pede os dados para o usuario
+N = int(input())
+numeros = list(map(int, input().split()))
 
-[6, 8]
-[10, 12]
+# maior e menor valor com o primeiro elemento da lista
+maior = numeros[0]
+menor = numeros[0]
 
+# primeiro número como o maior inicialmente
+print(f"Número considerado maior: {maior}")
 
-3 3
-1 2 3 4 5 6 7 8 9
-9 8 7 6 5 4 3 2 1
-	
-[10, 10, 10]
-[10, 10, 10]
-[10, 10, 10]
+# maior valor
+for numero in numeros[1:]:
+    if numero > maior:
+        maior = numero
+        print(f"Número considerado maior: {maior}")
 
+# menor valor
+for numero in numeros[1:]:
+    if numero < menor:
+        menor = numero
 
-2 4
-1 2 3 4 5 6 7 8
-8 7 6 5 4 3 2 1
-
-[9, 9, 9, 9]
-[9, 9, 9, 9]
-
-'''
-qtdDeListas, itensPorLista = list(map(int, input().split(" ")))
-
-matriz = []
-for i in range(2):
-    print(f'Lista interna -> [{i+1}]')
-    listaInterna = list(map(int, input().split(" ")))
-    matriz.append(listaInterna)
-    print(matriz)
-    
-A, B = matriz
-#[[1,2], [3,4]]
-#[[1,2,3,4],[5,6,7,8]]
+# exibe na tela
+print(f"Maior valor: {maior}")
+print(f"Menor valor: {menor}")

@@ -37,6 +37,8 @@
 function Pessoa(nome, sobrenome) {
     this.nome = nome;
     this.sobrenome = sobrenome;
+    // Para congelar o objeto
+    //Object.freeze(this);
 }
 // A palavra new faz...
 // {} <- this -> this

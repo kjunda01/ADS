@@ -1,4 +1,5 @@
 {
+    "editor.fontLigatures": true,
     "window.newWindowProfile": "Default",
     "workbench.iconTheme": "material-icon-theme",
     "explorer.confirmDragAndDrop": false,

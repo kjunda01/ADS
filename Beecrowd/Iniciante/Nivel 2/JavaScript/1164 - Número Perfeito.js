@@ -31,7 +31,7 @@ var lines = input.split(/\r?\n/).map(Number);
 console.log(lines);
 
 for (let i in lines) {
-    if(i % 2 === 0 && i % 3 === 0){
-        
+    if (lines[i] % 2 === 0 && lines[i] % 3 === 0) {
+        console.log(lines[i]);
     }
 }

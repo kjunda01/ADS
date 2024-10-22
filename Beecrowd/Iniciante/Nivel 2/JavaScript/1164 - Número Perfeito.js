@@ -31,7 +31,14 @@ var lines = input.split(/\r?\n/).map(Number);
 console.log(lines);
 
 for (let i in lines) {
-    if (lines[i] % 2 === 0 && lines[i] % 3 === 0) {
-        console.log(lines[i]);
+    for (let j = 0; j <= lines[i]; j++) {
+        let temp = [];
+        if (lines[i] % j === 0) {
+            temp.push(j);
+            const resp = temp.reduce((elemento) => {
+                return temp += elemento;
+            });
+            console.log(resp);
+        }
     }
 }

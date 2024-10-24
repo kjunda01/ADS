@@ -69,27 +69,20 @@ def criaConjunto():
     conjunto = set(list(map(int, input().split(" "))))
     return conjunto
 
-
 matriz = []
 def criaMatriz(conjunto):
     elemento = set(list(map(int, conjunto)))
     matriz.append(elemento)
     return matriz
 
-
-def transformaEmLista(conjunto):
-    return list(map(int, conjunto))
-
-
 def mostraNaTela(elementos):
     temp = []
     for i in elementos:
-        print(i, end=(" "))
-    print()
+        temp.append(str(i))
+    print(" ".join(temp))
 
 
 def uniaoAeB(A, B):
-    
     elementos = A.union(B)
     mostraNaTela(elementos)
 
@@ -114,8 +107,10 @@ for i in range(3):
     # usa uma fumção para criar uma matriz de conjuntos
     criaMatriz(criaConjunto())
 
+
 # determina quais conjuntos são os A, B, e  C
 [A, B, C] = matriz
+
 
 # saída com as respostas    
 uniaoAeB(A, B)

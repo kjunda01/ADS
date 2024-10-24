@@ -1,0 +1,133 @@
+'''
+beecrowd | 3896
+Simulador de Caixa de Supermercado
+
+Por João Paulo Fernandes de Cerqueira César,
+
+Brazil
+Timelimit: 5
+
+Você estará simulando um caixa de supermercado, onde cada item tem um preço e uma quantidade. Você receberá uma lista de compras como entrada, onde cada item consiste no nome do produto (uma string sem espaços), seu preço unitário (um número real) e a quantidade comprada (um número inteiro). Sua tarefa é calcular o total da compra e imprimir o recibo.
+
+
+Entrada
+
+A entrada consiste em várias linhas, onde cada linha contém o nome de um produto, seu preço unitário e a quantidade comprada, separados por espaços. A entrada termina quando uma linha com a palavra FIM é inserida
+
+
+Saída
+
+A saída deve conter o recibo da compra, listando cada item com seu nome, preço unitário, quantidade e subtotal. No final do recibo, você deve imprimir o total da compra.
+
+
+Dica:
+
+
+Para resolver este exercício, você pode seguir os seguintes passos:
+
+
+    Ler os itens da compra da entrada e armazená-los em uma lista de tuplas, onde cada tupla contém o nome do produto, o preço unitário e a quantidade.
+
+
+    Iterar sobre a lista de tuplas e calcular o subtotal de cada item (preço unitário multiplicado pela quantidade).
+
+
+    Manter um total acumulado da compra enquanto itera pelos itens.
+
+
+    Imprimir o recibo da compra, listando cada item com seu nome, preço unitário, quantidade e subtotal, e no final, imprimir o total da compra.
+
+
+Dica para impressão:
+
+
+recibo = "Recibo de Compra:\nItem       Preço Unitário  Quantidade  Subtotal\n"
+.......
+recibo += f"{nome.ljust(10)} {preco_unitario:.2f}{' ' * 14}{quantidade}{' ' * 11}{subtotal:.2f}\n"
+......
+recibo += f"Total da Compra: {total:.2f}"
+
+
+Samples Input	Samples Output
+
+Maçã 2.50 5
+Banana 1.20 3
+Laranja 3.00 2
+FIM
+	
+
+Recibo de Compra:
+Item Preço Unitário Quantidade Subtotal
+Maçã 2.50 5 12.50
+Banana 1.20 3 3.60
+Laranja 3.00 2 6.00
+Total da Compra: 22.10
+
+Café 5.00 2
+Açúcar 2.50 3
+Chá 3.50 1
+FIM
+	
+
+Recibo de Compra:
+Item Preço Unitário Quantidade Subtotal
+Café 5.00 2 10.00
+Açúcar 2.50 3 7.50
+Chá 3.50 1 3.50
+Total da Compra: 21.00
+
+Leite 2.00 4
+Pão 1.50 2
+Ovos 1.20 10
+Queijo 3.00 2
+Arroz 5.50 3
+FIM
+	
+
+Recibo de Compra:
+Item Preço Unitário Quantidade Subtotal
+Leite 2.00 4 8.00
+Pão 1.50 2 3.00
+Ovos 1.20 10 12.00
+Queijo 3.00 2 6.00
+Arroz 5.50 3 16.50
+Total da Compra: 45.50
+'''
+######################################################################################
+# estoque = {"tomate": [1000, 2.30],
+# 	           "alface": [500, 0.45],
+# 	           "batata": [2001, 1.20],
+# 	           "feijão": [100, 1.50]}
+	
+# vendas = [ ["tomate", 5], ["batata", 10], ["alface", 5] ]
+# total = 0
+	
+# print("Vendas:\n")
+# for venda in vendas:
+#     produto, quantidade = venda
+#     preco_uni = estoque[produto][1]
+#     preco_prod = preco_uni * quantidade
+#     print("%s: %d x %.2f = %.2f" %(produto, quantidade, preco_uni, preco_prod))
+#     estoque[produto][0] -= quantidade
+#     total += preco_prod
+	
+# print("Custo total: %.2f\n" %total)
+	
+# for chave, dados in estoque.items():
+#     print("Descrição: ", chave)
+#     print("Quantidade: ", dados[0])
+#     print("Preço: %.2f\n" %dados[1])
+######################################################################################
+
+#Ler os itens da compra da entrada e armazená-los em uma lista de tuplas,
+#onde cada tupla contém o nome do produto, o preço unitário e a quantidade.
+entrada = "Maçã 2.50 5"
+
+resposta = ""
+while resposta != "fim":
+    resposta.split("//g")
+    print(resposta)
+    
+    
+[produto, preco, quantidade] = resposta
+print(resposta)

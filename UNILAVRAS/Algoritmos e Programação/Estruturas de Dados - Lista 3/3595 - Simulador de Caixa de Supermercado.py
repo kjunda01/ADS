@@ -121,13 +121,38 @@ Total da Compra: 45.50
 
 #Ler os itens da compra da entrada e armazená-los em uma lista de tuplas,
 #onde cada tupla contém o nome do produto, o preço unitário e a quantidade.
-entrada = "Maçã 2.50 5"
 
-resposta = ""
-while resposta != "fim":
-    resposta.split("//g")
-    print(resposta)
-    
-    
-[produto, preco, quantidade] = resposta
-print(resposta)
+# import re
+
+vendasRealizadas = {}
+entrada = ""
+
+def criaVenda(entrada):
+    [produto, preco, quantidade] = entrada.split()
+    total = float(preco) * int(quantidade)
+    vendasRealizadas[produto] = {
+        'valor': float(preco),      
+        'quantidade': int(quantidade),  
+        'total': float(total)
+    }
+    return vendasRealizadas
+
+def somaVendas(vendasRealizadas):
+    total = 0
+    for i in vendasRealizadas:
+        total += vendasRealizadas[i]["total"]
+    return f"{total:.2f}"
+
+while entrada != "FIM":
+    entrada = input()
+    if entrada != "FIM":
+        criaVenda(entrada)
+
+recibo = "Recibo de Compra:\nItem Preço Unitário Quantidade Subtotal\n"
+
+for vendas in vendasRealizadas.items():
+    recibo += f"{vendasRealizadas[0]} {vendas[1]["valor"]:.2f} {vendas[1]["quantidade"]} {vendas[1]["total"]:.2f}\n"
+
+print(recibo, f"Total da Compra: {somaVendas(vendasRealizadas)}")
+
+#recibo += f"Total da Compra: {total:.2f}"

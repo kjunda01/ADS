@@ -93,66 +93,40 @@ Queijo 3.00 2 6.00
 Arroz 5.50 3 16.50
 Total da Compra: 45.50
 '''
-######################################################################################
-# estoque = {"tomate": [1000, 2.30],
-# 	           "alface": [500, 0.45],
-# 	           "batata": [2001, 1.20],
-# 	           "feijão": [100, 1.50]}
-	
-# vendas = [ ["tomate", 5], ["batata", 10], ["alface", 5] ]
-# total = 0
-	
-# print("Vendas:\n")
-# for venda in vendas:
-#     produto, quantidade = venda
-#     preco_uni = estoque[produto][1]
-#     preco_prod = preco_uni * quantidade
-#     print("%s: %d x %.2f = %.2f" %(produto, quantidade, preco_uni, preco_prod))
-#     estoque[produto][0] -= quantidade
-#     total += preco_prod
-	
-# print("Custo total: %.2f\n" %total)
-	
-# for chave, dados in estoque.items():
-#     print("Descrição: ", chave)
-#     print("Quantidade: ", dados[0])
-#     print("Preço: %.2f\n" %dados[1])
-######################################################################################
-
-#Ler os itens da compra da entrada e armazená-los em uma lista de tuplas,
-#onde cada tupla contém o nome do produto, o preço unitário e a quantidade.
-
-# import re
-
-vendasRealizadas = {}
+vendasTotais = {}
 entrada = ""
+total = 0
 
-def criaVenda(entrada):
-    [produto, preco, quantidade] = entrada.split()
-    total = float(preco) * int(quantidade)
-    vendasRealizadas[produto] = {
-        'valor': float(preco),      
-        'quantidade': int(quantidade),  
-        'total': float(total)
+def criaVenda(linha):
+    venda = linha.split()
+    item = " ".join(venda[:-2])
+    preco = float(venda[-2])
+    quantidade = int(venda[-1])
+    subtotal = preco * quantidade
+    
+    vendasTotais[item] = {
+        "preco":preco,
+        "quantidade":quantidade, 
+        "subtotal": subtotal
     }
-    return vendasRealizadas
 
-def somaVendas(vendasRealizadas):
-    total = 0
-    for i in vendasRealizadas:
-        total += vendasRealizadas[i]["total"]
-    return f"{total:.2f}"
+    return vendasTotais
 
 while entrada != "FIM":
     entrada = input()
     if entrada != "FIM":
         criaVenda(entrada)
 
-recibo = "Recibo de Compra:\nItem Preço Unitário Quantidade Subtotal\n"
+print(f"Recibo de Compra:\nItem       Preço Unitário  Quantidade  Subtotal")
 
-for vendas in vendasRealizadas.items():
-    recibo += f"{vendasRealizadas[0]} {vendas[1]["valor"]:.2f} {vendas[1]["quantidade"]} {vendas[1]["total"]:.2f}\n"
+for elementos in vendasTotais.items():
+    nome = elementos[0]
+    preco_unitario = elementos[1]["preco"]
+    quantidade = elementos[1]["quantidade"]
+    subtotal = elementos[1]["subtotal"]
+    print(f"{nome.ljust(10)} {preco_unitario:.2f}{' ' * 14}{quantidade}{' ' * 11}{subtotal:.2f}")
 
-print(recibo, f"Total da Compra: {somaVendas(vendasRealizadas)}")
+for i in vendasTotais.values():
+    total += i["subtotal"]
 
-#recibo += f"Total da Compra: {total:.2f}"
+print(f"Total da Compra: {total:.2f}")

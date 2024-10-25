@@ -91,29 +91,31 @@ teste 4
 um 2
 é 2
 '''
-# cria entrada vazia
+# cria entrada  e dicionarios vazios
 entrada = ""
-
-#cria dicionario vazio
 dicionario = {}
 
 while entrada != "FIM":
     # fica pedindo a frase até que o usuario informe FIM
     entrada = input()
-
     if entrada != "FIM":
-        # separa todas as palavras por espaço
+        # separa todas as palavras por espaço e letra minuscula
         separacao = entrada.lower().split()
-        # newlist = [expression for item in iterable if condition == True]
+        
 
-        # usa a palavra em minusculo como chave do dicionario e a quantidade de palavras como segundo dicionario
-        if dicionario[separacao] not in dicionario:
-            dicionario[separacao] = separacao.count(separacao)
-        else:
-            dicionario[separacao] = 2
+        for palavra in separacao:
+            if palavra in dicionario:
+                dicionario[palavra] += 1
+            else:
+                dicionario[palavra] = 1
+        
+    # confere se tem a palavra, aí adiciona mais 1 se tiver
 
         # ordena o dicionario em ordem alfabetica
-        dicionarioEmOrdemAlfabetica = dict(sorted(dicionario.items(), key=lambda item: item[0]))
+    dicionarioEmOrdemAlfabetica = dict(sorted(dicionario.items(), key=lambda item: item[0]))
 
 # imprime na tela o dicionario
-print(dicionarioEmOrdemAlfabetica)
+# for elementos in dicionarioEmOrdemAlfabetica.items():
+#     print(f"{elementos[0]} {elementos[1]}")
+for elementos in dicionarioEmOrdemAlfabetica.items():
+    print(elementos[0], elementos[1])

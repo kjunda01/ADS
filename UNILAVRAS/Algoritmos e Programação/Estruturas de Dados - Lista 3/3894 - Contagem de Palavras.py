@@ -111,11 +111,9 @@ while entrada != "FIM":
         
     # confere se tem a palavra, aí adiciona mais 1 se tiver
 
-        # ordena o dicionario em ordem alfabetica
-    dicionarioEmOrdemAlfabetica = dict(sorted(dicionario.items(), key=lambda item: item[0]))
+# Ordena o dicionário em ordem alfabética apenas uma vez após o loop
+dicionarioEmOrdemAlfabetica = dict(sorted(dicionario.items()))
 
-# imprime na tela o dicionario
-# for elementos in dicionarioEmOrdemAlfabetica.items():
-#     print(f"{elementos[0]} {elementos[1]}")
-for elementos in dicionarioEmOrdemAlfabetica.items():
-    print(elementos[0], elementos[1])
+# Imprime o dicionário em ordem alfabética
+for palavra, contagem in dicionarioEmOrdemAlfabetica.items():
+    print(palavra, contagem)

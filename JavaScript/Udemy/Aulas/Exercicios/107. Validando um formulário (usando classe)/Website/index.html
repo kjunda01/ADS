@@ -17,36 +17,31 @@
                 <li>Senha precisa ter entre 6 e 12 caracteres</li>
             </ul>
 
-            <div class="campos">
-                <div class="inputs">
-                    <label for="">Nome</label>
-                    <input type="text" />
-                </div>
-                <div class="inputs">
-                    <label for="">Sobrenome</label>
-                    <input type="text" />
-                </div>
-                <div class="inputs">
-                    <label for="">CPF</label>
-                    <input type="text" />
-                </div>
-                <div class="inputs">
-                    <label for="">Usuário</label>
-                    <input type="text" />
-                </div>
-                <div class="inputs">
-                    <label for="">Senha</label>
-                    <input type="password" />
-                </div>
-                <div class="inputs">
-                    <label for="">Confirmar senha</label>
-                    <input type="password" />
-                </div>
+            <form action="/" method="POST" class="formulario">
+                <label for="">Nome</label>
+                <input type="text" class="inputNome validar" />
+
+                <label for="">Sobrenome</label>
+                <input type="text" class="inputSobrenome validar" />
+
+                <label for="">CPF</label>
+                <input type="text" class="inputCPF validar" />
+
+                <label for="">Usuário</label>
+                <input type="text" class="inputUsuario validar" />
+
+                <label for="">Senha</label>
+                <input type="password" class="inputSenha validar" />
+
+                <label for="">Confirmar senha</label>
+                <input type="password" class="inputConfirmarSenha validar" />
+
                 <div class="botaoEnviar">
-                    <button type="submit">Enviar</button>
+                    <button type="submit" class="bntEnviar">Enviar</button>
                 </div>
-            </div>
+            </form>
         </section>
+        <script src="assets/js/validaCPF.js"></script>
         <script src="./assets/js/main.js"></script>
     </body>
 </html>

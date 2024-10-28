@@ -43,8 +43,20 @@ console.log(Adm1.isAdmin()) // true
 
 class Person {
     age = 0;
+
     constructor(name) {
         this.name = name;
     }
 }
 
+function createPerson(name, age) {
+    let p = new Person(name);
+    p.age = age;
+    return p;
+}
+
+
+
+for(let i = 0; i<= 10; i++){
+    console.log(createPerson(`Maria ${i}`, i))
+}

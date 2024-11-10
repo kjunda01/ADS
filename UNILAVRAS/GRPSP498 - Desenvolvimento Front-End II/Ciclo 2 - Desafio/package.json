@@ -1,0 +1,15 @@
+{
+  "name": "ciclo-2-desafio",
+  "version": "1.0.0",
+  "description": "Desafio 2 da disciplina Desenvolvimento Front End II",
+  "main": "form-script.js",
+  "scripts": {
+    "backend": "json-server --watch data.json --port 3000 --host 0.0.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}

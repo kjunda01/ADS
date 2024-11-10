@@ -1,0 +1,118 @@
+/* Importando fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Reset básico de margens e preenchimentos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Aplicando a fonte Poppins */
+}
+
+/* Estilo para o body para garantir que os botões fiquem no final */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Faz com que a página ocupe toda a altura da tela */
+}
+
+/* Estilo para o cabeçalho */
+.cabecalho {
+  background-color: cadetblue;
+  color: white;
+  padding: 15px; /* Diminuímos o padding */
+  text-align: center;
+}
+
+.cabecalho header {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Estilo para o título principal */
+.tituloPrincipal {
+  font-size: 1.8rem; /* Diminuímos o tamanho */
+  text-align: center;
+  margin-top: 20px; /* Diminui o espaço acima */
+  color: #444;
+}
+
+/* Estilo para a área de conteúdo (container) */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Diminui o espaço acima */
+  padding: 8px; /* Diminui o padding */
+}
+
+.infoUsuario {
+  background-color: #f5f5f5;
+  padding: 8px; /* Diminui o padding */
+  margin: 8px 0; /* Diminui a margem */
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 3px; /* Diminui o espaço abaixo do label */
+}
+
+p {
+  font-size: 0.9rem; /* Diminui o tamanho da fonte */
+  margin: 3px 0; /* Diminui a margem */
+}
+
+/* Estilo para os botões */
+.menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Diminui o espaço entre os botões */
+  padding: 15px;
+  margin-top: auto; /* Faz os botões ficarem no final da página */
+  width: 80%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  padding: 8px 18px; /* Diminui o padding */
+  font-size: 0.9rem; /* Diminui o tamanho da fonte */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botão "Voltar" */
+#btnVoltar {
+  background-color: #e74c3c; /* Cor vermelha */
+  color: white;
+}
+
+#btnVoltar:hover {
+  background-color: #c0392b;
+}
+
+#btnVoltar:active {
+  background-color: #7f8c8d;
+}
+
+/* Botão "Confirmar" */
+#btnEnviar {
+  background-color: #2ecc71; /* Cor verde */
+  color: white;
+}
+
+#btnEnviar:hover {
+  background-color: #27ae60;
+}
+
+#btnEnviar:active {
+  background-color: #1e8449;
+}

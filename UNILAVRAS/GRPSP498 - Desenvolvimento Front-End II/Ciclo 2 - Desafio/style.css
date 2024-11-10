@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #ff9800;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  color: #333333;
+  margin: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  color: #ff9800;
+}
+
+/* Caixa principal */
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+section,
+aside {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+section p,
+aside p {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+button,
+.btnRegistrar,
+.btnVoltar {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botão "Voltar" */
+.btnVoltar {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+.btnVoltar:hover {
+  background-color: #c0392b;
+}
+
+.btnEnviar,
+.btnRegistrar {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.btnEnviar:hover,
+.btnRegistrar:hover {
+  background-color: #388e3c;
+}
+
+/* Rodapé */
+footer {
+  background-color: #ff9800;
+  padding: 15px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: auto;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form .campoFormulario {
+  margin-bottom: 15px;
+}
+
+form label {
+  font-weight: 600;
+  color: #333333;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #ff9800;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  section,
+  aside {
+    width: 90%;
+  }
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.container > div {
+  width: 100%;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+p {
+  font-style: italic;
+  color: #555555;
+  margin-top: 5px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#btnVoltar {
+  background-color: #e74c3c;
+  color: #ffffff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#btnVoltar:hover {
+  background-color: #c0392b;
+}
+
+#btnVoltar:active {
+  background-color: #7f8c8d;
+}
+
+#btnEnviar {
+  background-color: #4caf50;
+  color: #ffffff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#btnEnviar:hover {
+  background-color: #388e3c;
+}
+
+#btnEnviar:active {
+  background-color: #2e7d32;
+}
+
+.error{
+  color: red;
+}

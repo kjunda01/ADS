@@ -1,21 +1,12 @@
 import "./App.css";
-import City from "./assets/city.jpg";
+import ManageData from "./components/ManageData";
+import ImagensTeste from "./ImagensTeste";
 
 function App() {
     return (
         <div>
-            <div>
-                <h1>Imagem em public</h1>
-                <img src="/img1.jpg" alt="paisagem"></img>
-            </div>
-            <div>
-                <h1>Imagem em assets</h1>
-                <img src="./src/assets/city.jpg" alt="paisagem"></img>
-            </div>
-            <div>
-                <h1>Imagem em assets com importação</h1>
-                <img src={City} alt="paisagem"></img>
-            </div>
+            <ManageData />
+            <ImagensTeste />
         </div>
     );
 }

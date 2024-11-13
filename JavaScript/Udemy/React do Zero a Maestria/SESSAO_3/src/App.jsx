@@ -1,12 +1,11 @@
 import "./App.css";
-import ManageData from "./components/ManageData";
-import ImagensTeste from "./ImagensTeste";
+
+import ListRender from "./components/ListRender";
 
 function App() {
     return (
         <div>
-            <ManageData />
-            <ImagensTeste />
+            <ListRender />
         </div>
     );
 }

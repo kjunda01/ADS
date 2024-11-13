@@ -1,11 +1,11 @@
 import "./App.css";
 
-import ListRender from "./components/ListRender";
+import CarDetails from "./components/CarDetails";
 
 function App() {
     return (
         <div>
-            <ListRender />
+            <CarDetails key="1" brand="Fiat" color="Branco" km="54321" />
         </div>
     );
 }

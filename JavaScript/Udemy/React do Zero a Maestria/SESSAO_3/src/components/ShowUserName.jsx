@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 const ShowUserName = (props) => {
-    
-
     const [userName, setUserName] = useState();
     const handleChangeName = () => setUserName(userName);
 

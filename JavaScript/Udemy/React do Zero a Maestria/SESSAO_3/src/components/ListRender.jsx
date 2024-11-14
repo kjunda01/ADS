@@ -45,9 +45,7 @@ const ListRender = () => {
             </div>
 
             {/* Renderização condicional */}
-            <div>
-                
-            </div>
+            <div></div>
         </div>
     );
 };

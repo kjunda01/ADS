@@ -1,11 +1,12 @@
 import "./App.css";
-
-import CarDetails from "./components/CarDetails";
+import Container from "./components/Container";
 
 function App() {
     return (
         <div>
-            <CarDetails key="1" brand="Fiat" color="Branco" km="54321" />
+            <Container myValue="Teste">
+                <p>Este é o conteúdo</p>
+            </Container>
         </div>
     );
 }

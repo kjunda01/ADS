@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Message from "./components/Message";
-import ChangeMessageState from "./components/ChangeMessageState";
+import UserDetails from "./components/Desafio 4/UserDetails";
+
 
 function App() {
     const [message, setMessage] = useState("");
@@ -12,8 +12,7 @@ function App() {
 
     return (
         <div>
-            <Message msg={message} />
-            <ChangeMessageState handleMessage={handleMessage} />
+            <UserDetails />
         </div>
     );
 }

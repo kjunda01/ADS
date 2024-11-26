@@ -1,114 +1,136 @@
-/* products.css - Estilos específicos para a página de produtos */
-
-/* Formulário de cadastro de produto */
+/* Centralizar a seção novoProduto */
 .novoProduto {
-    background-color: #f9f9f9;
+    width: 70%; /* Formulário ocupa 70% da tela */
     padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    color: #2c3e50; /* Cor do texto (azul escuro) */
+    margin: 0 auto; /* Centraliza horizontalmente */
 }
 
-.novoProduto form {
-    display: flex;
-    flex-direction: column;
+/* Estilo para a lista de produtos */
+.todosOsProdutos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 produtos por linha */
+    gap: 20px;
+    grid-auto-rows: minmax(250px, auto); /* Ajuste automático da altura dos itens */
+}
+
+/* Estilo para o card de produto (elementos dentro da lista de produtos) */
+.todosOsProdutos .produto {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todosOsProdutos .produto img {
+    width: 100px; /* Diminuir a imagem para 100x100 */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.todosOsProdutos .produto h3 {
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.todosOsProdutos .produto p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #7f8c8d; /* Cor mais suave para descrição */
+}
+
+.todosOsProdutos .produto .precoProduto {
+    font-size: 18px;
+    color: #3498db; /* Azul para destacar o preço */
+    font-weight: bold;
+}
+
+/* Botão de deletar do produto */
+.deleteBtn {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.deleteBtn:hover {
+    color: darkred;
+}
+
+/* Estilo do formulário */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 15px;
 }
 
-.novoProduto .infoProduto {
+form div {
     display: flex;
     flex-direction: column;
 }
 
-.novoProduto label {
+label {
+    font-size: 14px;
+    color: #2c3e50;
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
-.novoProduto input {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* Botão de cadastro */
-.btnCadastrarProduto {
-    display: flex;
-    justify-content: center;
+input:focus {
+    border-color: #3498db; /* Cor azul para o foco */
 }
 
-.btnCadastrarProduto button {
-    background-color: #4caf50;
+button {
+    padding: 10px;
+    background-color: #3498db;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-}
-
-.btnCadastrarProduto button:hover {
-    background-color: #45a049;
-}
-
-/* Exibição dos produtos */
-.todosOsProdutos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas para os produtos */
-    gap: 20px;
-}
-
-/* Cartões de produtos */
-.produto {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
-}
-
-.produto img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.produto .nome {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.produto .preco {
     font-size: 16px;
-    color: #4caf50;
     font-weight: bold;
 }
 
-.produto .categoria {
-    font-size: 14px;
-    color: #777;
+button:hover {
+    background-color: #2980b9; /* Cor mais escura quando o botão é focado */
 }
 
-.produto .descricao {
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
+/* Estilo para a mensagem de erro */
+.error {
+    color: #e74c3c; /* Vermelho */
+    font-size: 12px;
+    margin-top: 5px;
 }
 
-/* Ícone de deletar */
-.produto .deletar {
-    cursor: pointer;
-    color: red;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
+/* Responsividade: para telas pequenas, ajustar a exibição */
+@media (max-width: 768px) {
+    .todosOsProdutos {
+        grid-template-columns: repeat(2, 1fr); /* 2 produtos por linha em telas menores */
+    }
+
+    .novoProduto, .listaDeProdutos {
+        width: 100%; /* Formulário e lista ocupam 100% da tela em telas pequenas */
+    }
 }
 
-.produto .deletar:hover {
-    color: darkred;
+@media (max-width: 480px) {
+    .todosOsProdutos {
+        grid-template-columns: 1fr; /* 1 produto por linha em telas muito pequenas */
+    }
 }

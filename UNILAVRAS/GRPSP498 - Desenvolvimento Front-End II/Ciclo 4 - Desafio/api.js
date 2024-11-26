@@ -7,23 +7,21 @@ const URL_API_USUARIOS = "https://dummyjson.com/users";
 const apiDummy = {
     // PARTE RELACIONADA AOS PRODUTOS
     async getAllProducts() {
-        const resposta = fetch(URL_API_PRODUTOS);
-        return await resposta.json();
+        const request = fetch(URL_API_PRODUTOS)
+            .then((resposta) => resposta.json())
+            .then((produtos) => produtos);
     },
 
     async getSingleProduct(id) {
-        const request = fetch(`${URL_API_PRODUTOS}/${id}`);
-        return await resposta.json();
+        const request = await fetch(`${URL_API_PRODUTOS}/${id}`)
+            .then((resposta) => resposta.json())
+            .then((dados) => dados);
     },
 
     // PARTE RELACIONADA AOS USUARIOS
     getAllUsers() {
-        const request = fetch(URL_API_USUARIOS, {
-            method: "GET",
-        })
+        const request = fetch(URL_API_USUARIOS)
             .then((resposta) => resposta.json())
             .then((dados) => console.log(dados));
     },
 };
-
-export default apiDummy;

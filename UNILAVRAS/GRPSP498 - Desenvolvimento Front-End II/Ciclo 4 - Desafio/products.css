@@ -1,0 +1,114 @@
+/* products.css - Estilos específicos para a página de produtos */
+
+/* Formulário de cadastro de produto */
+.novoProduto {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.novoProduto form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.novoProduto .infoProduto {
+    display: flex;
+    flex-direction: column;
+}
+
+.novoProduto label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.novoProduto input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Botão de cadastro */
+.btnCadastrarProduto {
+    display: flex;
+    justify-content: center;
+}
+
+.btnCadastrarProduto button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnCadastrarProduto button:hover {
+    background-color: #45a049;
+}
+
+/* Exibição dos produtos */
+.todosOsProdutos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas para os produtos */
+    gap: 20px;
+}
+
+/* Cartões de produtos */
+.produto {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.produto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.produto .nome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.produto .preco {
+    font-size: 16px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.produto .categoria {
+    font-size: 14px;
+    color: #777;
+}
+
+.produto .descricao {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Ícone de deletar */
+.produto .deletar {
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.produto .deletar:hover {
+    color: darkred;
+}

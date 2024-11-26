@@ -1,0 +1,187 @@
+/* Resetando margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cabecalho h1 {
+    font-size: 36px;
+}
+
+.cabecalho h2 {
+    font-size: 24px;
+    color: #555;
+}
+
+/* Menu de navegação */
+.menu ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.menu ul li {
+    margin-right: 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Container de conteúdo */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.infoProduto,
+.infoUsuario {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Botão de cadastro */
+.btnCadastrarProduto {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Mensagens de erro */
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+/* Lista de produtos e usuários */
+.todosOsProdutos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    gap: 20px;
+}
+
+/* Cartões de produtos */
+.produto {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.produto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Nome, preço, descrição e outros detalhes */
+.produto .nome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.produto .preco {
+    font-size: 16px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.produto .descricao {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.produto .categoria {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Ícone de deletar */
+.produto .deletar {
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.produto .deletar:hover {
+    color: darkred;
+}
+
+/* Rodapé */
+.rodape {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.rodape h2 {
+    margin-bottom: 10px;
+}
+
+.rodape p {
+    margin: 5px 0;
+}

@@ -1,11 +1,10 @@
-/* Estilos Gerais */
 body {
     font-family: monospace;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #494948; /* Cinza Claro */
-    color: #021d34; /* Azul Escuro */
+    background-color: #494948;
+    color: #021d34;
 }
 
 .wrapper {
@@ -17,19 +16,18 @@ body {
 h1,
 h2 {
     margin-bottom: 10px;
-    color: #021d34; /* Azul Escuro */
+    color: #021d34;
 }
 
 a {
     text-decoration: none;
-    color: #fff; /* Branco */
-    transition: all 0.2s ease-in-out; /* Transição suave */
+    color: #fff;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Cabeçalho */
 .cabecalho {
-    background-color: #021d34; /* Azul Escuro */
-    color: #fff; /* Branco */
+    background-color: #021d34;
+    color: #fff;
     text-align: center;
     padding: 20px 10px;
 }
@@ -47,11 +45,10 @@ h2 {
     color: #fff;
 }
 
-/* Menu */
 .menu {
-    background-color: #ffd100; /* Amarelo */
+    background-color: #ffd100;
     padding: 10px 0;
-    border-bottom: 2px solid #021d34; /* Separação do menu */
+    border-bottom: 2px solid #021d34;
 }
 
 .menu ul {
@@ -67,7 +64,7 @@ h2 {
 }
 
 .menu ul li a {
-    color: #021d34; /* Branco */
+    color: #021d34;
     font-weight: bold;
     text-transform: uppercase;
     padding: 5px 10px;
@@ -75,27 +72,26 @@ h2 {
 }
 
 .menu ul li a:hover {
-    background-color: #021d34; /* Azul Escuro */
-    color: #ffd100; /* Amarelo */
+    background-color: #021d34;
+    color: #ffd100;
 }
 
-/* Container Principal */
 .container {
     flex: 1;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #494948; /* Cinza Claro */
+    background-color: #494948;
 }
 
 .info-da-loja {
-    background: #fff; /* Branco */
+    background: #fff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
-    color: #021d34; /* Azul Escuro */
-    transition: all 0.3s ease-in-out; /* Efeito suave */
+    color: #021d34;
+    transition: all 0.3s ease-in-out;
 }
 
 .info-da-loja:hover {
@@ -104,20 +100,19 @@ h2 {
 }
 
 .info-da-loja h2 {
-    color: #021d34; /* Azul Escuro */
-    margin-bottom: 15px; /* Melhor espaçamento */
+    color: #021d34;
+    margin-bottom: 15px;
 }
 
 .info-da-loja p {
     font-size: 1.1rem;
-    color: #021d34; /* Azul Escuro */
+    color: #021d34;
     margin-top: 10px;
 }
 
-/* Rodapé */
 .rodape {
-    background-color: #021d34; /* Azul Escuro */
-    color: #ffd100; /* Amarelo */
+    background-color: #021d34;
+    color: #ffd100;
     text-align: center;
     padding: 10px 5px;
     font-size: 0.8rem;
@@ -133,7 +128,6 @@ h2 {
     font-size: 0.8rem;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .menu ul {
         flex-direction: column;

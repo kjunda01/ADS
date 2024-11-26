@@ -1,32 +1,26 @@
-/* Centralizar a seção novoProduto */
 .novoProduto {
-    width: 70%; /* Formulário ocupa 70% da tela */
+    width: 70%;
     padding: 20px;
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    color: #2c3e50; /* Cor do texto (azul escuro) */
-    margin: 0 auto; /* Centraliza horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #2c3e50;
+    margin: 0 auto;
     margin-bottom: 20px;
 }
 
-/* Estilo para a lista de produtos */
 .todosOsProdutos {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 produtos por linha */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    grid-auto-rows: minmax(
-        250px,
-        auto
-    ); /* Ajuste automático da altura dos itens */
+    grid-auto-rows: minmax(250px, auto);
 }
 
-/* Estilo para o card de produto (elementos dentro da lista de produtos) */
 .todosOsProdutos .produto {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Garante que o conteúdo se distribua bem */
+    justify-content: space-between;
     align-items: center;
     border: 1px solid #ccc;
     padding: 15px;
@@ -37,11 +31,11 @@
 }
 
 .todosOsProdutos .produto img {
-    width: 100px; /* Diminuir a imagem para 100x100 */
+    width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 10px; /* Espaçamento entre a imagem e as informações do produto */
+    margin-bottom: 10px;
 }
 
 .todosOsProdutos .produto h3 {
@@ -53,30 +47,28 @@
 .todosOsProdutos .produto p {
     font-size: 14px;
     margin-bottom: 10px;
-    color: #7f8c8d; /* Cor mais suave para descrição */
+    color: #7f8c8d;
 }
 
 .todosOsProdutos .produto .precoProduto {
     font-size: 18px;
-    color: #3498db; /* Azul para destacar o preço */
+    color: #3498db;
     font-weight: bold;
 }
 
-/* Botão de deletar do produto */
 .deleteBtn {
     background: none;
     border: none;
     color: red;
     cursor: pointer;
     font-size: 18px;
-    margin-top: 10px; /* Adiciona espaçamento entre o conteúdo e o botão */
+    margin-top: 10px;
 }
 
 .deleteBtn:hover {
     color: darkred;
 }
 
-/* Estilo do formulário */
 form {
     display: grid;
     grid-template-columns: 1fr;
@@ -102,7 +94,7 @@ input {
 }
 
 input:focus {
-    border-color: #3498db; /* Cor azul para o foco */
+    border-color: #3498db;
 }
 
 button {
@@ -117,33 +109,28 @@ button {
 }
 
 button:hover {
-    background-color: #2980b9; /* Cor mais escura quando o botão é focado */
+    background-color: #2980b9;
 }
 
-/* Estilo para a mensagem de erro */
 .error {
-    color: #e74c3c; /* Vermelho */
+    color: #e74c3c;
     font-size: 12px;
     margin-top: 5px;
 }
 
-/* Responsividade: para telas pequenas, ajustar a exibição */
 @media (max-width: 1024px) {
     .todosOsProdutos {
-        grid-template-columns: repeat(
-            2,
-            1fr
-        ); /* 2 produtos por linha em telas menores */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .novoProduto,
     .listaDeProdutos {
-        width: 100%; /* Formulário e lista ocupam 100% da tela em telas pequenas */
+        width: 100%;
     }
 }
 
 @media (max-width: 768px) {
     .todosOsProdutos {
-        grid-template-columns: 1fr; /* 1 produto por linha em telas muito pequenas */
+        grid-template-columns: 1fr;
     }
 }

@@ -52,52 +52,67 @@ async function adicionarProduto(produto) {
 function exibirProduto(produto) {
     const produtosContainer = document.querySelector(".todosOsProdutos");
 
-    // Cria um item para o produto
-    const divItem = document.createElement("div");
-    divItem.classList.add("produto");
+    // Monta o HTML usando template literals
+    const produtoHTML = `
+        <div class="produto" data-id="${produto.id}">
+            <div class="titulo-descricao">
+                <div><strong>${produto.title}</strong></div>
+                <div>${produto.description}</div>
+            </div>
+            <div class="detalhes">
+                <div><strong>Preço: </strong>R$ ${produto.price}</div>
+                <div><strong>Marca: </strong>${produto.brand}</div>
+                <div><strong>Categoria: </strong>${produto.category}</div>
+            </div>
+            <img src="${
+                produto.thumbnail || "https://via.placeholder.com/120"
+            }" alt="${produto.title}" />
+            <button class="deleteBtn">🗑️</button>
+            </div>
+    `;
 
-    // Div para exibir o título, descrição, preço, marca e categoria
-    const tituloDescricaoDiv = document.createElement("div");
-    tituloDescricaoDiv.classList.add("titulo-descricao");
+    // Insere o HTML no container
+    produtosContainer.innerHTML += produtoHTML;
+}
 
-    // Título e descrição
-    const titulo = document.createElement("span");
-    titulo.textContent = `${produto.title} - ${produto.description}`;
-    tituloDescricaoDiv.appendChild(titulo);
+// Evento de clique para delegação de exclusão de produto
+document
+    .querySelector(".todosOsProdutos")
+    .addEventListener("click", (event) => {
+        // Verifica se o botão clicado é o botão de excluir (deleteBtn)
+        if (event.target && event.target.classList.contains("deleteBtn")) {
+            const produtoElement = event.target.closest(".produto");
+            const id = produtoElement.getAttribute("data-id");
 
-    // Adiciona a div do título e descrição no div principal
-    divItem.appendChild(tituloDescricaoDiv);
+            // Exibe a caixa de confirmação
+            const confirmDelete = window.confirm(
+                "Tem certeza que deseja excluir este produto?"
+            );
+            if (confirmDelete) {
+                deletarProduto(id, produtoElement);
+            } else {
+                console.log("Exclusão cancelada.");
+            }
+        }
+    });
 
-    // Exibe o preço, marca e categoria
-    const detalhesDiv = document.createElement("div");
-    detalhesDiv.classList.add("detalhes");
+// Função para excluir o produto
+async function deletarProduto(id, produtoElement) {
+    try {
+        const response = await fetch(`https://dummyjson.com/products/${id}`, {
+            method: "DELETE",
+        });
 
-    // Preço
-    const preco = document.createElement("span");
-    preco.textContent = `Preço: R$ ${produto.price}`;
-    detalhesDiv.appendChild(preco);
+        const data = await response.json();
 
-    // Marca
-    const marca = document.createElement("span");
-    marca.textContent = `Marca: ${produto.brand}`;
-    detalhesDiv.appendChild(marca);
-
-    // Categoria
-    const categoria = document.createElement("span");
-    categoria.textContent = `Categoria: ${produto.category}`;
-    detalhesDiv.appendChild(categoria);
-
-    // Adiciona a div de detalhes no div principal
-    divItem.appendChild(detalhesDiv);
-
-    // Cria e insere a imagem
-    const img = document.createElement("img");
-    img.src = produto.thumbnail || "https://via.placeholder.com/120"; // Imagem do produto ou um placeholder
-    img.alt = produto.title;
-    divItem.appendChild(img);
-
-    // Adiciona o item à lista de produtos
-    produtosContainer.appendChild(divItem);
+        if (data) {
+            // Remove o item do DOM
+            produtoElement.remove();
+            console.log(`Produto com ID ${id} foi deletado.`);
+        }
+    } catch (error) {
+        console.error("Erro ao deletar produto:", error);
+    }
 }
 
 // Função para validar os campos do formulário de produto
@@ -109,13 +124,19 @@ function validarCampos(titulo, descricao, preco, marca, categoria, foto) {
 
     // Validação do título
     if (!titulo || titulo.length < 3 || titulo.length > 100) {
-        showError(".tituloProduto", "O título deve ter entre 3 e 100 caracteres.");
+        showError(
+            ".tituloProduto",
+            "O título deve ter entre 3 e 100 caracteres."
+        );
         isValid = false;
     }
 
     // Validação da descrição
     if (!descricao || descricao.length < 10 || descricao.length > 300) {
-        showError(".descricaoProduto", "A descrição deve ter entre 10 e 300 caracteres.");
+        showError(
+            ".descricaoProduto",
+            "A descrição deve ter entre 10 e 300 caracteres."
+        );
         isValid = false;
     }
 
@@ -133,7 +154,10 @@ function validarCampos(titulo, descricao, preco, marca, categoria, foto) {
 
     // Validação da categoria
     if (!categoria || categoria.length < 3 || categoria.length > 50) {
-        showError(".categoriaProduto", "A categoria deve ter entre 3 e 50 caracteres.");
+        showError(
+            ".categoriaProduto",
+            "A categoria deve ter entre 3 e 50 caracteres."
+        );
         isValid = false;
     }
 
@@ -173,37 +197,39 @@ function isValidURL(url) {
 }
 
 // Evento de submissão do formulário
-document.querySelector(".formNovoProduto").addEventListener("submit", (event) => {
-    event.preventDefault();
+document
+    .querySelector(".formNovoProduto")
+    .addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    const titulo = document.querySelector(".tituloProduto").value;
-    const descricao = document.querySelector(".descricaoProduto").value;
-    const preco = document.querySelector(".precoProduto").value;
-    const marca = document.querySelector(".marcaProduto").value;
-    const categoria = document.querySelector(".categoriaProduto").value;
-    const foto = document.querySelector(".fotoProduto").value;
+        const titulo = document.querySelector(".tituloProduto").value;
+        const descricao = document.querySelector(".descricaoProduto").value;
+        const preco = document.querySelector(".precoProduto").value;
+        const marca = document.querySelector(".marcaProduto").value;
+        const categoria = document.querySelector(".categoriaProduto").value;
+        const foto = document.querySelector(".fotoProduto").value;
 
-    // Valida os campos
-    if (!validarCampos(titulo, descricao, preco, marca, categoria, foto)) {
-        return; // Se algum campo for inválido, não prossegue
-    }
+        // Valida os campos
+        if (!validarCampos(titulo, descricao, preco, marca, categoria, foto)) {
+            return; // Se algum campo for inválido, não prossegue
+        }
 
-    // Cria o novo produto
-    const novoProduto = {
-        title: titulo,
-        description: descricao,
-        price: preco,
-        brand: marca,
-        category: categoria,
-        thumbnail: foto || "https://via.placeholder.com/100", // Foto padrão se não for fornecida
-    };
+        // Cria o novo produto
+        const novoProduto = {
+            title: titulo,
+            description: descricao,
+            price: preco,
+            brand: marca,
+            category: categoria,
+            thumbnail: foto || "https://via.placeholder.com/100", // Foto padrão se não for fornecida
+        };
 
-    // Chama a função para adicionar o novo produto
-    adicionarProduto(novoProduto);
+        // Chama a função para adicionar o novo produto
+        adicionarProduto(novoProduto);
 
-    // Limpa os campos do formulário
-    document.querySelector(".formNovoProduto").reset();
-});
+        // Limpa os campos do formulário
+        document.querySelector(".formNovoProduto").reset();
+    });
 
 // Chamando a função para exibir os produtos
 obterDados();

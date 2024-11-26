@@ -8,6 +8,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     color: #2c3e50; /* Cor do texto (azul escuro) */
     margin: 0 auto; /* Centraliza horizontalmente */
+    margin-bottom: 20px;
 }
 
 /* Estilo para a lista de produtos */
@@ -15,11 +16,18 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 produtos por linha */
     gap: 20px;
-    grid-auto-rows: minmax(250px, auto); /* Ajuste automático da altura dos itens */
+    grid-auto-rows: minmax(
+        250px,
+        auto
+    ); /* Ajuste automático da altura dos itens */
 }
 
 /* Estilo para o card de produto (elementos dentro da lista de produtos) */
 .todosOsProdutos .produto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o conteúdo se distribua bem */
+    align-items: center;
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 8px;
@@ -33,7 +41,7 @@
     height: 100px;
     object-fit: cover;
     border-radius: 8px;
-    margin: 10px 0;
+    margin-bottom: 10px; /* Espaçamento entre a imagem e as informações do produto */
 }
 
 .todosOsProdutos .produto h3 {
@@ -61,6 +69,7 @@
     color: red;
     cursor: pointer;
     font-size: 18px;
+    margin-top: 10px; /* Adiciona espaçamento entre o conteúdo e o botão */
 }
 
 .deleteBtn:hover {
@@ -119,17 +128,21 @@ button:hover {
 }
 
 /* Responsividade: para telas pequenas, ajustar a exibição */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .todosOsProdutos {
-        grid-template-columns: repeat(2, 1fr); /* 2 produtos por linha em telas menores */
+        grid-template-columns: repeat(
+            2,
+            1fr
+        ); /* 2 produtos por linha em telas menores */
     }
 
-    .novoProduto, .listaDeProdutos {
+    .novoProduto,
+    .listaDeProdutos {
         width: 100%; /* Formulário e lista ocupam 100% da tela em telas pequenas */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .todosOsProdutos {
         grid-template-columns: 1fr; /* 1 produto por linha em telas muito pequenas */
     }

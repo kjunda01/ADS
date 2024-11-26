@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Loja Vitrine 360</title>
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="index.css" />
+        <link rel="stylesheet" href="users.css" />
     </head>
     <body>
         <div class="wrapper">
@@ -15,17 +16,73 @@
             <nav class="menu">
                 <ul>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="products.html">Produtos</a></li>
                     <li><a href="users.html">Usuários</a></li>
+                    <li><a href="products.html">Produtos</a></li>
                     <li><a href="about.html">Sobre</a></li>
                 </ul>
             </nav>
             <div class="container">
-                <section class="conteudo">
-                    nome, sobrenome, email, idade e foto adicionar novo usuario
-                    remover usuario
+                <!-- Formulário de cadastro de usuário -->
+                <section class="novoUsuario">
+                    <form class="formNovoUsuario">
+                        <div class="infoUsuario">
+                            <label>Nome:</label>
+                            <input
+                                type="text"
+                                class="nomeUsuario"
+                                placeholder="Informe o nome..."
+                            />
+                        </div>
+
+                        <div class="infoUsuario">
+                            <label>Sobrenome:</label>
+                            <input
+                                type="text"
+                                class="sobrenomeUsuario"
+                                placeholder="Informe o sobrenome..."
+                            />
+                        </div>
+
+                        <div class="infoUsuario">
+                            <label>Email:</label>
+                            <input
+                                type="text"
+                                class="emailUsuario"
+                                placeholder="Informe o email..."
+                            />
+                        </div>
+
+                        <div class="infoUsuario">
+                            <label>Idade:</label>
+                            <input
+                                type="text"
+                                class="idadeUsuario"
+                                placeholder="Informe a idade..."
+                            />
+                        </div>
+
+                        <div class="infoUsuario">
+                            <label>Foto:</label>
+                            <input
+                                type="text"
+                                class="fotoUsuario"
+                                placeholder="Informe o link da foto..."
+                            />
+                        </div>
+
+                        <div class="btnCadastrar">
+                            <button type="submit">Cadastrar</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Lista de usuários -->
+                <section class="listaDeUsuarios">
+                    <div class="todosOsUsuarios">Carregando...</div>
                 </section>
             </div>
+
+            <!-- Rodapé -->
             <section id="contato">
                 <footer class="rodape">
                     <h2>Contato</h2>
@@ -38,5 +95,7 @@
                 </footer>
             </section>
         </div>
+        <script type="module" src="api.js"></script>
+        <script type="module" src="users.js"></script>
     </body>
 </html>

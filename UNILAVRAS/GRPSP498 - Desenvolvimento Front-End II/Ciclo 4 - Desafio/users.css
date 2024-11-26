@@ -1,0 +1,106 @@
+/* users.css - Estilos específicos para a página de usuários */
+
+/* Formulário de cadastro de usuário */
+.novoUsuario {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.novoUsuario form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.novoUsuario .infoUsuario {
+    display: flex;
+    flex-direction: column;
+}
+
+.novoUsuario label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.novoUsuario input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Botão de cadastro */
+.btnCadastrar {
+    display: flex;
+    justify-content: center;
+}
+
+.btnCadastrar button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnCadastrar button:hover {
+    background-color: #45a049;
+}
+
+/* Exibição dos usuários */
+.todosOsUsuarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas para os usuários */
+    gap: 20px;
+}
+
+/* Cartões de usuários */
+.usuario {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.usuario img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.usuario .nome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.usuario .email {
+    font-size: 14px;
+    color: #777;
+}
+
+.usuario .idade {
+    font-size: 14px;
+    color: #555;
+}
+
+.usuario .deleteBtn {
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.usuario .deleteBtn:hover {
+    color: darkred;
+}

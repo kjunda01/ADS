@@ -1,28 +1,26 @@
-/* Contêiner principal */
 .container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espaçamento entre os itens */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Alinha os itens verticalmente */
-    height: 100vh; /* Ocupa toda a altura da tela */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Formulário de cadastro */
 .novoUsuario {
-    width: 70%; /* Formulário ocupa 70% da tela */
+    width: 70%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #fff; /* Fundo branco */
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    color: #2c3e50; /* Cor do texto (azul escuro) */
-    margin: 0 auto; /* Centraliza o formulário */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #2c3e50;
+    margin: 0 auto;
 }
 
 .novoUsuario h2 {
     text-align: center;
-    color: #2c3e50; /* Azul escuro para o título */
+    color: #2c3e50;
     margin-bottom: 20px;
 }
 
@@ -39,7 +37,7 @@ form div {
 
 label {
     font-size: 14px;
-    color: #2c3e50; /* Cor do texto do rótulo */
+    color: #2c3e50;
     margin-bottom: 5px;
 }
 
@@ -52,7 +50,7 @@ input {
 }
 
 input:focus {
-    border-color: #3498db; /* Cor azul para o foco */
+    border-color: #3498db;
 }
 
 button {
@@ -67,32 +65,27 @@ button {
 }
 
 button:hover {
-    background-color: #2980b9; /* Cor mais escura quando o botão é focado */
+    background-color: #2980b9;
 }
 
-/* Estilo para a mensagem de erro */
 .error {
-    color: #e74c3c; /* Vermelho */
+    color: #e74c3c;
     font-size: 12px;
     margin-top: 5px;
 }
 
-
-/* Lista de usuários */
 .listaDeUsuarios {
-    width: 95%; /* Lista ocupa 95% da tela */
+    width: 95%;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Estilo para cada item de usuário */
 .todosOsUsuarios {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 usuários por linha */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-/* Estilo para cada card de usuário */
 .usuario {
     border: 1px solid #ccc;
     padding: 15px;
@@ -114,7 +107,6 @@ button:hover {
     margin-bottom: 10px;
 }
 
-/* Estilo para o botão de deletar */
 .deleteBtn {
     background: none;
     border: none;
@@ -127,20 +119,19 @@ button:hover {
     color: darkred;
 }
 
-/* Responsividade: para telas pequenas, ajustar a exibição */
 @media (max-width: 1024px) {
     .todosOsUsuarios {
-        grid-template-columns: repeat(2, 1fr); /* 2 usuários por linha em telas menores */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .novoUsuario,
     .listaDeUsuarios {
-        width: 100%; /* Formulário e lista ocupam 100% da tela em telas pequenas */
+        width: 100%;
     }
 }
 
 @media (max-width: 768px) {
     .todosOsUsuarios {
-        grid-template-columns: 1fr; /* 1 usuário por linha em telas muito pequenas */
+        grid-template-columns: 1fr;
     }
 }

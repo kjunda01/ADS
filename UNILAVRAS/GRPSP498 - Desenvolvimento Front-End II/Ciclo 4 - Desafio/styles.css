@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif, monospace;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.cabecalho {
+    background-color: white;
+    color: blue;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    position: relative;
+    z-index: 100;
+
+    @media (max-width: 768px) {
+        height: auto;
+        flex-direction: column;
+        padding: 0.5em;
+    }
+}
+
+.menu a {
+    text-decoration: none;
+    color: rgb(0, 0, 61);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: rgb(0, 153, 255);
+}
+
+.menu ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    background-color: rgb(218, 218, 218);
+}
+
+.menu li {
+    margin: 0 15px;
+    padding: 5px;
+    transition: background-color 0.3s, padding 0.3s;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background-color: rgb(1, 4, 155);
+    border-radius: 4px;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+.rodape {
+    background-color: blue;
+    color: white;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 100;
+}
+.rodape ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rodape li {
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.rodape li:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+.rodape a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.rodape a:active {
+    color: yellow;
+}
+.rodape span {
+    text-align: center;
+    margin-top: 10px;
+
+    @media (max-width: 768px) {
+        padding: 10px;
+
+        ul {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+}

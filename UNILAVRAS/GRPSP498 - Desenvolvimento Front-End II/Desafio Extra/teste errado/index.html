@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tarefas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome para ícones -->
+</head>
+<body>
+  <div class="container">
+    <h1>Lista de Tarefas</h1>
+    <form id="task-form">
+      <input type="text" id="task-input" placeholder="Adicione uma tarefa" required>
+      <button type="submit">Adicionar</button>
+    </form>
+
+    <!-- Container dividido em 2 colunas -->
+    <div class="task-columns">
+      <div class="task-column">
+        <h2>Tarefas Pendentes</h2>
+        <ul id="task-list-pending"></ul>
+      </div>
+      <div class="border-line"></div>
+      <div class="task-column">
+        <h2>Tarefas Concluídas</h2>
+        <ul id="task-list-completed"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div id="delete-modal" class="modal">
+    <div class="modal-content">
+      <p>Tem certeza de que deseja remover esta tarefa?</p>
+      <div class="modal-buttons">
+        <button id="confirm-delete">Confirmar</button>
+        <button id="cancel-delete">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

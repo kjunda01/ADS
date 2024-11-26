@@ -128,7 +128,7 @@ button:hover {
 }
 
 /* Responsividade: para telas pequenas, ajustar a exibição */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .todosOsUsuarios {
         grid-template-columns: repeat(2, 1fr); /* 2 usuários por linha em telas menores */
     }
@@ -139,7 +139,7 @@ button:hover {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .todosOsUsuarios {
         grid-template-columns: 1fr; /* 1 usuário por linha em telas muito pequenas */
     }

@@ -1,0 +1,55 @@
+Eleitor teste, MG17845368, 0000, Luminárias, MG
+Pedro de Assis, MG17845369, 015443020272, Formiga, MG
+Carla Machado, SP156987456, 848242120221, Osasco, SP
+Félix Nascimento, MG18123654, 670351800264, Pains, MG
+Luís Silva, RS16457956, 732787030230, Santa Maria, RS
+Ana Paula Souza, AC12345678, 012345678901, Rio Branco, AC
+João Batista Oliveira, AL87654321, 987654321012, Maceió, AL
+Maria Fernanda Ribeiro, AP11223344, 001122334455, Macapá, AP
+Pedro Henrique Gomes, AM55667788, 554433221100, Manaus, AM
+Lucas Monteiro, BA99887766, 998877665544, Salvador, BA
+Júlia Carvalho, CE33445566, 332211445566, Fortaleza, CE
+Gabriel Costa, DF44556677, 223344556677, Brasília, DF
+Mariana Martins, ES66778899, 556677889900, Vitória, ES
+Vinícius Alves, GO11235813, 897645231012, Goiânia, GO
+Larissa Rocha, MA31415926, 159753456879, São Luís, MA
+Felipe Andrade, MT27182818, 246813579024, Cuiabá, MT
+André Figueiredo, MS12345678, 908070605040, Campo Grande, MS
+Beatriz Duarte, MG17171717, 707080909070, Belo Horizonte, MG
+Rafael Nogueira, PA42424242, 505040303020, Belém, PA
+Bianca Castro, PB15151515, 303020101010, João Pessoa, PB
+Hugo Lima, PR28282828, 101010202020, Curitiba, PR
+Priscila Ferreira, PE32323232, 202020404040, Recife, PE
+Marcelo Gonçalves, PI61616161, 606060808080, Teresina, PI
+Alice Barbosa, RJ85858585, 909090707070, Rio de Janeiro, RJ
+Rodrigo Moraes, RN49494949, 404040606060, Natal, RN
+Amanda Teixeira, RS73737373, 707070505050, Porto Alegre, RS
+Cláudia Martins, RO62626262, 808080404040, Porto Velho, RO
+Igor Mendes, RR15151515, 303030202020, Boa Vista, RR
+Vanessa Silva, SC52525252, 606060303030, Florianópolis, SC
+Mariana Nunes, SP35353535, 101010505050, São Paulo, SP
+Carlos Oliveira, SE42424242, 505050101010, Aracaju, SE
+Gustavo Pereira, TO19191919, 909090202020, Palmas, TO
+Eduardo Cunha, AC32323232, 202020707070, Cruzeiro do Sul, AC
+Nicole Santos, AL15151515, 303030404040, Arapiraca, AL
+Henrique Lima, AP52525252, 606060101010, Santana, AP
+Letícia Borges, AM95959595, 808080505050, Parintins, AM
+Thiago Ramos, BA81818181, 707070909090, Feira de Santana, BA
+Isabel Correia, CE46464646, 505050303030, Juazeiro do Norte, CE
+Álvaro Melo, DF68686868, 606060808080, Taguatinga, DF
+Lucas Ferreira, ES93939393, 909090101010, Vila Velha, ES
+Mariana Lopes, GO32323232, 202020505050, Anápolis, GO
+Rodrigo Almeida, MA57575757, 707070606060, Imperatriz, MA
+Larissa Souza, MT71717171, 808080404040, Rondonópolis, MT
+Paulo Ribeiro, MS28282828, 101010707070, Dourados, MS
+Rafaela Dias, MG94949494, 909090303030, Uberlândia, MG
+João Almeida, PA49494949, 404040101010, Ananindeua, PA
+Lucas Gonçalves, PB63636363, 606060505050, Campina Grande, PB
+Tatiana Silva, PR16161616, 303030909090, Londrina, PR
+Gabriel Mendes, PE88888888, 909090606060, Olinda, PE
+Fernanda Costa, PI20202020, 101010404040, Parnaíba, PI
+Marcos Vieira, RJ38383838, 505050707070, Niterói, RJ
+Carolina Barbosa, RN50505050, 606060202020, Mossoró, RN
+Pedro Martins, RS14141414, 303030606060, Caxias do Sul, RS
+Diego Nascimento, RO25252525, 505050909090, Ji-Paraná, RO
+Juliana Figueiredo, RR39393939, 404040303030, Rorainópolis, RR

@@ -1,0 +1,60 @@
+José da Silva, 7321, PTB, MG, F
+Lucas Pereira, 1234, PMDB, MG, F
+Maria do Carmo, 7321, PCB, SP, F
+Pedro de Azevedo, 731, PTB, PR, S
+Antônio de Melo, 151, PCB, SP, S
+Carlos Nascimento, 18151, PXB, MG, E
+Guilherme Guimarães, 73215, PTB, SP, E
+Paulo da Cunha, 15, PXB, SP, P
+Emília Santos, 15, PCT, MG, G
+Cristiano Costa, 1894, PCE, SP, F
+João Batista, 1111, PTB, AC, F
+Larissa Rocha, 222, PCB, AL, S
+Fernando Alves, 33333, PXB, AP, E
+Marina Figueiredo, 44, PCT, AM, P
+André Santana, 55, PCE, BA, G
+Cláudia Oliveira, 6666, PTB, CE, F
+Rafael Costa, 777, PCB, DF, S
+Gabriela Martins, 88888, PXB, ES, E
+Henrique Lima, 99, PCT, GO, P
+Tatiana Moraes, 10, PCE, MA, G
+Ricardo Fonseca, 1212, PTB, MT, F
+Vanessa Silva, 131, PCB, MS, S
+Leonardo Vieira, 14141, PXB, MG, E
+Carolina Nunes, 15, PCT, PA, P
+Igor Mendes, 16, PCE, PB, G
+Beatriz Duarte, 1717, PTB, PR, F
+Marcelo Gonçalves, 181, PCB, PE, S
+Camila Souza, 19191, PXB, PI, E
+Lucas Carvalho, 20, PCT, RJ, P
+Priscila Ribeiro, 21, PCE, RN, G
+Hugo Almeida, 2222, PTB, RO, F
+Alice Barbosa, 232, PCB, RR, S
+Felipe Andrade, 24324, PXB, RS, E
+Bianca Ferreira, 25, PCT, SC, P
+Thiago Ramos, 26, PCE, SE, G
+Renata Machado, 2727, PTB, SP, F
+Diego Silva, 282, PCB, TO, S
+Bruno Neves, 29292, PXB, AC, E
+Juliana Castro, 30, PCT, AL, P
+Gustavo Pereira, 31, PCE, AP, G
+Patrícia Dias, 3232, PTB, AM, F
+Rodrigo Lima, 333, PCB, BA, S
+Ana Mendes, 34343, PXB, CE, E
+Samuel Oliveira, 35, PCT, DF, P
+Rafaela Nogueira, 36, PCE, ES, G
+Vitor Teixeira, 3737, PTB, GO, F
+Amanda Lopes, 382, PCB, MA, S
+Gabriel Ferreira, 39393, PXB, MT, E
+Letícia Moraes, 40, PCT, MS, P
+Eduardo Cunha, 41, PCE, PA, G
+Karla Santos, 4242, PTB, PB, F
+Pedro Rocha, 432, PCB, PR, S
+Isabel Correia, 44344, PXB, PE, E
+Marcos Almeida, 45, PCT, PI, P
+Nicole Martins, 46, PCE, RJ, G
+Álvaro Ramos, 4747, PTB, RN, F
+Fernanda Barros, 482, PCB, RO, S
+Otávio Melo, 49393, PXB, RR, E
+Luiza Borges, 50, PCT, RS, P
+Rafael Araújo, 51, PCE, SC, G

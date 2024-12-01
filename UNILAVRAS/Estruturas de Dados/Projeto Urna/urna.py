@@ -103,40 +103,35 @@ def selecionar_eleitor(titulo_de_eleitor):
         print(f"{cor["vermelho"]}Título não encontrado!\n")
         return False
 
-def verifica_candidato(numero, estado, tipo, categoria):
-
-    if numero == "B" or numero == "":
-        print(f"\n{cor["ciano"]}Voto em Branco\n")
+def verifica_candidato(numero, estado, tipo, cargo):
+    if numero == "B":
+        print(f"\n{cor['ciano']}Voto em Branco\n")
         voto[tipo] = "B"
         return "B"
-    else:
-        # Busca a chave correspondente (nome do candidato)
-        if categoria != "Presidente":
-            chave_encontrada = next(
-                (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado),
-                None  # Valor padrão caso não encontre
-            )
-        else:
-            chave_encontrada = next(
-                (nome for nome, dados in candidatos.items() if dados["numero"] == numero),
-                None  # Valor padrão caso não encontre
-            )
+    
+    if numero == "":
+        print(f"\n{cor['amarelo']}Candidato não encontrado! Voto Nulo.\n")
+        voto[tipo] = "N"
+        return "N"
 
-        # Verifica se encontrou o candidato
-        if chave_encontrada is None:
-            print(f"\n{cor["amarelo"]}Candidato não encontrado! Voto Nulo.\n")
-            voto[tipo] = "N"
-            return "N"
+    chave_encontrada = next(
+        (nome for nome, dados in candidatos.items() if dados["numero"] == numero and (dados["estado"] == estado or cargo == "Presidente")),
+        None
+    )
 
-        # Busca as informações do candidato
-        candidato = candidatos[chave_encontrada]
-        nome = chave_encontrada
-        partido = candidato["partido"]
+    if chave_encontrada is None:
+        print(f"\n{cor['amarelo']}Candidato não encontrado! Voto Nulo.\n")
+        voto[tipo] = "N"
+        return "N"
 
-        print(f"\n{cor["verde"]}Candidato {nome} | Partido: {partido}\n")
-        voto[tipo] = numero
-        return numero
-         
+    candidato = candidatos[chave_encontrada]
+    nome = chave_encontrada
+    partido = candidato["partido"]
+
+    print(f"\n{cor['verde']}Candidato {nome} | Partido: {partido}\n")
+    voto[tipo] = numero
+    return numero
+  
 def menu_confirmar_voto():
     menu_confirma_voto = [
         {
@@ -151,20 +146,20 @@ def menu_confirmar_voto():
 
     return True if escolha == "Sim" else False
 
-def menu_para_votacao(categoria, tipo):
+def menu_para_votacao(cargo, tipo):
     while True:
         menu_votacao = [
                 {
                     "type": "input",
                     "name": "votacao",
-                    "message": f"Informe o voto para {categoria}: ",
+                    "message": f"Informe o voto para {cargo}: ",
                 }
             ]
         resposta_menu_votacao = prompt(menu_votacao)
     
         numero_votado = resposta_menu_votacao["votacao"]
         estado_eleitor = eleitores[titulo_atual]["estado"]
-        verifica_candidato(numero_votado, estado_eleitor, tipo, categoria)
+        verifica_candidato(numero_votado, estado_eleitor, tipo, cargo)
         if menu_confirmar_voto():
             break
 
@@ -180,6 +175,42 @@ def localidade_urna():
     voto["UF"] = resposta_menu_escolha_uf_urna[0]
     limpar_terminal()
     return menu_escolha_uf_urna[0]
+
+def salvar_voto(voto):
+    with open('votos.bin', 'ab') as arquivo:
+        pickle.dump(voto, arquivo)
+
+def ler_votos():
+    votos = []
+    try:
+        with open('votos.bin', 'rb') as arquivo:
+            while True:
+                try:
+                    votacao = pickle.load(arquivo)
+                    votos.append(votacao)
+                except EOFError:
+                    break
+    except FileNotFoundError:
+        print("Arquivo não encontrado. Nenhum voto foi salvo ainda.")
+    return votos
+
+def contagem_votos_brancos(votos_lidos):
+    votos_brancos = []
+    for voto in votos_lidos:
+        for branco in voto.values():
+            if branco == "B":
+                votos_brancos.append(branco)
+    return len(votos_brancos)
+
+def contagem_votos_nulos(votos_lidos):
+    votos_nulos = []
+    for voto in votos_lidos:
+        for nulo in voto.values():
+            if nulo == "N":
+                votos_nulos.append(nulo)
+    return len(votos_nulos)
+
+ 
 
 ######################################################################
 # ENTRANDO NO MEU PRINCIPAL
@@ -237,9 +268,12 @@ while True:
                 menu_para_votacao("Governador", "G")
                 menu_para_votacao("Presidente", "P")
 
+                print("--------------------------------")
                 print("Voto registrado com sucesso!")
                 print("--------------------------------")
-                
+
+                salvar_voto(voto)
+               
 
                 menu_confirma_todos_os_votos = [
                     {
@@ -253,4 +287,6 @@ while True:
                 if resposta_menu_confirma_todos_os_votos["cria_votos"] == "Não":
                     break
 
-    
+    elif opcao == "4":
+        pass
+ 

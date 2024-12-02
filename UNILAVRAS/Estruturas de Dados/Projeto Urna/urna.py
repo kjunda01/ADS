@@ -129,10 +129,31 @@ def verifica_candidato(numero, estado, tipo, cargo):
         voto[tipo] = "N"
         return "N"
     
-    if cargo != "Presidente":
-        chave_encontrada = next((nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado), None)
+    if cargo == "Deputado Estadual":
+        chave_encontrada = next(
+            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "E"),
+            None
+        )
+    elif cargo == "Deputado Federal":
+        chave_encontrada = next(
+            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "F"),
+            None
+        )
+    elif cargo == "Senador":
+        chave_encontrada = next(
+            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "S"),
+            None
+        )
+    elif cargo == "Governador":
+        chave_encontrada = next(
+            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "G"),
+            None
+        )
     else:
-        chave_encontrada = next((nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["cargo"] == "P"), None)
+        chave_encontrada = next(
+            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["cargo"] == "P"),
+            None
+        )
 
     if chave_encontrada is None:
         print(f"\n{cor['amarelo']}🟡 Candidato não encontrado! Voto Nulo.\n")
@@ -221,9 +242,6 @@ def transforma_categoria(categoria):
         }
     return categorias.get(categoria, "Cargo inválido")
 
-# def transforma_categoria(cargo):
-#     return cargo.capitalize()
-
 def apurar_votos(votos, candidatos):
     resultados = defaultdict(lambda: defaultdict(int))
     totais_gerais = defaultdict(int)
@@ -238,12 +256,12 @@ def apurar_votos(votos, candidatos):
 
     # Exibindo os resultados
     msg_titulo = f"\n🗳️  Apuração dos votos:  🗳️"
-    print(msg_titulo)
+    # print(msg_titulo)
     gera_boletim(msg_titulo)
 
     for categoria, escolhas in resultados.items():
         msg_categorias = f"\n🧍 Categoria {transforma_categoria(categoria)}:"
-        print(msg_categorias)
+        # print(msg_categorias)
         gera_boletim(msg_categorias)
         
         for escolha, quantidade in escolhas.items():
@@ -269,7 +287,7 @@ def apurar_votos(votos, candidatos):
                     # Exibindo as informações do candidato
                     porcentagem = (quantidade / totais_gerais[categoria]) * 100
                     msg_candidatos = f"Número: {candidato.get("numero", 'N/A')} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {candidato_nome}"
-                    print(msg_candidatos)
+                    # print(msg_candidatos)
                     gera_boletim(msg_candidatos)
                 # else:
         
@@ -315,6 +333,14 @@ def contar_votos_validos():
         contagem = sum(1 for chave, valor in voto.items() if chave != 'UF' and valor not in ['B', 'N'])
         contagens.append(contagem)
     return sum(contagens)
+
+def mostrar_resultados():
+    print(f"Eleitores Aptos: {len(eleitores)}")
+    print(f"Candidatos Aptos: {len(candidatos)}")
+    print(f"Total de Pessoas Votantes: {len(ler_votos())}")
+    print(f"Total de Votos Válidos: {contar_votos_validos()}")
+    print(f"Brancos: {contar_votos_brancos(ler_votos())}")
+    print(f"Nulos: {contar_votos_nulos(ler_votos())}\n")
 
 ######################################################################
 # ENTRANDO NO MEU PRINCIPAL
@@ -399,17 +425,23 @@ while True:
                         break
 
     elif opcao == "4":
-        
-        print(f"Eleitores Aptos: {len(eleitores)}")
-        print(f"Candidatos Aptos: {len(candidatos)}")
-        print(f"Total de Pessoas Votantes: {len(ler_votos())}")
-        print(f"Total de Votos Válidos: {contar_votos_validos()}")
-        print(f"Brancos: {contar_votos_brancos(ler_votos())}")
-        print(f"Nulos: {contar_votos_nulos(ler_votos())}")
-        
-        apurar_votos(ler_votos(), candidatos)
-        gera_boletim(str(votos_apurados))
+        try:
+            with open("boletim.txt", "r", encoding="utf-8") as arquivo:
+                    conteudo = arquivo.read().strip().split("\n")
+            print(f"{cor["amarelo"]}📁❌ Arquivo: boletim.txt já gerado.\n Por favor, acesse a opção 5 do menu.{cor["restaura_cor_original"]}")
+        except:
+            apurar_votos(ler_votos(), candidatos)
+            gera_boletim(str(votos_apurados))
+
         
     elif opcao == "5":
-        busca_candidato_pelo_numero_e_estado("13", "BR")
-        print()
+        # TENTA MOSTRAR OS RESULTADOS
+        try:
+            mostrar_resultados()
+            with open("boletim.txt", "r", encoding="utf-8") as arquivo:
+                conteudo = arquivo.read().strip().split("\n")
+                for linha in conteudo:
+                    print(linha)
+        # SE O ARQUIVO BOLETIM NAO FOR ENCONTRADO, ELE MOSTRA A MSG DE ERRO
+        except:
+            print(f"{cor["vermelho"]}\n📁❌ Arquivo: boletim.txt não encontrado.\n{cor["restaura_cor_original"]}")

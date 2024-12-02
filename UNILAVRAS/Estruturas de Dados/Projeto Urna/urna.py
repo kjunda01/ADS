@@ -9,7 +9,7 @@ from estados import estado
 candidatos = {}
 eleitores = {}
 voto = {}
-votos_apurados = {}
+votos_apurados = []
 
 def verificar_virgulas(arquivo, tipo):
     with open(arquivo, 'r') as file:
@@ -53,7 +53,6 @@ def mensagem_de_erro(arquivo, tipo):
 ❌ Arquivo errado. Selecione novamente. 🆕\n{cor["restaura_cor_original"]}""")
     verificar_virgulas(arquivo, tipo)
     
-
 def mensagem_de_sucesso(nome_do_arquivo, tipo):
     msg = print(f"""{cor["verde"]}\n📁 Arquivo: {nome_do_arquivo[0]}
 📄 Categoria: {tipo}
@@ -87,12 +86,6 @@ def leitura_dos_arquivos(arquivo, lista, tipo):
                     eleitores.clear()
                     break
                     
-        
-        if candidatos:
-            mensagem_de_sucesso(leitura_candidatos, "CANDIDATOS")
-        if eleitores:
-            mensagem_de_sucesso(leitura_eleitores, "ELEITORES")
-
 def choices_menu_principal(candidatos, eleitores):
     escolhas = [
         "1️⃣  - Ler arquivo de candidatos 📁",
@@ -125,8 +118,6 @@ def selecionar_eleitor(titulo_de_eleitor):
         print(f"{cor["vermelho"]}❌ Título não encontrado!\n")
         return False
         
-    
-
 def verifica_candidato(numero, estado, tipo, cargo):
     if numero == "B" or numero == "b":
         print(f"\n{cor['ciano']}⚪ Voto em Branco\n")
@@ -139,15 +130,9 @@ def verifica_candidato(numero, estado, tipo, cargo):
         return "N"
     
     if cargo != "Presidente":
-        chave_encontrada = next(
-            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado),
-            None
-        )
+        chave_encontrada = next((nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado), None)
     else:
-        chave_encontrada = next(
-            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["cargo"] == "P"),
-            None
-        )
+        chave_encontrada = next((nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["cargo"] == "P"), None)
 
     if chave_encontrada is None:
         print(f"\n{cor['amarelo']}🟡 Candidato não encontrado! Voto Nulo.\n")
@@ -208,7 +193,7 @@ def localidade_urna():
     limpar_terminal()
     return menu_escolha_uf_urna[0]
 
-def salvar_voto(voto):
+def salvar_voto_bin(voto):
     with open('votos.bin', 'ab') as arquivo:
         pickle.dump(voto, arquivo)
 
@@ -227,7 +212,6 @@ def ler_votos():
     return votos
 
 def transforma_categoria(categoria):
-    
     categorias = {
         "F": "Deputado Federal",
         "E": "Deputado Estadual",
@@ -237,15 +221,10 @@ def transforma_categoria(categoria):
         }
     return categorias.get(categoria, "Cargo inválido")
 
-
-from collections import defaultdict
-
-def transforma_categoria(cargo):
-    # Função para formatar a categoria (cargo) com base em alguma lógica
-    return cargo.capitalize()
+# def transforma_categoria(cargo):
+#     return cargo.capitalize()
 
 def apurar_votos(votos, candidatos):
-    # Dicionário para armazenar a contagem geral dos votos por categoria e escolha
     resultados = defaultdict(lambda: defaultdict(int))
     totais_gerais = defaultdict(int)
 
@@ -258,9 +237,15 @@ def apurar_votos(votos, candidatos):
                 totais_gerais[categoria] += 1
 
     # Exibindo os resultados
-    print("\n🗳️  Apuração dos votos:  🗳️")
+    msg_titulo = f"\n🗳️  Apuração dos votos:  🗳️"
+    print(msg_titulo)
+    gera_boletim(msg_titulo)
+
     for categoria, escolhas in resultados.items():
-        print(f"\n🧍 Categoria {transforma_categoria(categoria)}:")
+        msg_categorias = f"\n🧍 Categoria {transforma_categoria(categoria)}:"
+        print(msg_categorias)
+        gera_boletim(msg_categorias)
+        
         for escolha, quantidade in escolhas.items():
             if escolha != 'N':  # Ignorando votos nulos
                 candidato_nome = "Votos em branco"
@@ -283,17 +268,20 @@ def apurar_votos(votos, candidatos):
                 if candidato:
                     # Exibindo as informações do candidato
                     porcentagem = (quantidade / totais_gerais[categoria]) * 100
-                    votos_apurados["informacoes"] = (f"Cargo: {transforma_categoria(candidato['cargo'])} | Estado: {candidato.get('estado', 'N/A')} | Número: {candidato.get("numero", 'N/A')} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {candidato_nome}")
-                    print(f"Cargo: {transforma_categoria(candidato['cargo'])} | Estado: {candidato.get('estado', 'N/A')} | Número: {candidato.get("numero", 'N/A')} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {candidato_nome}")
+                    msg_candidatos = f"Número: {candidato.get("numero", 'N/A')} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {candidato_nome}"
+                    print(msg_candidatos)
+                    gera_boletim(msg_candidatos)
                 # else:
+        
             #         print(f"Votos em branco: {quantidade}")
             # else:
             #     print(f"Votos nulos: {quantidade}")
+    print(f"\n{cor['ciano']} ***** Boletim gerado com sucesso. Acesse o arquivo 'boletim.txt' para mais detalhes!\n")
 
 def gera_boletim(votos_apurados):
     arquivo = open('boletim.txt', 'a')
     arquivo.write(votos_apurados)
-    print(f"\n{cor['ciano']} ***** Boletim gerado com sucesso. Acesse o arquivo 'boletim.txt' para mais detalhes!\n")
+    arquivo.write("\n")
     arquivo.close()
 
 def busca_candidato_pelo_numero_e_estado(numero_candidato, estado_candidato):
@@ -354,11 +342,16 @@ while True:
         msg_menu_leitura_candidatos = "📁 Escolha o arquivo '.txt' de --CANDIDATOS-- para leitura:📄"
         leitura_candidatos = prompt(escolher_arquivo_leitura(msg_menu_leitura_candidatos))
         leitura_dos_arquivos(leitura_candidatos[0], ["nome", "numero", "partido", "estado", "cargo"], "candidato")
+        if candidatos:
+            mensagem_de_sucesso(leitura_candidatos, "CANDIDATOS")
+        
 
     elif opcao == "2":
         msg_menu_leitura_eleitores = "📁 Escolha o arquivo '.txt' de --ELEITORES-- para leitura:📄"
         leitura_eleitores = prompt(escolher_arquivo_leitura(msg_menu_leitura_eleitores))
         leitura_dos_arquivos(leitura_eleitores[0], ["nome", "rg", "titulo_de_eleitor", "municipio", "estado"], "eleitor")
+        if eleitores:
+            mensagem_de_sucesso(leitura_eleitores, "ELEITORES")
     
     elif opcao == "3":
         localidade_urna() 
@@ -390,7 +383,7 @@ while True:
                     print(f"{cor["verde"]}✅ Voto registrado com sucesso!")
                     print(f"{cor["verde"]}--------------------------------")
 
-                    salvar_voto(voto)
+                    salvar_voto_bin(voto)
                 
 
                     menu_confirma_todos_os_votos = [
@@ -415,7 +408,7 @@ while True:
         print(f"Nulos: {contar_votos_nulos(ler_votos())}")
         
         apurar_votos(ler_votos(), candidatos)
-        gera_boletim(votos_apurados)
+        gera_boletim(str(votos_apurados))
         
     elif opcao == "5":
         busca_candidato_pelo_numero_e_estado("13", "BR")

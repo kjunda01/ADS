@@ -9,6 +9,7 @@ from estados import estado
 candidatos = {}
 eleitores = {}
 voto = {}
+votos_apurados = {}
 
 def verificar_virgulas(arquivo, tipo):
     with open(arquivo, 'r') as file:
@@ -282,12 +283,18 @@ def apurar_votos(votos, candidatos):
                 if candidato:
                     # Exibindo as informações do candidato
                     porcentagem = (quantidade / totais_gerais[categoria]) * 100
+                    votos_apurados["informacoes"] = (f"Cargo: {transforma_categoria(candidato['cargo'])} | Estado: {candidato.get('estado', 'N/A')} | Número: {candidato.get("numero", 'N/A')} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {candidato_nome}")
                     print(f"Cargo: {transforma_categoria(candidato['cargo'])} | Estado: {candidato.get('estado', 'N/A')} | Número: {candidato.get("numero", 'N/A')} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {candidato_nome}")
                 # else:
             #         print(f"Votos em branco: {quantidade}")
             # else:
             #     print(f"Votos nulos: {quantidade}")
 
+def gera_boletim(votos_apurados):
+    arquivo = open('boletim.txt', 'a')
+    arquivo.write(votos_apurados)
+    print(f"\n{cor['ciano']} ***** Boletim gerado com sucesso. Acesse o arquivo 'boletim.txt' para mais detalhes!\n")
+    arquivo.close()
 
 def busca_candidato_pelo_numero_e_estado(numero_candidato, estado_candidato):
     candidato_encontrado = {}
@@ -408,6 +415,7 @@ while True:
         print(f"Nulos: {contar_votos_nulos(ler_votos())}")
         
         apurar_votos(ler_votos(), candidatos)
+        gera_boletim(votos_apurados)
         
     elif opcao == "5":
         busca_candidato_pelo_numero_e_estado("13", "BR")

@@ -2,7 +2,8 @@ from os import listdir, name, system
 import pickle
 from collections import defaultdict
 from InquirerPy import prompt
-# https://inquirerpy.readthedocs.io/en/latest/
+from os import remove
+import pygame
 from cores import cor
 from estados import estado
 
@@ -10,6 +11,7 @@ candidatos = {}
 eleitores = {}
 voto = {}
 votos_apurados = []
+
 
 def verificar_virgulas(arquivo, tipo):
     with open(arquivo, 'r') as file:
@@ -20,13 +22,13 @@ def verificar_virgulas(arquivo, tipo):
         if qtd_virgulas != 4:
             print(f"{cor["vermelho"]}Linha {i} tem {qtd_virgulas} vírgulas: {linha.strip()}")
     if tipo == "CANDIDATOS":
-        print("\nPara importar corretamente, deixe o arquivo com o formato:")
-        print("numero,partido,estado,cargo")
-        print("Sem espaços entre as vírgulas")
+        print(f"\n{cor["vermelho"]}Para importar corretamente, deixe o arquivo com o formato:")
+        print(f"{cor["vermelho"]}numero,partido,estado,cargo")
+        print(f"{cor["vermelho"]}Sem espaços entre as vírgulas")
     if tipo == "ELEITORES":
-        print("\nPara importar corretamente, deixe o arquivo com o formato:")
-        print("nome,rg,municipio,estado")    
-        print("Sem espaços entre as vírgulas")
+        print(f"\n{cor["vermelho"]}Para importar corretamente, deixe o arquivo com o formato:")
+        print(f"{cor["vermelho"]}nome,rg,municipio,estado")    
+        print(f"{cor["vermelho"]}Sem espaços entre as vírgulas")
 
 def limpar_terminal():
     if name == "nt":
@@ -61,32 +63,41 @@ def mensagem_de_sucesso(nome_do_arquivo, tipo):
     return msg
 
 def leitura_dos_arquivos(arquivo, lista, tipo):
+    
     # candidatos -> ["nome", "numero", "partido", "estado", "cargo"]
     # eleitores -> ["nome", "rg", "titulo_de_eleitor", "municipio", "estado"]
 
-    with open(arquivo, "r", encoding="utf-8") as file:
-        conteudo = file.read().strip().split("\n")
-        
-        for infos in conteudo:
-            lista = infos.split(",")
-                               
-            if tipo == "candidato":
-                candidatos[lista[0]] = {"numero": lista[1], "partido": lista[2], "estado": lista[3], "cargo": lista[4]}
-                
-                if len(lista[4]) > 1:
-                    mensagem_de_erro(arquivo, "CANDIDATOS")
-                    candidatos.clear()
-                    break
+    try:
+        with open(arquivo, "r", encoding="utf-8") as file:
+            conteudo = file.read().strip().split("\n")
+            
+            for infos in conteudo:
+                lista = infos.split(",")
+                                
+                if tipo == "candidato":
+                    candidatos[lista[0]] = {"numero": lista[1], "partido": lista[2], "estado": lista[3], "cargo": lista[4]}
                     
-            if tipo == "eleitor":
-                eleitores[lista[2]] = {"nome": lista[0], "rg": lista[1], "municipio": lista[3], "estado": lista[4]}
+                    if len(lista[4]) > 1:
+                        mensagem_de_erro(arquivo, "CANDIDATOS")
+                        candidatos.clear()
+                        break
+                        
+                if tipo == "eleitor":
+                    eleitores[lista[2]] = {"nome": lista[0], "rg": lista[1], "municipio": lista[3], "estado": lista[4]}
 
-                if len(lista[4]) < 2:
-                    mensagem_de_erro(arquivo, "ELEITORES")
-                    eleitores.clear()
-                    break
-                    
+                    if len(lista[4]) < 2:
+                        mensagem_de_erro(arquivo, "ELEITORES")
+                        eleitores.clear()
+                        break
+    except:
+        msg = print(f"""{cor["vermelho"]}\n📁 Arquivo: {arquivo}
+📄 Categoria: {tipo}
+                
+❌ Arquivo errado. Selecione novamente. 🆕\n{cor["restaura_cor_original"]}""")
+        print(msg)
+
 def choices_menu_principal(candidatos, eleitores):
+    
     escolhas = [
         "1️⃣  - Ler arquivo de candidatos 📁",
         "2️⃣  - Ler arquivo de eleitores 📁",
@@ -94,7 +105,7 @@ def choices_menu_principal(candidatos, eleitores):
         "4️⃣  - Apurar votos 💼",
         "5️⃣  - Mostrar resultados",
         "6️⃣  - Fechar programa ❌"]
-    
+    toca_som_selecao()
     if not candidatos and not eleitores:
         return [escolhas[0], escolhas[1], escolhas[5]]
             
@@ -108,6 +119,7 @@ def choices_menu_principal(candidatos, eleitores):
         return escolhas[2:6]
 
 def selecionar_eleitor(titulo_de_eleitor):
+    
     try:
         localidade_eleitor = eleitores[titulo_de_eleitor]["estado"]
         if voto["UF"] == localidade_eleitor:
@@ -119,6 +131,7 @@ def selecionar_eleitor(titulo_de_eleitor):
         return False
         
 def verifica_candidato(numero, estado, tipo, cargo):
+    
     if numero == "B" or numero == "b":
         print(f"\n{cor['ciano']}⚪ Voto em Branco\n")
         voto[tipo] = "B"
@@ -127,16 +140,18 @@ def verifica_candidato(numero, estado, tipo, cargo):
     if numero == "" or numero == "N" or numero == "n":
         print(f"\n{cor['amarelo']}🟡 Candidato não encontrado! Voto Nulo.\n")
         voto[tipo] = "N"
+        
         return "N"
     
-    if cargo == "Deputado Estadual":
-        chave_encontrada = next(
-            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "E"),
-            None
-        )
-    elif cargo == "Deputado Federal":
+    if cargo == "Deputado Federal":
         chave_encontrada = next(
             (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "F"),
+            None
+        )
+        
+    elif cargo == "Deputado Estadual":
+        chave_encontrada = next(
+            (nome for nome, dados in candidatos.items() if dados["numero"] == numero and dados["estado"] == estado and dados["cargo"] == "E"),
             None
         )
     elif cargo == "Senador":
@@ -181,11 +196,18 @@ def menu_confirmar_voto():
     ]
     resposta = prompt(menu_confirma_voto)
     escolha = resposta["confirmacao"]
-
-    return True if escolha == "✅ Sim" else False
+    
+    if escolha == "✅ Sim":
+        toca_som_confirma_curto()
+        return True
+    if escolha == "❌ Não":
+        toca_som_selecao()
+        return False
 
 def menu_para_votacao(cargo, tipo):
+    
     while True:
+         
         menu_votacao = [
                 {
                     "type": "input",
@@ -194,7 +216,7 @@ def menu_para_votacao(cargo, tipo):
                 }
             ]
         resposta_menu_votacao = prompt(menu_votacao)
-    
+        toca_som_selecao()
         numero_votado = resposta_menu_votacao["votacao"]
         estado_eleitor = eleitores[titulo_atual]["estado"]
         verifica_candidato(numero_votado, estado_eleitor, tipo, cargo)
@@ -202,6 +224,7 @@ def menu_para_votacao(cargo, tipo):
             break
 
 def localidade_urna():
+    
     # ESCOLHENDO A LOCALIDADE DA URNA
     menu_escolha_uf_urna = [
         {"type": "list",
@@ -211,6 +234,7 @@ def localidade_urna():
     
     resposta_menu_escolha_uf_urna = prompt(menu_escolha_uf_urna)
     voto["UF"] = resposta_menu_escolha_uf_urna[0]
+    toca_som_selecao()
     limpar_terminal()
     return menu_escolha_uf_urna[0]
 
@@ -302,7 +326,29 @@ def gera_boletim(votos_apurados):
     arquivo.write("\n")
     arquivo.close()
 
+def menu_confirma_geracao_boletim():
+    menu_confirma_geracao = [
+        {
+            "type": "list",
+            "name": "confirmacao",
+            "message": "Deseja substituir o arquivo?",
+            "choices": ["✅ Sim", "❌ Não"]
+        }
+    ]
+    resposta = prompt(menu_confirma_geracao)
+    escolha = resposta["confirmacao"]
+    
+    if escolha == "✅ Sim":
+        toca_som_selecao()
+        remove("boletim.txt")
+        apurar_votos(ler_votos(), candidatos)
+        gera_boletim(str(votos_apurados))
+        
+    if escolha == "❌ Não":
+        toca_som_selecao()
+        
 def busca_candidato_pelo_numero_e_estado(numero_candidato, estado_candidato):
+    
     candidato_encontrado = {}
     for chave, valor in candidatos.items():  
         numero = valor["numero"]
@@ -342,10 +388,25 @@ def mostrar_resultados():
     print(f"Brancos: {contar_votos_brancos(ler_votos())}")
     print(f"Nulos: {contar_votos_nulos(ler_votos())}\n")
 
+def toca_som_selecao():
+    pygame.init()
+    pygame.mixer.music.load('sons/selecao.mp3')
+    pygame.mixer.music.play()
+    
+def toca_som_confirma_curto():
+    pygame.init()
+    pygame.mixer.music.load('sons/confirma_curto.mp3')
+    pygame.mixer.music.play()
+    
+def toca_som_confirma_longo():
+    pygame.init()
+    pygame.mixer.music.load('sons/confirma_longo.mp3')
+    pygame.mixer.music.play()
+    
+
 ######################################################################
 # ENTRANDO NO MEU PRINCIPAL
 while True:
-
     menu_principal = [
         {
             "type": "list",
@@ -365,21 +426,26 @@ while True:
         quit()
             
     elif opcao == "1":
+        toca_som_selecao()
         msg_menu_leitura_candidatos = "📁 Escolha o arquivo '.txt' de --CANDIDATOS-- para leitura:📄"
         leitura_candidatos = prompt(escolher_arquivo_leitura(msg_menu_leitura_candidatos))
         leitura_dos_arquivos(leitura_candidatos[0], ["nome", "numero", "partido", "estado", "cargo"], "candidato")
         if candidatos:
+            toca_som_selecao()
             mensagem_de_sucesso(leitura_candidatos, "CANDIDATOS")
         
 
     elif opcao == "2":
+        toca_som_selecao()
         msg_menu_leitura_eleitores = "📁 Escolha o arquivo '.txt' de --ELEITORES-- para leitura:📄"
         leitura_eleitores = prompt(escolher_arquivo_leitura(msg_menu_leitura_eleitores))
         leitura_dos_arquivos(leitura_eleitores[0], ["nome", "rg", "titulo_de_eleitor", "municipio", "estado"], "eleitor")
         if eleitores:
+            toca_som_selecao()
             mensagem_de_sucesso(leitura_eleitores, "ELEITORES")
     
     elif opcao == "3":
+        toca_som_selecao()
         localidade_urna() 
 
         # ENTRANDO NOS MENUS DE VOTAÇÃO
@@ -394,6 +460,7 @@ while True:
             
             resposta_menu_selecao_eleitor = prompt(menu_selecao_eleitor)
             titulo_atual = resposta_menu_selecao_eleitor["titulo"]
+            toca_som_selecao()
             limpar_terminal()
             if titulo_atual == "0":
                 break
@@ -408,6 +475,7 @@ while True:
                     print(f"{cor["verde"]}--------------------------------")
                     print(f"{cor["verde"]}✅ Voto registrado com sucesso!")
                     print(f"{cor["verde"]}--------------------------------")
+                    toca_som_confirma_longo()
 
                     salvar_voto_bin(voto)
                 
@@ -428,7 +496,8 @@ while True:
         try:
             with open("boletim.txt", "r", encoding="utf-8") as arquivo:
                     conteudo = arquivo.read().strip().split("\n")
-            print(f"{cor["amarelo"]}📁❌ Arquivo: boletim.txt já gerado.\n Por favor, acesse a opção 5 do menu.{cor["restaura_cor_original"]}")
+            print(f"{cor["amarelo"]}📁❌ Arquivo: boletim.txt já gerado.\n Por favor, escolha uma opção: {cor["restaura_cor_original"]}")
+            menu_confirma_geracao_boletim()
         except:
             apurar_votos(ler_votos(), candidatos)
             gera_boletim(str(votos_apurados))
@@ -445,3 +514,6 @@ while True:
         # SE O ARQUIVO BOLETIM NAO FOR ENCONTRADO, ELE MOSTRA A MSG DE ERRO
         except:
             print(f"{cor["vermelho"]}\n📁❌ Arquivo: boletim.txt não encontrado.\n{cor["restaura_cor_original"]}")
+    
+    # FINALIZA O PYGAME
+    pygame.quit()

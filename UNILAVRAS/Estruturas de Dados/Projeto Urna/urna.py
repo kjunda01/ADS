@@ -64,7 +64,7 @@ def leitura_dos_arquivos(arquivo, lista, tipo):
     # candidatos -> ["nome", "numero", "partido", "estado", "cargo"]
     # eleitores -> ["nome", "rg", "titulo_de_eleitor", "municipio", "estado"]
 
-    with open(arquivo, "r") as file:
+    with open(arquivo, "r", encoding="utf-8") as file:
         conteudo = file.read().strip().split("\n")
         
         for infos in conteudo:

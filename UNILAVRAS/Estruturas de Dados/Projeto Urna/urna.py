@@ -321,7 +321,7 @@ def apurar_votos(votos, candidatos):
     print(f"\n{cor['ciano']} ***** Boletim gerado com sucesso. Acesse o arquivo 'boletim.txt' para mais detalhes!\n")
 
 def gera_boletim(votos_apurados):
-    arquivo = open('boletim.txt', 'a')
+    arquivo = open('boletim.txt', 'a', encoding="utf-8")
     arquivo.write(votos_apurados)
     arquivo.write("\n")
     arquivo.close()

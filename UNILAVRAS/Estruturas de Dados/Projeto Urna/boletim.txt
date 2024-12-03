@@ -2,38 +2,38 @@
 🗳️  Apuração dos votos:  🗳️
 
 🧍 Categoria Deputado Federal:
-Número: 5555 | Votos: 2 (18.18%) | Candidato: DIEGO ANDRADE
-Número: 1234 | Votos: 1 (9.09%) | Candidato: DR MÁRIO HERINGER
-Número: 1313 | Votos: 1 (9.09%) | Candidato: ROGÉRIO CORREIA
-Número: 1111 | Votos: 2 (18.18%) | Candidato: DIMAS FABIANO
-Número: 1331 | Votos: 1 (9.09%) | Candidato: NILMARIO MIRANDA
-Número: 1515 | Votos: 1 (9.09%) | Candidato: HERCILIO COELHO DINIZ
-Número: 5567 | Votos: 1 (9.09%) | Candidato: ELVIO NASSER
+Número: 5555 | Votos: 3 (25.00%) | Candidato: DIEGO ANDRADE
+Número: 1234 | Votos: 1 (8.33%) | Candidato: DR MÁRIO HERINGER
+Número: 1313 | Votos: 1 (8.33%) | Candidato: ROGÉRIO CORREIA
+Número: 1111 | Votos: 2 (16.67%) | Candidato: DIMAS FABIANO
+Número: 1331 | Votos: 1 (8.33%) | Candidato: NILMARIO MIRANDA
+Número: 1515 | Votos: 1 (8.33%) | Candidato: HERCILIO COELHO DINIZ
+Número: 5567 | Votos: 1 (8.33%) | Candidato: ELVIO NASSER
 
 🧍 Categoria Deputado Estadual:
-Número: 55555 | Votos: 2 (18.18%) | Candidato: CASSIO SOARES
-Número: 45222 | Votos: 1 (9.09%) | Candidato: DALMO RIBEIRO
-Número: 13131 | Votos: 1 (9.09%) | Candidato: SÂMIA DO AMIGO LIVRO
-Número: 11111 | Votos: 2 (18.18%) | Candidato: ZÉ GUILHERME
-Número: 22123 | Votos: 1 (9.09%) | Candidato: ANTONIO CARLOS ARANTES
-Número: 55123 | Votos: 1 (9.09%) | Candidato: DOUTOR WILSON BATISTA
+Número: 55555 | Votos: 2 (16.67%) | Candidato: CASSIO SOARES
+Número: 45222 | Votos: 1 (8.33%) | Candidato: DALMO RIBEIRO
+Número: 13131 | Votos: 1 (8.33%) | Candidato: SÂMIA DO AMIGO LIVRO
+Número: 11111 | Votos: 2 (16.67%) | Candidato: ZÉ GUILHERME
+Número: 22123 | Votos: 1 (8.33%) | Candidato: ANTONIO CARLOS ARANTES
+Número: 55123 | Votos: 1 (8.33%) | Candidato: DOUTOR WILSON BATISTA
 
 🧍 Categoria Senador:
-Número: 200 | Votos: 2 (18.18%) | Candidato: CLEITINHO
-Número: 290 | Votos: 1 (9.09%) | Candidato: NAOMI DE ALMEIDA 
-Número: 123 | Votos: 1 (9.09%) | Candidato: BRUNO MIRANDA
+Número: 200 | Votos: 2 (16.67%) | Candidato: CLEITINHO
+Número: 290 | Votos: 1 (8.33%) | Candidato: NAOMI DE ALMEIDA 
+Número: 123 | Votos: 1 (8.33%) | Candidato: BRUNO MIRANDA
 
 🧍 Categoria Governador:
-Número: 30 | Votos: 3 (27.27%) | Candidato: ZEMA
-Número: 80 | Votos: 1 (9.09%) | Candidato: INDIRA XAVIER
-Número: 55 | Votos: 1 (9.09%) | Candidato: KALIL
-Número: 45 | Votos: 1 (9.09%) | Candidato: MARCUS PESTANA
+Número: 30 | Votos: 3 (25.00%) | Candidato: ZEMA
+Número: 80 | Votos: 1 (8.33%) | Candidato: INDIRA XAVIER
+Número: 55 | Votos: 1 (8.33%) | Candidato: KALIL
+Número: 45 | Votos: 1 (8.33%) | Candidato: MARCUS PESTANA
 
 🧍 Categoria Presidente:
-Número: 12 | Votos: 1 (9.09%) | Candidato: CIRO GOMES
-Número: 22 | Votos: 2 (18.18%) | Candidato: JAIR BOLSONARO
-Número: 30 | Votos: 1 (9.09%) | Candidato: FELIPE D AVILA
-Número: 13 | Votos: 1 (9.09%) | Candidato: LULA
-Número: 15 | Votos: 1 (9.09%) | Candidato: SIMONE TEBET
-Número: 21 | Votos: 1 (9.09%) | Candidato: SOFIA MANZANO
+Número: 12 | Votos: 1 (8.33%) | Candidato: CIRO GOMES
+Número: 22 | Votos: 2 (16.67%) | Candidato: JAIR BOLSONARO
+Número: 30 | Votos: 1 (8.33%) | Candidato: FELIPE D AVILA
+Número: 13 | Votos: 1 (8.33%) | Candidato: LULA
+Número: 15 | Votos: 1 (8.33%) | Candidato: SIMONE TEBET
+Número: 21 | Votos: 1 (8.33%) | Candidato: SOFIA MANZANO
 []

@@ -1,30 +1,39 @@
 🗳️  Apuração dos votos:  🗳️
 
 🧍 Categoria Deputado Federal:
-Total de votos: 3 - Válidos: 2 - Brancos: 1 - Nulos: 0
-Número: 5555 | Votos: 1 | (33.33%) | Estado: MG | Candidato: DIEGO ANDRADE
-Número: 1515 | Votos: 1 | (33.33%) | Estado: MG | Candidato: HERCILIO COELHO DINIZ
-Votos Brancos: 1 | (33.33%)
+Total de votos: 8 - Válidos: 6 - Brancos: 1 - Nulos: 1
+Número: 5555 | Votos: 2 | (25.00%) | Estado: MG | Candidato: DIEGO ANDRADE
+Número: 1313 | Votos: 2 | (25.00%) | Estado: MG | Candidato: ROGÉRIO CORREIA
+Número: 5555 | Votos: 2 | (25.00%) | Estado: RS | Candidato: PAULO CALEFFI
+Votos Brancos: 1 | (12.50%)
+Votos Nulos: 1 | (12.50%)
 
 🧍 Categoria Deputado Estadual:
-Total de votos: 3 - Válidos: 2 - Brancos: 1 - Nulos: 0
-Número: 45222 | Votos: 1 | (33.33%) | Estado: MG | Candidato: DALMO RIBEIRO
-Número: 15151 | Votos: 1 | (33.33%) | Estado: MG | Candidato: ALESSANDRO RIBEIRO
-Votos Brancos: 1 | (33.33%)
+Total de votos: 8 - Válidos: 6 - Brancos: 1 - Nulos: 1
+Número: 45222 | Votos: 2 | (25.00%) | Estado: MG | Candidato: DALMO RIBEIRO
+Número: 13123 | Votos: 2 | (25.00%) | Estado: MG | Candidato: BEATRIZ CERQUEIRA
+Número: 12345 | Votos: 2 | (25.00%) | Estado: RS | Candidato: MÁRCIO BINS ELY
+Votos Brancos: 1 | (12.50%)
+Votos Nulos: 1 | (12.50%)
 
 🧍 Categoria Senador:
-Total de votos: 3 - Válidos: 1 - Brancos: 2 - Nulos: 0
-Número: 200 | Votos: 1 | (33.33%) | Estado: MG | Candidato: CLEITINHO
-Votos Brancos: 2 | (66.67%)
+Total de votos: 8 - Válidos: 2 - Brancos: 5 - Nulos: 1
+Número: 200 | Votos: 2 | (25.00%) | Estado: MG | Candidato: CLEITINHO
+Votos Brancos: 5 | (62.50%)
+Votos Nulos: 1 | (12.50%)
 
 🧍 Categoria Governador:
-Total de votos: 3 - Válidos: 2 - Brancos: 1 - Nulos: 0
-Número: 30 | Votos: 1 | (33.33%) | Estado: MG | Candidato: ZEMA
-Número: 55 | Votos: 1 | (33.33%) | Estado: MG | Candidato: KALIL
-Votos Brancos: 1 | (33.33%)
+Total de votos: 8 - Válidos: 6 - Brancos: 1 - Nulos: 1
+Número: 30 | Votos: 2 | (25.00%) | Estado: MG | Candidato: ZEMA
+Número: 55 | Votos: 2 | (25.00%) | Estado: MG | Candidato: KALIL
+Número: 30 | Votos: 2 | (25.00%) | Estado: RS | Candidato: RICARDO JOBIM
+Votos Brancos: 1 | (12.50%)
+Votos Nulos: 1 | (12.50%)
 
 🧍 Categoria Presidente:
-Total de votos: 3 - Válidos: 2 - Brancos: 1 - Nulos: 0
-Número: 22 | Votos: 1 | (33.33%) | Estado: BR | Candidato: JAIR BOLSONARO
-Número: 13 | Votos: 1 | (33.33%) | Estado: BR | Candidato: LULA
-Votos Brancos: 1 | (33.33%)
+Total de votos: 8 - Válidos: 6 - Brancos: 1 - Nulos: 1
+Número: 22 | Votos: 2 | (25.00%) | Estado: BR | Candidato: JAIR BOLSONARO
+Número: 13 | Votos: 2 | (25.00%) | Estado: BR | Candidato: LULA
+Número: 12 | Votos: 2 | (25.00%) | Estado: BR | Candidato: CIRO GOMES
+Votos Brancos: 1 | (12.50%)
+Votos Nulos: 1 | (12.50%)

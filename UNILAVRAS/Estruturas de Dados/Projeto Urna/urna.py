@@ -12,7 +12,8 @@ candidatos = {}
 eleitores = {}
 voto = {}
 votos_apurados = []
-
+# Dicionário para armazenar os votos
+resultados = defaultdict(lambda: defaultdict(int))
 
 def verificar_virgulas(arquivo, tipo):
     with open(arquivo, 'r') as file:
@@ -269,102 +270,203 @@ def transforma_categoria(categoria):
         }
     return categorias.get(categoria, "Cargo inválido")
 
-# ##########
-def apurar_votos(votos, candidatos):
-    resultados = defaultdict(lambda: defaultdict(int))
-    totais_validos = defaultdict(int)  # Total de votos válidos por categoria
-    totais_brancos = defaultdict(int)  # Total de votos brancos por categoria
-    totais_nulos = defaultdict(int)    # Total de votos nulos por categoria
-    totais_gerais = defaultdict(int)   # Total de votos (válidos + brancos + nulos)
 
-    # Itera sobre os votos e conta a quantidade por categoria e escolha
-    for voto in votos:
-        uf = voto.get('UF', '')  # Obter estado, padrão vazio se não existir
-        for categoria, escolha in voto.items():
-            if categoria != 'UF':  # Ignora a chave 'UF'
-                resultados[(categoria, uf)][escolha] += 1
-                totais_gerais[(categoria, uf)] += 1  # Conta todos os votos (válidos, brancos e nulos)
-                if escolha != 'N' and escolha != 'B':  # Contabilizar apenas votos válidos
-                    totais_validos[(categoria, uf)] += 1
-                if escolha == 'B':  # Contabilizar votos brancos
-                    totais_brancos[(categoria, uf)] += 1
-                if escolha == 'N':  # Contabilizar votos nulos
-                    totais_nulos[(categoria, uf)] += 1
+# Função para processar os dados
+def processar_votos(dados):
+    for voto in dados:
+        uf = voto['UF']  # Estado (UF)
+        
+        # Processar cada categoria (F, E, S, G, P)
+        for categoria in ['F', 'E', 'S', 'G', 'P']:
+            escolha = voto[categoria]
+            
+            if escolha == 'B':  # Voto em branco
+                resultados[categoria]['B'] += 1
+            elif escolha == 'N':  # Voto nulo
+                resultados[categoria]['N'] += 1
+            else:  # Voto válido
+                resultados[categoria][(escolha, uf)] += 1
 
-    # Exibindo os resultados
-    msg_titulo = f"\n🗳️  Apuração dos votos:  🗳️"
+def apurar_votos():
+    categorias = {
+        'F': 'Deputado Federal',
+        'E': 'Deputado Estadual',
+        'S': 'Senador',
+        'G': 'Governador',
+        'P': 'Presidente'
+    }
+
+    # Título de apuração
+    msg_titulo = f"🗳️  Apuração dos votos:  🗳️"
+    votos_apurados.append(msg_titulo)
     gera_boletim(msg_titulo)
-
-    for (categoria, uf), escolhas in resultados.items():
-        msg_categorias = f"\n🧍 Categoria {transforma_categoria(categoria)} - Estado: {uf}:"
+    
+    # Exibir os resultados por categoria
+    for categoria, nome_categoria in categorias.items():
+        msg_categorias = f"\n🧍 Categoria {nome_categoria}:"
+        votos_apurados.append(msg_categorias)
         gera_boletim(msg_categorias)
-
-        votos_por_candidato = {}  # Para consolidar os votos por candidato
         
-        for escolha, quantidade in escolhas.items():
-            candidato_nome = "Votos em branco"
-            candidato_estado = uf if uf else "N/A"
-            candidato = None
-            
-            if escolha == 'N':  # Ignorar votos nulos
+        # Calcular o total de votos na categoria (brancos, nulos e válidos)
+        total_votos_categoria = sum(votos for votos in resultados[categoria].values())
+        votos_brancos = resultados[categoria].get('B', 0)
+        votos_nulos = resultados[categoria].get('N', 0)
+        votos_validos = total_votos_categoria - votos_brancos - votos_nulos
+        
+        # Exibir a contagem geral de votos
+        msg_total = (f"Total de votos: {total_votos_categoria} - "
+                     f"Válidos: {votos_validos} - "
+                     f"Brancos: {votos_brancos} - "
+                     f"Nulos: {votos_nulos}")
+        votos_apurados.append(msg_total)
+        gera_boletim(msg_total)
+        
+        # Exibir os resultados de votos válidos (com número e estado)
+        for chave, votos in resultados[categoria].items():
+            if chave == 'B':  # Voto em branco
                 continue
-            
-            if escolha != "B":  # Se não for voto em branco
-                # Buscar o candidato pelo número e estado, exceto para "P" (Presidente)
-                for nome, dados in candidatos.items():
-                    if categoria == "P":  # Presidente: apenas pelo número
-                        if dados['numero'] == escolha and dados["estado"] == "BR":
-                            candidato = dados
-                            candidato_nome = nome
-                            candidato_estado = "BR"
-                            break
-                    else:  # Outras categorias: número e estado
-                        if dados['numero'] == escolha and dados["estado"] == uf:
-                            candidato = dados
-                            candidato_nome = nome
-                            candidato_estado = uf
-                            break
-            
-            # Consolidar os votos por candidato
-            if candidato:
-                if candidato_nome not in votos_por_candidato:
-                    votos_por_candidato[candidato_nome] = {
-                        "numero": candidato['numero'],
-                        "estado": candidato_estado,
-                        "votos": 0,
-                        "percentual": 0.0
-                    }
-                votos_por_candidato[candidato_nome]["votos"] += quantidade
+            elif chave == 'N':  # Voto nulo
+                continue
+            else:
+                # Caso de votos válidos: chave será uma tupla (escolha, uf)
+                escolha, uf = chave
+                
+                # Verificar se a categoria é Presidente, e buscar o nome de forma diferente
+                if categoria == 'P':  # Se for a categoria Presidente
+                    nome_candidato = busca_nome_pelo_numero_e_estado(escolha, 'BR')  # Buscar com o estado 'BR'
+                    uf_display = 'BR'  # Mostrar 'BR' como estado na mensagem
+                else:
+                    nome_candidato = busca_nome_pelo_numero_e_estado(escolha, uf)  # Buscar normalmente com o estado do candidato
+                    uf_display = uf  # Exibir o estado real do candidato
+                
+                # Calcular a porcentagem de votos válidos
+                porcentagem_votos = (votos / total_votos_categoria) * 100 if total_votos_categoria > 0 else 0
+                
+                # Gerar a mensagem de resultado
+                msg_candidatos = (f"Número: {escolha} | Votos: {votos} | "
+                                f"({porcentagem_votos:.2f}%) | Estado: {uf_display} | "
+                                f"Candidato: {nome_candidato}")
+                
+                # Adicionar a mensagem à lista de apuração e gerar o boletim
+                votos_apurados.append(msg_candidatos)
+                gera_boletim(msg_candidatos)
 
-        # Calcular e exibir os votos consolidados
-        for nome, dados_candidato in votos_por_candidato.items():
-            quantidade = dados_candidato["votos"]
-            # Calcular a porcentagem de votos em relação ao total de votos (válidos + brancos + nulos)
-            porcentagem = (quantidade / totais_gerais[(categoria, uf)]) * 100 if totais_gerais[(categoria, uf)] > 0 else 0
-            dados_candidato["percentual"] = porcentagem
-            estado = dados_candidato["estado"]
-            msg_candidatos = f"Número: {dados_candidato['numero']} | Votos: {quantidade} ({porcentagem:.2f}%) | Estado: {estado} | Candidato: {nome}"
-            gera_boletim(msg_candidatos)
-        
-        # Exibir votos em branco e nulos, se houver
-        votos_brancos = totais_brancos[(categoria, uf)]
-        votos_nulos = totais_nulos[(categoria, uf)]
-        total_votos = totais_gerais[(categoria, uf)]  # Total de votos, incluindo válidos, brancos e nulos
 
-        # Cálculo da porcentagem de votos em branco e nulos em relação ao total de votos
+
+        # Exibir votos brancos e nulos após os válidos
         if votos_brancos > 0:
-            porcentagem_brancos = (votos_brancos / total_votos) * 100
-            msg_brancos = f"Votos em branco: {votos_brancos} ({porcentagem_brancos:.2f}%)"
+            porcentagem_brancos = (votos_brancos / total_votos_categoria) * 100 if total_votos_categoria > 0 else 0
+            msg_brancos = f"Votos Brancos: {votos_brancos} | ({porcentagem_brancos:.2f}%)"
+            votos_apurados.append(msg_brancos)
             gera_boletim(msg_brancos)
-
+        
         if votos_nulos > 0:
-            porcentagem_nulos = (votos_nulos / total_votos) * 100
-            msg_nulos = f"Votos nulos: {votos_nulos} ({porcentagem_nulos:.2f}%)"
+            porcentagem_nulos = (votos_nulos / total_votos_categoria) * 100 if total_votos_categoria > 0 else 0
+            msg_nulos = f"Votos Nulos: {votos_nulos} | ({porcentagem_nulos:.2f}%)"
+            votos_apurados.append(msg_nulos)
             gera_boletim(msg_nulos)
+           
+# Função de apuração de votos
+# def apurar_votos(votos, candidatos):
+#     global totais_validos, totais_brancos, totais_nulos, totais_gerais
+#     resultados = defaultdict(lambda: defaultdict(int))
+#     totais_validos = defaultdict(int)
+#     totais_brancos = defaultdict(int)
+#     totais_nulos = defaultdict(int)
+#     totais_gerais = defaultdict(int)
 
-        # Exibir total de votos
-        msg_totais = f"Total de votos: {total_votos} (Válidos: {totais_validos[(categoria, uf)]}, Brancos: {votos_brancos}, Nulos: {votos_nulos})"
-        gera_boletim(msg_totais)
+#     # Processamento dos votos
+#     for voto in votos:
+#         for categoria, escolha in voto.items():
+#             if categoria != 'UF':  # Ignora a chave 'UF'
+#                 uf = voto.get('UF', '')  # Obter estado, padrão vazio se não existir
+#                 if categoria == 'P':  # Categoria Presidente
+#                     uf = 'N/A'
+                
+#                 resultados[categoria][escolha] += 1
+#                 totais_gerais[categoria] += 1
+#                 if escolha != 'N' and escolha != 'B':
+#                     totais_validos[categoria] += 1
+#                 if escolha == 'B':
+#                     totais_brancos[categoria] += 1
+#                 if escolha == 'N':
+#                     totais_nulos[categoria] += 1
+
+#     # Título de apuração
+#     msg_titulo = f"\n🗳️  Apuração dos votos:  🗳️"
+#     gera_boletim(msg_titulo)
+
+#     for categoria, escolhas in resultados.items():
+#         # Nome da categoria
+#         msg_categorias = f"\n🧍 Categoria {transforma_categoria(categoria)}:"
+#         gera_boletim(msg_categorias)
+
+#         votos_por_candidato = {}
+
+#         for escolha, quantidade in escolhas.items():
+#             candidato_nome = "Votos em branco"
+#             candidato_estado = "N/A"  # Para todas as categorias, estado será N/A
+#             candidato = None
+
+#             if escolha == 'N':  # Ignorar votos nulos
+#                 continue
+
+#             if escolha != "B":  # Se não for voto em branco
+#                 # Buscar o candidato pelo número e estado, exceto para "P" (Presidente)
+#                 for nome, dados in candidatos.items():
+#                     if categoria == "P":  # Presidente: apenas pelo número, estado "N/A"
+#                         if dados['numero'] == escolha and dados["estado"] == "BR":
+#                             candidato = dados
+#                             candidato_nome = nome
+#                             candidato_estado = "N/A"  # Sempre "N/A" para Presidente
+#                             break
+#                     else:  # Outras categorias: número e estado
+#                         if dados['numero'] == escolha and dados['estado'] == uf:
+#                             candidato = dados
+#                             candidato_nome = nome
+#                             candidato_estado = dados['estado']
+#                             break
+
+#             # Consolidar os votos por candidato
+#             if candidato:
+#                 if candidato_nome not in votos_por_candidato:
+#                     votos_por_candidato[candidato_nome] = {
+#                         "numero": candidato['numero'],
+#                         "estado": candidato_estado,
+#                         "votos": 0,
+#                         "percentual": 0.0
+#                     }
+#                 votos_por_candidato[candidato_nome]["votos"] += quantidade
+
+#         # Exibir resultados de votos por candidato dentro de cada categoria
+#         for nome, dados_candidato in votos_por_candidato.items():
+#             quantidade = dados_candidato["votos"]
+#             # Calcular a porcentagem de votos em relação ao total de votos (válidos + brancos + nulos)
+#             porcentagem = (quantidade / totais_gerais[categoria]) * 100 if totais_gerais[categoria] > 0 else 0
+#             dados_candidato["percentual"] = porcentagem
+#             estado = dados_candidato["estado"]
+#             msg_candidatos = f"Número: {dados_candidato['numero']} | Votos: {quantidade} ({porcentagem:.2f}%) | Candidato: {nome} | Estado: {estado}"
+#             gera_boletim(msg_candidatos)
+
+#         # Exibir votos em branco e nulos, se houver
+#         votos_brancos = totais_brancos[categoria]
+#         votos_nulos = totais_nulos[categoria]
+#         total_votos = totais_gerais[categoria]  # Total de votos, incluindo válidos, brancos e nulos
+
+#         if votos_brancos > 0:
+#             porcentagem_brancos = (votos_brancos / total_votos) * 100
+#             msg_brancos = f"Votos em branco: {votos_brancos} ({porcentagem_brancos:.2f}%)"
+#             gera_boletim(msg_brancos)
+
+#         if votos_nulos > 0:
+#             porcentagem_nulos = (votos_nulos / total_votos) * 100
+#             msg_nulos = f"Votos nulos: {votos_nulos} ({porcentagem_nulos:.2f}%)"
+#             gera_boletim(msg_nulos)
+
+#         # Exibir total de votos por categoria
+#         msg_totais = f"Total de votos: {total_votos} (Válidos: {totais_validos[categoria]}, Brancos: {votos_brancos}, Nulos: {votos_nulos})"
+#         gera_boletim(msg_totais)
+
 
 def grafico_votos(votos, candidatos, cargo_escolhido, estado_escolhido):
     resultados = {}
@@ -480,21 +582,24 @@ def menu_confirma_geracao_boletim():
     if escolha == "✅ Sim":
         toca_som_selecao()
         remove("boletim.txt")
-        apurar_votos(ler_votos(), candidatos)
-        gera_boletim(str(votos_apurados))
+        apurar_votos()
+        
         
     if escolha == "❌ Não":
         toca_som_selecao()
         
-def busca_candidato_pelo_numero_e_estado(numero_candidato, estado_candidato):
-    
-    candidato_encontrado = {}
-    for chave, valor in candidatos.items():  
-        numero = valor["numero"]
-        estado = valor["estado"]
+def busca_nome_pelo_numero_e_estado(numero_candidato, estado_candidato):
+    # Percorre todos os candidatos
+    for nome, dados in candidatos.items():  
+        numero = dados["numero"]
+        estado = dados["estado"]
+        
+        # Verifica se o número e estado correspondem
         if numero == numero_candidato and estado == estado_candidato:
-            candidato_encontrado = {chave: valor}
-    return candidato_encontrado
+            return nome  # Retorna o nome do candidato encontrado
+    
+    return None  # Retorna None caso não encontre o candidato
+
 
 def contar_votos_brancos(votos_lidos):
     votos_brancos = []
@@ -637,15 +742,17 @@ while True:
                     conteudo = arquivo.read().strip().split("\n")
             print(f"{cor["amarelo"]}📁❌ Arquivo: boletim.txt já gerado.\n Por favor, escolha uma opção: {cor["restaura_cor_original"]}")
             menu_confirma_geracao_boletim()
-        except:
-            apurar_votos(ler_votos(), candidatos)
-            gera_boletim(str(votos_apurados))
+        except FileNotFoundError:
+            # Processar os votos
+            processar_votos(ler_votos())
+            apurar_votos()
 
         
     elif opcao == "5":
         # TENTA MOSTRAR OS RESULTADOS
         try:
             mostrar_resultados()
+            # Exibir os resultados
             with open("boletim.txt", "r", encoding="utf-8") as arquivo:
                 conteudo = arquivo.read().strip().split("\n")
                 for linha in conteudo:
@@ -660,6 +767,9 @@ while True:
         cargo_escolhido, estado_escolhido = escolha_grafico()
         print(f"Você escolheu: {cargo_escolhido}")
         grafico_votos(ler_votos(), candidatos, cargo_escolhido, estado_escolhido)
+
     
     # FINALIZA O PYGAME
     pygame.quit()
+
+    

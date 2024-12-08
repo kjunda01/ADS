@@ -10,11 +10,17 @@ public class Aula07 {
 
 
          */
-        float numero1 = 3;
-        float numero2 = 5;
-        float media = (numero1 + numero2) / 2;
-        System.out.println("A média é: " + media);
+//        float numero1 = 3;
+//        float numero2 = 5;
+//        float media = (numero1 + numero2) / 2;
+//        System.out.println("A média é: " + media);
 
+        for(int i = 1; i <=10; i++){
+            int maior = i > 5 ? i : 10;
+            System.out.println(maior);
+
+
+        }
     }
 }
 

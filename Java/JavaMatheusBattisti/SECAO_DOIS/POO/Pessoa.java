@@ -19,11 +19,43 @@ public class Pessoa {
     // Métodos
     // setter e getter
 
+    /* ************************************************************ */
+    // NOME
     public void setNome(String nome){
         this.nome = nome;
     }
 
     public String getNome(){
         return nome;
+    }
+
+    /* ************************************************************ */
+    // IDADE
+    public void setIdade(short idade){
+        this.idade = idade;
+    }
+
+    public short getIdade(){
+        return idade;
+    }
+
+    /* ************************************************************ */
+    // ALTURA
+    public void setAltura(double altura){
+        this.altura = altura;
+    }
+
+    public double getAltura(){
+        return altura;
+    }
+
+    /* ************************************************************ */
+    // PESO
+    public void setPeso(double peso){
+        this.peso = peso;
+    }
+
+    public double getPeso(){
+        return peso;
     }
 }

@@ -3,16 +3,16 @@ package POO;
 public class Pessoa {
     // Atributos
     private String nome;
-    private short idade;
+    private int idade;
     private double altura;
     private double peso;
 
     // Construtor
-    public Pessoa(){
-        this.nome = "Sem nome";
-        this.idade = 0;
-        this.altura = 0.0;
-        this.peso = 0.0;
+    public Pessoa(String nome, int idade, double altura, double peso){
+        this.nome = nome;
+        this.idade = idade;
+        this.altura = altura;
+        this.peso = peso;
         
     }
     
@@ -31,11 +31,11 @@ public class Pessoa {
 
     /* ************************************************************ */
     // IDADE
-    public void setIdade(short idade){
+    public void setIdade(int idade){
         this.idade = idade;
     }
 
-    public short getIdade(){
+    public int getIdade(){
         return idade;
     }
 

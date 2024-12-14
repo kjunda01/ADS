@@ -1,4 +1,4 @@
-package SECAO_DOIS.PRIMEIRO_PROGRAMA;
+package PRIMEIRO_PROGRAMA;
 
 public class OlaMundo {
 

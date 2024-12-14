@@ -1,4 +1,4 @@
-package SECAO_DOIS.ESTRUTURAS_CONDICIONAIS;
+package ESTRUTURAS_CONDICIONAIS;
 
 public class Estruturas {
     public static void main(String[] args){

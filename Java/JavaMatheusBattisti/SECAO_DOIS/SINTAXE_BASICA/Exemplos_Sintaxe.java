@@ -1,4 +1,4 @@
-package SECAO_DOIS.SINTAXE_BASICA;
+package SINTAXE_BASICA;
 
 public class Exemplos_Sintaxe {
     

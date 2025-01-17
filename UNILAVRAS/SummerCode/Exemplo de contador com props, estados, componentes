@@ -1,0 +1,193 @@
+import { useState } from "react";
+import "./App.css";
+import CriarLog from "./CriarLog";
+
+function App() {
+  const [contador, setContador] = useState(0);
+  const [logs, setLogs] = useState([]);
+
+  const handleDecrease = () => {
+    const novoContador = contador - 1;
+    setContador(novoContador);
+    setLogs((prevLogs) => [...prevLogs, `Diminuiu - (${novoContador})`]);
+  };
+
+  const handleIncrease = () => {
+    const novoContador = contador + 1;
+    setContador(novoContador);
+    setLogs((prevLogs) => [...prevLogs, `Aumentou - (${novoContador})`]);
+  };
+
+  const handleSetToZero = () => {
+    setContador(0);
+    setLogs((prevLogs) => [...prevLogs, `ZEROU! - (0)`]);
+  };
+
+  return (
+    <div className="App">
+      <div className="container">
+        <h1 className="contador">{contador}</h1>
+      </div>
+      <div className="caixaBotoes">
+        <button className="diminuir" onClick={handleDecrease}>
+          Diminuir
+        </button>
+        <button className="mudarParaZero" onClick={handleSetToZero}>
+          Mudar Para Zero
+        </button>
+        <button className="aumentar" onClick={handleIncrease}>
+          Aumentar
+        </button>
+      </div>
+      <div className="log">
+        <table>
+          <thead>
+            <tr>
+              <th>Log dos cliques</th>
+            </tr>
+          </thead>
+          <tbody>
+            {logs
+              .slice()
+              .reverse()
+              .map((mensagem, index) => (
+                <tr key={index}>
+                  <CriarLog mensagem={mensagem} />
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+const CriarLog = ({ mensagem }) => {
+
+  const definirCor = (mensagem) => {
+    if (mensagem[0] === "D") return "red";
+    if (mensagem[0] === "A") return "blue";
+    return "green";
+  };
+
+  return <td style={{ color: definirCor(mensagem) }}>{mensagem}</td>;
+};
+
+export default CriarLog;
+
+
+
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.container {
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.contador {
+  text-align: center;
+  font-size: 100px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.caixaBotoes {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+button {
+  flex: 1;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.diminuir {
+  background-color: #e74c3c;
+}
+
+.mudarParaZero {
+  background-color: #27ae60;
+}
+
+.aumentar {
+  background-color: #3498db;
+}
+
+.diminuir:hover {
+  background-color: #c0392b;
+}
+
+.mudarParaZero:hover {
+  background-color: #1e8449;
+}
+
+.aumentar:hover {
+  background-color: #2980b9;
+}
+
+.log {
+  margin: 20px auto;
+  max-width: auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: calc(100vh - 382px);
+}
+
+table {
+  width: 75%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+

@@ -1,0 +1,250 @@
+/* App.css */
+
+/* Estilo geral */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Container do título */
+.tituloContainer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tituloContainer h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Container para adicionar tarefas */
+.addTarefaContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.addTarefaContainer form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.addTarefaContainer input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.addTarefaContainer input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.bntAddTarefa {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.bntAddTarefa:hover {
+  background-color: #218838;
+}
+
+.bntAddTarefa:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.bntCancelarEdicao {
+  padding: 10px 20px;
+  background-color: #e03535;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.bntCancelarEdicao:hover {
+  background-color: #631313;
+}
+
+/* Container de tarefas atualizado */
+.tarefaContainer {
+  width: 90%; /* Largura de 90% */
+  height: calc(85vh - 200px); /* Altura dinâmica: tela total menos o espaço ocupado por título e filtro */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Adiciona rolagem vertical */
+  overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+/* Adiciona um estilo para a barra de rolagem no container (opcional) */
+.tarefaContainer::-webkit-scrollbar {
+  width: 8px; /* Largura da barra de rolagem */
+}
+
+.tarefaContainer::-webkit-scrollbar-thumb {
+  background-color: #007bff; /* Cor da "thumb" (parte rolável) */
+  border-radius: 5px;
+}
+
+.tarefaContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3; /* Cor da "thumb" ao passar o mouse */
+}
+
+.tarefaContainer::-webkit-scrollbar-track {
+  background-color: #f4f4f4; /* Cor do "track" (fundo da barra) */
+}
+
+.tarefa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tarefa:hover {
+  background-color: #f8f9fa;
+}
+
+/* Estilo para o container do filtro */
+.filtrarContainer {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filtrarContainer h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+/* Estilo para o campo de seleção */
+.filtrarContainer select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f4f4f4;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.filtrarContainer select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilo para o botão de filtro (se for necessário) */
+.filtrarContainer button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.filtrarContainer button:hover {
+  background-color: #0056b3;
+}
+
+/* Botões da tarefa */
+.bntCompletar {
+  padding: 5px 10px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.bntCompletar:hover {
+  background-color: #148a9c;
+}
+
+.bntCompletar:disabled {
+  background-color: #ccc;
+}
+
+.bntFinalizada {
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.bntFinalizada:hover {
+  background-color: #218838;
+}
+
+.bntDeletar {
+  padding: 5px 10px;
+  background-color: #ff0707;
+
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.bntDeletar:hover {
+  background-color: #a50f0f;
+}
+
+/* Texto da tarefa */
+.textoTarefa {
+  flex-grow: 1;
+  margin: 0 10px;
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.tarefaConcluida {
+  text-decoration: line-through;
+  color: gray;
+  font-style: italic;
+}

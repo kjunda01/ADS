@@ -1,0 +1,29 @@
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [textoDoParagrafo, setTextoDoParagrafo] = useState(true);
+  const [textoDoBotao, setTextoDoBotao] = useState("Esconder");
+
+  const handleClick = () => {
+    setTextoDoParagrafo(!textoDoParagrafo);
+    setTextoDoBotao((prev) => (prev === "Esconder" ? "Mostrar" : "Esconder"));
+  };
+
+  return (
+    <div className="App">
+      {textoDoParagrafo && (
+        // <> </> se chama fragment e é utilizado para nao poluir o DOM com tags desnecessarias
+        <>
+          <h1>Exemplo com render condicional</h1>
+          <p>Estou utilizando react!</p>
+        </>
+      )}
+
+      <button onClick={handleClick}>{textoDoBotao}</button>
+    </div>
+  );
+}
+
+export default App;
+

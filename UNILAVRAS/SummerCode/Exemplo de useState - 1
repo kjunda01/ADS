@@ -1,0 +1,21 @@
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [idade, setIdade] = useState(0);
+
+  const handleClick = () => {
+    setIdade(idade + 1);
+  };
+
+  return (
+    <div className="App">
+      <h1>Qual a idade atual?</h1>
+      <p>{idade}</p>
+      <button onClick={handleClick}>Aumentar idade</button>
+    </div>
+  );
+}
+
+export default App;
+

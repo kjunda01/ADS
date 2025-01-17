@@ -1,0 +1,21 @@
+import "./App.css";
+
+function App() {
+  let idade = 0;
+
+  const handleClick = () => {
+    idade = idade + 1;
+    console.log(idade);
+  };
+
+  return (
+    <div className="App">
+      <h1>Qual a idade atual?</h1>
+      <p>{idade}</p>
+      <button onClick={handleClick}>Aumentar idade</button>
+    </div>
+  );
+}
+
+export default App;
+

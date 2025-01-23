@@ -1,0 +1,39 @@
+Passo 1: Definir o Contêiner como Flex
+d-flex
+
+Passo 2: Organizar os Itens com flex-direction (Direção)
+flex-row (padrão): Organiza os itens de forma horizontal (linha).
+flex-column: Organiza os itens de forma vertical (coluna).
+
+Passo 3: Justificar os Itens com justify-content-* (Eixo Principal)
+justify-content-start: Alinha os itens no início do eixo principal.
+justify-content-center: Alinha os itens no centro do eixo principal.
+justify-content-end: Alinha os itens no final do eixo principal.
+justify-content-between: Distribui os itens com espaço igual entre eles, mas sem espaço nas extremidades.
+justify-content-around: Distribui os itens com espaço igual entre eles e também nas extremidades.
+justify-content-evenly: Distribui os itens com o mesmo espaço em todas as direções, incluindo as extremidades.
+
+Passo 4: Alinhar os Itens com align-items-* (Eixo Transversal)
+align-items-start: Alinha os itens no início do eixo transversal.
+align-items-center: Alinha os itens no centro do eixo transversal.
+align-items-end: Alinha os itens no final do eixo transversal.
+align-items-baseline: Alinha os itens na linha de base.
+align-items-stretch: Faz com que os itens se estiquem para preencher o contêiner (com altura e largura).
+
+Passo 5: Permitir Que os Itens Quebrem de Linha com flex-wrap
+flex-wrap: Permite que os itens se movam para a próxima linha ou coluna quando não há mais espaço.
+flex-nowrap: Impede que os itens quebrem de linha (este é o comportamento padrão).
+
+Passo 6: Controle de Tamanho dos Itens
+flex-grow-1: Faz o item crescer para ocupar o espaço disponível.
+flex-shrink-0: Impede que o item encolha se o espaço for limitado.
+flex-fill: Faz o item preencher todo o espaço disponível no contêiner.
+
+
+Exemplo:
+<div class="d-flex flex-row justify-content-between align-items-center flex-wrap">
+  <div class="flex-grow-1">Item 1</div>
+  <div class="flex-grow-1">Item 2</div>
+  <div class="flex-grow-1">Item 3</div>
+</div>
+

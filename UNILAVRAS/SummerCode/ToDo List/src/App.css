@@ -1,68 +1,75 @@
-/* App.css */
-
 /* Estilo geral */
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
   color: #333;
+  line-height: 1.6;
 }
 
 /* Container do título */
 .tituloContainer {
   text-align: center;
-  padding: 20px 0;
+  padding: 20px;
   background-color: #007bff;
   color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
 }
 
 .tituloContainer h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.4rem;
+  font-weight: 600;
 }
 
 /* Container para adicionar tarefas */
 .addTarefaContainer {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 20px auto;
+  max-width: 600px;
+  width: 100%;
 }
 
 .addTarefaContainer form {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  width: 100%;
 }
 
 .addTarefaContainer input {
-  width: 300px;
-  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .addTarefaContainer input:focus {
   outline: none;
   border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 .bntAddTarefa {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .bntAddTarefa:hover {
   background-color: #218838;
+  transform: translateY(-2px);
 }
 
 .bntAddTarefa:disabled {
@@ -71,78 +78,80 @@ body {
 }
 
 .bntCancelarEdicao {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #e03535;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .bntCancelarEdicao:hover {
   background-color: #631313;
+  transform: translateY(-2px);
 }
 
-/* Container de tarefas atualizado */
+/* Container de tarefas */
 .tarefaContainer {
   width: 90%; /* Largura de 90% */
-  height: calc(85vh - 200px); /* Altura dinâmica: tela total menos o espaço ocupado por título e filtro */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  max-height: calc(85vh - 200px); /* Altura dinâmica */
+  margin: 0 auto;
   padding: 20px;
   background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Adiciona rolagem vertical */
-  overflow-x: hidden; /* Evita rolagem horizontal */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-/* Adiciona um estilo para a barra de rolagem no container (opcional) */
 .tarefaContainer::-webkit-scrollbar {
-  width: 8px; /* Largura da barra de rolagem */
+  width: 8px;
 }
 
 .tarefaContainer::-webkit-scrollbar-thumb {
-  background-color: #007bff; /* Cor da "thumb" (parte rolável) */
+  background-color: #007bff;
   border-radius: 5px;
 }
 
 .tarefaContainer::-webkit-scrollbar-thumb:hover {
-  background-color: #0056b3; /* Cor da "thumb" ao passar o mouse */
+  background-color: #0056b3;
 }
 
 .tarefaContainer::-webkit-scrollbar-track {
-  background-color: #f4f4f4; /* Cor do "track" (fundo da barra) */
+  background-color: #f4f4f4;
 }
 
 .tarefa {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .tarefa:hover {
-  background-color: #f8f9fa;
+  background-color: #f1f1f1;
+  transform: translateY(-2px);
 }
 
 /* Estilo para o container do filtro */
 .filtrarContainer {
   max-width: 600px;
   margin: 20px auto;
-  padding: 10px;
+  padding: 15px;
   background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 15px;
 }
 
 .filtrarContainer h2 {
@@ -153,11 +162,11 @@ body {
 
 /* Estilo para o campo de seleção */
 .filtrarContainer select {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
@@ -165,74 +174,78 @@ body {
 .filtrarContainer select:focus {
   outline: none;
   border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-/* Estilo para o botão de filtro (se for necessário) */
+/* Estilo para o botão de filtro */
 .filtrarContainer button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .filtrarContainer button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
 /* Botões da tarefa */
 .bntCompletar {
-  padding: 5px 10px;
+  padding: 8px 16px;
   background-color: #17a2b8;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .bntCompletar:hover {
   background-color: #148a9c;
+  transform: translateY(-2px);
 }
 
 .bntCompletar:disabled {
   background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .bntFinalizada {
-  padding: 5px 10px;
+  padding: 8px 16px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .bntFinalizada:hover {
   background-color: #218838;
+  transform: translateY(-2px);
 }
 
 .bntDeletar {
-  padding: 5px 10px;
+  padding: 8px 16px;
   background-color: #ff0707;
-
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .bntDeletar:hover {
   background-color: #a50f0f;
+  transform: translateY(-2px);
 }
 
 /* Texto da tarefa */

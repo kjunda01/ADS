@@ -1,0 +1,12 @@
+.container{
+  display: flex;
+  flex-direction: row;
+}
+
+.direito {
+  background-color: yellow;
+}
+
+.mensagem {
+  padding: 60px;
+}

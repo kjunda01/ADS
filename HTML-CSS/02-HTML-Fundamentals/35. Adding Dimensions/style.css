@@ -4,23 +4,38 @@
 }
 
 body {
-  /* background-color: blue; */
   border-top: 10px solid #1098ad;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .main-header {
   background-color: #f7f7f7;
   padding: 20px 40px;
   margin-bottom: 60px;
-  height: 80px;
 }
 
 nav {
   font-size: 18px;
+  float: right;
+}
+
+nav a:link {
+  margin-right: 30px;
+  margin-top: 10px;
+  display: inline-block;
+}
+nav a:link:last-child {
+  margin-right: 0;
 }
 
 article {
   margin-bottom: 60px;
+  width: 825px;
+  float: left;
 }
 
 .post-header {
@@ -32,7 +47,13 @@ aside {
   border-top: 5px solid #1098ad;
   border-bottom: 5px solid #1098ad;
   padding: 50px 0;
-  width: 500px;
+  width: 300px;
+  float: right;
+  box-sizing: border-box;
+}
+
+footer {
+  clear: both;
 }
 
 h1,
@@ -55,6 +76,12 @@ h1 {
   font-size: 26px;
   text-transform: uppercase;
   font-style: italic;
+  float: left;
+}
+
+h1::first-letter {
+  font-style: normal;
+  margin-right: 5px;
 }
 
 h2 {
@@ -89,6 +116,7 @@ ol {
 li {
   font-size: 20px;
   margin-bottom: 10px;
+  /* display: inline; */
 }
 
 li:last-child {
@@ -142,4 +170,23 @@ a:active {
 .post-img {
   width: 100%;
   height: auto;
+}
+
+button {
+  font-size: 22px;
+  padding: 20px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+
+.clear {
+  clear: both;
+}
+
+.clear::after {
+  clear: both;
+  content: '';
+  display: block;
 }

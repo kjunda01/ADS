@@ -13,21 +13,22 @@ body {
   position: relative;
 }
 
-.container {
-  width: 800px;
-  /* margin-left: auto;
-  margin-right: auto; */
+.main-container {
+  /* width: 800px; */
+  margin-left: auto;
+  margin-right: auto;
   margin: 0 auto;
 }
 
+/* FLEXBOX  */
 .main-header {
   background-color: #f7f7f7;
-  /* padding: 20px;
-  padding-left: 40px;
-  padding-right: 40px; */
   padding: 20px 40px;
   margin-bottom: 60px;
-  /* height: 80px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }
 
 nav {
@@ -43,15 +44,16 @@ article {
   margin-bottom: 40px;
   /* position: relative; */
 }
+.author-box{
+  display: flex;
+  align-items: center;
+}
 
 aside {
   background-color: #f7f7f7;
   border-top: 5px solid #1098ad;
   border-bottom: 5px solid #1098ad;
-  /* padding-top: 50px;
-  padding-bottom: 50px; */
-  padding: 50px 0;
-  width: 500px;
+  padding: 50px 40px; 
 }
 
 /* SMALLER ELEMENTS */
@@ -72,6 +74,7 @@ h2 {
   margin-bottom: 30px;
 }
 
+
 h3 {
   font-size: 30px;
   margin-bottom: 20px;
@@ -82,18 +85,17 @@ h4 {
   font-size: 20px;
   text-transform: uppercase;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 p {
   font-size: 22px;
   line-height: 1.5;
-  margin-bottom: 15px;
 }
 
 ul,
 ol {
-  margin-left: 50px;
-  margin-bottom: 20px;
+   margin: 0 0 20px 50px  /* sentido horário */
 }
 
 li {
@@ -197,7 +199,6 @@ nav a:link {
   display: block; */
 
   margin-right: 30px;
-  margin-top: 10px;
   display: inline-block;
 }
 

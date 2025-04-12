@@ -4,7 +4,7 @@ metadata/
 .idea/
 out/
 *.iml
-javafx-sdk-24/
+**/javafx-sdk-24/
 
 ### IntelliJ IDEA ###
 out/

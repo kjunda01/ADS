@@ -1,0 +1,64 @@
+.tamagotchi-circular {
+  -fx-background-color: #7e57c2;
+  -fx-border-radius: 250;
+  -fx-background-radius: 250;
+  -fx-padding: 30;
+  -fx-effect: dropshadow(gaussian, #00000088, 10, 0.3, 0, 2);
+  -fx-alignment: center;
+}
+
+.corpo-tamagotchi {
+  -fx-alignment: center;
+}
+
+.tela-status {
+  -fx-background-color: #cccccc;
+  -fx-border-color: #444;
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
+  -fx-font-family: "Consolas";
+  -fx-font-size: 14px;
+  -fx-padding: 10;
+}
+
+.log-area {
+  -fx-font-family: "Courier New";
+  -fx-font-size: 12px;
+  -fx-border-color: #999;
+  -fx-border-radius: 5;
+  -fx-background-color: #fefefe;
+}
+
+.button {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 50%;
+  -fx-padding: 10;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.2, 0, 1);
+  -fx-cursor: hand;
+}
+
+.button:hover {
+  -fx-background-color: #dddddd;
+}
+
+.root {
+  -fx-background-color: #f4f4f4;
+}
+
+.text-area {
+  -fx-font-size: 14px;
+  -fx-control-inner-background: #ffffff;
+  -fx-border-color: #ccc;
+  -fx-border-radius: 5px;
+}
+
+.button {
+  -fx-background-color: #4CAF50;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-padding: 10px;
+}
+
+.progress-bar {
+  -fx-accent: #FF9800;
+}

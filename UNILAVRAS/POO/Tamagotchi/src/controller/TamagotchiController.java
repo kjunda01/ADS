@@ -29,6 +29,11 @@ public class TamagotchiController {
         atualizar();
     }
 
+    public void socializar() {
+        tamagotchi.socializar();
+        atualizar();
+    }
+
     private void atualizar() {
         tamagotchi.verificarSaude();
         tamagotchi.eventoAleatorio();
@@ -38,8 +43,27 @@ public class TamagotchiController {
         return "Ação: " + acao + "\n" + tamagotchi.getStatus();
     }
 
-    public String getNome(){
+    public String getNome() {
         return tamagotchi.getNome();
     }
 
+    public int getEnergia() {
+        return tamagotchi.getEnergia();
+    }
+
+    public int getFelicidade() {
+        return tamagotchi.getFelicidade();
+    }
+
+    public int getFome() {
+        return tamagotchi.getFome();
+    }
+
+    public int getHigiene() {
+        return tamagotchi.getHigiene();
+    }
+
+    public boolean isDoente() {
+        return tamagotchi.isDoente();
+    }
 }

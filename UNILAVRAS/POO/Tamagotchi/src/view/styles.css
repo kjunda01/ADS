@@ -1,3 +1,7 @@
+.root {
+  -fx-background-color: #f4f4f4;
+}
+
 .tamagotchi-circular {
   -fx-background-color: #7e57c2;
   -fx-border-radius: 250;
@@ -41,10 +45,6 @@
   -fx-background-color: #dddddd;
 }
 
-.root {
-  -fx-background-color: #f4f4f4;
-}
-
 .text-area {
   -fx-font-size: 14px;
   -fx-control-inner-background: #ffffff;
@@ -52,13 +52,12 @@
   -fx-border-radius: 5px;
 }
 
-.button {
-  -fx-background-color: #4CAF50;
-  -fx-text-fill: white;
-  -fx-font-size: 14px;
-  -fx-padding: 10px;
-}
-
 .progress-bar {
   -fx-accent: #FF9800;
+}
+
+.label {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333;
 }

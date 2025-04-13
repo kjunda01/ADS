@@ -4,6 +4,8 @@ import model.Tamagotchi;
 import model.EstadoVida;
 import javafx.application.Platform;
 
+import javafx.application.Application;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.*;
@@ -97,22 +99,29 @@ public class TamagotchiController {
 
     public void alimentar() {
         tamagotchi.alimentar();
+        adicionarAoLog(getHora() + " - " + tamagotchi.getNome() + " foi alimentado. Fome: " + tamagotchi.getFome());
     }
 
     public void brincar() {
         tamagotchi.brincar();
+        adicionarAoLog(
+                getHora() + " - " + tamagotchi.getNome() + " brincou. Felicidade: " + tamagotchi.getFelicidade());
     }
 
     public void dormir() {
         tamagotchi.dormir();
+        adicionarAoLog(getHora() + " - " + tamagotchi.getNome() + " dormiu. Energia: " + tamagotchi.getEnergia());
     }
 
     public void limpar() {
         tamagotchi.limpar();
+        adicionarAoLog(getHora() + " - " + tamagotchi.getNome() + " foi limpo. Higiene: " + tamagotchi.getHigiene());
     }
 
     public void socializar() {
         tamagotchi.socializar();
+        adicionarAoLog(getHora() + " - " + tamagotchi.getNome() + " socializou. Socialização: "
+                + tamagotchi.getSocializacao());
     }
 
     private void atualizar() {
@@ -170,4 +179,9 @@ public class TamagotchiController {
     public void finalizar() {
         scheduler.shutdownNow();
     }
+
+    private String getHora() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    }
+
 }

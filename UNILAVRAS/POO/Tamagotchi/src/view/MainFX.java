@@ -1,7 +1,6 @@
 package view;
 
 import controller.TamagotchiController;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,12 +10,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MainFX extends Application {
-    private TextArea logArea;
+    private TextArea logArea; // Usando TextArea
     private TamagotchiController controller;
     private ImageView tamagotchiImageView;
     private ImageView estadoVidaImageView; // Declaração como atributo
@@ -39,7 +37,7 @@ public class MainFX extends Application {
         lblNome.setAlignment(Pos.CENTER);
 
         // ImageView para exibir o estado de vida (bebê, adolescente, adulto)
-        estadoVidaImageView = new ImageView();
+        estadoVidaImageView = new ImageView(); // Inicialização aqui
         estadoVidaImageView.setFitWidth(50);
         estadoVidaImageView.setFitHeight(50);
         atualizarImagemEstadoVida();
@@ -132,19 +130,11 @@ public class MainFX extends Application {
         HBox botoes = new HBox(10, btnAlimentar, btnBrincar, btnDormir, btnLimpar, btnSocializar);
         botoes.setAlignment(Pos.CENTER); // Centraliza os botões
 
-        // LogArea
+        // LogArea (usando TextArea)
         logArea = new TextArea();
         logArea.setEditable(false);
-        logArea.setPrefHeight(450);
-        logArea.getStyleClass().add("log-area");
+        logArea.setPrefHeight(200);
         logArea.setText("Log de ações");
-
-        // Verificação de inicialização dos componentes
-        System.out.println("Header: " + (header == null ? "null" : "ok"));
-        System.out.println("TamagotchiImageView: " + (tamagotchiImageView == null ? "null" : "ok"));
-        System.out.println("ProgressBars: " + (progressBars == null ? "null" : "ok"));
-        System.out.println("Botoes: " + (botoes == null ? "null" : "ok"));
-        System.out.println("LogArea: " + (logArea == null ? "null" : "ok"));
 
         // Layout principal
         VBox layoutPrincipal = new VBox(20, header, tamagotchiImageView, progressBars, botoes, logArea);

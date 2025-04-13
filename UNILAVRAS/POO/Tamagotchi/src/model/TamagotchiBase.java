@@ -107,6 +107,10 @@ public abstract class TamagotchiBase implements ITamagotchi {
         return felicidade;
     }
 
+    public int getSocializacao() {
+        return socializacao;
+    }
+
     public int getFome() {
         return fome;
     }
@@ -117,5 +121,18 @@ public abstract class TamagotchiBase implements ITamagotchi {
 
     public boolean isDoente() {
         return doente;
+    }
+
+    public String getImagemEstadoVida() {
+        switch (estado) {
+            case BEBE:
+                return "/assets/images/bebe.png";
+            case ADOLESCENTE:
+                return "/assets/images/adolescente.png";
+            case ADULTO:
+                return "/assets/images/adulto.png";
+            default:
+                return "/assets/images/normal.png";
+        }
     }
 }

@@ -63,7 +63,15 @@ public class TamagotchiController {
         return tamagotchi.getHigiene();
     }
 
+    public int getSocializacao() {
+        return tamagotchi.getSocializacao();
+    }
+
     public boolean isDoente() {
         return tamagotchi.isDoente();
+    }
+
+    public String getImagemEstadoVida() {
+        return tamagotchi.getImagemEstadoVida();
     }
 }

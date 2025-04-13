@@ -13,7 +13,7 @@ public interface ITamagotchi {
 
     void verificarSaude();
 
-    void eventoAleatorio();
+    String eventoAleatorio();
 
     String getStatus();
 }

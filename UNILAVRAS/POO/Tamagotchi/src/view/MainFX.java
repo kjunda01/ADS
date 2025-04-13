@@ -2,6 +2,7 @@ package view;
 
 import controller.TamagotchiController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,49 +11,84 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.EstadoVida;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MainFX extends Application {
-    private TextArea logArea; // Usando TextArea
+    private TextArea logArea;
     private TamagotchiController controller;
     private ImageView tamagotchiImageView;
-    private ImageView estadoVidaImageView; // Declaração como atributo
+    private ImageView estadoVidaImageView;
     private ProgressBar pbEnergia, pbFelicidade, pbFome, pbHigiene, pbSocializacao;
+    private Button btnAlimentar, btnBrincar, btnDormir, btnLimpar, btnSocializar;
 
     @Override
     public void start(Stage primaryStage) {
-        // Diálogo para escolher o nome do Tamagotchi
         TextInputDialog dialog = new TextInputDialog("Bixinho");
         dialog.setTitle("Novo Tamagotchi");
         dialog.setHeaderText("Crie seu Tamagotchi");
         dialog.setContentText("Nome:");
         String nome = dialog.showAndWait().orElse("Bixinho");
 
-        controller = new TamagotchiController(nome);
+        controller = new TamagotchiController(nome) {
+            @Override
+            public void adicionarAoLog(String mensagem) {
+                Platform.runLater(() -> {
+                    logArea.appendText("\n" + mensagem + "\n");
+                    logArea.setScrollTop(Double.MAX_VALUE);
+                });
+            }
 
-        // Label para exibir o nome do Tamagotchi
+            @Override
+            public void mostrarMorte() {
+                try {
+                    Image imagem = new Image(getClass().getResourceAsStream("/assets/images/morto.png"));
+                    tamagotchiImageView.setImage(imagem);
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Tamagotchi Morreu!");
+                    alert.setHeaderText("Seu Tamagotchi morreu!");
+                    alert.setContentText("Infelizmente seu companheiro virtual faleceu.\n" +
+                            "Energia: " + controller.getEnergia() + "\n" +
+                            "Fome: " + controller.getFome() + "\n" +
+                            "Higiene: " + controller.getHigiene());
+                    alert.showAndWait();
+                } catch (Exception e) {
+                    System.err.println("Erro ao exibir morte: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void desativarBotoes() {
+                Platform.runLater(() -> {
+                    btnAlimentar.setDisable(true);
+                    btnBrincar.setDisable(true);
+                    btnDormir.setDisable(true);
+                    btnLimpar.setDisable(true);
+                    btnSocializar.setDisable(true);
+                });
+            }
+        };
+
         Label lblNome = new Label(controller.getNome());
         lblNome.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;");
         lblNome.setAlignment(Pos.CENTER);
 
-        // ImageView para exibir o estado de vida (bebê, adolescente, adulto)
-        estadoVidaImageView = new ImageView(); // Inicialização aqui
+        estadoVidaImageView = new ImageView();
         estadoVidaImageView.setFitWidth(50);
         estadoVidaImageView.setFitHeight(50);
         atualizarImagemEstadoVida();
 
-        // ImageView para exibir o Tamagotchi
         tamagotchiImageView = new ImageView();
         tamagotchiImageView.setFitWidth(150);
         tamagotchiImageView.setFitHeight(150);
         atualizarImagemTamagotchi();
 
-        // Combina o nome e as imagens em um HBox
         HBox header = new HBox(10, lblNome, estadoVidaImageView);
         header.setAlignment(Pos.CENTER);
 
-        // Barras de progresso
         pbEnergia = criarProgressBar();
         pbFelicidade = criarProgressBar();
         pbFome = criarProgressBar();
@@ -71,84 +107,57 @@ public class MainFX extends Application {
                 lblFome, pbFome,
                 lblHigiene, pbHigiene,
                 lblSocializacao, pbSocializacao);
-        progressBars.setAlignment(Pos.CENTER); // Centraliza as barras de progresso
+        progressBars.setAlignment(Pos.CENTER);
 
-        // Botões com imagens PNG
-        Button btnAlimentar = criarBotaoComImagem("/assets/images/alimentar.png");
-        Button btnBrincar = criarBotaoComImagem("/assets/images/brincar.png");
-        Button btnDormir = criarBotaoComImagem("/assets/images/dormir.png");
-        Button btnLimpar = criarBotaoComImagem("/assets/images/limpar.png");
-        Button btnSocializar = criarBotaoComImagem("/assets/images/socializar.png");
+        btnAlimentar = criarBotaoComImagem("/assets/images/alimentar.png");
+        btnBrincar = criarBotaoComImagem("/assets/images/brincar.png");
+        btnDormir = criarBotaoComImagem("/assets/images/dormir.png");
+        btnLimpar = criarBotaoComImagem("/assets/images/limpar.png");
+        btnSocializar = criarBotaoComImagem("/assets/images/socializar.png");
 
-        // Ações dos botões
-        btnAlimentar.setOnAction(e -> {
-            try {
-                controller.alimentar();
-                atualizarTela("Alimentou");
-            } catch (Exception ex) {
-                mostrarMorte();
-            }
-        });
+        btnAlimentar.setOnAction(e -> controller.acaoComTratamentoDeMorte(
+                controller::alimentar,
+                this::atualizarTela));
 
-        btnBrincar.setOnAction(e -> {
-            try {
-                controller.brincar();
-                atualizarTela("Brincou");
-            } catch (Exception ex) {
-                mostrarMorte();
-            }
-        });
+        btnBrincar.setOnAction(e -> controller.acaoComTratamentoDeMorte(
+                controller::brincar,
+                this::atualizarTela));
 
-        btnDormir.setOnAction(e -> {
-            try {
-                controller.dormir();
-                atualizarTela("Dormiu");
-            } catch (Exception ex) {
-                mostrarMorte();
-            }
-        });
+        btnDormir.setOnAction(e -> controller.acaoComTratamentoDeMorte(
+                controller::dormir,
+                this::atualizarTela));
 
-        btnLimpar.setOnAction(e -> {
-            try {
-                controller.limpar();
-                atualizarTela("Limpou");
-            } catch (Exception ex) {
-                mostrarMorte();
-            }
-        });
+        btnLimpar.setOnAction(e -> controller.acaoComTratamentoDeMorte(
+                controller::limpar,
+                this::atualizarTela));
 
-        btnSocializar.setOnAction(e -> {
-            try {
-                controller.socializar();
-                atualizarTela("Socializou");
-            } catch (Exception ex) {
-                mostrarMorte();
-            }
-        });
+        btnSocializar.setOnAction(e -> controller.acaoComTratamentoDeMorte(
+                controller::socializar,
+                this::atualizarTela));
 
-        // Layout dos botões
         HBox botoes = new HBox(10, btnAlimentar, btnBrincar, btnDormir, btnLimpar, btnSocializar);
-        botoes.setAlignment(Pos.CENTER); // Centraliza os botões
+        botoes.setAlignment(Pos.CENTER);
 
-        // LogArea (usando TextArea)
         logArea = new TextArea();
         logArea.setEditable(false);
         logArea.setPrefHeight(200);
-        logArea.setText("Log de ações");
+        logArea.setText("Log de ações:\n");
 
-        // Layout principal
         VBox layoutPrincipal = new VBox(20, header, tamagotchiImageView, progressBars, botoes, logArea);
-        layoutPrincipal.setAlignment(Pos.CENTER); // Centraliza todos os elementos
+        layoutPrincipal.setAlignment(Pos.CENTER);
         layoutPrincipal.setPadding(new Insets(20));
 
-        // Cena
         Scene scene = new Scene(layoutPrincipal, 600, 700);
         primaryStage.setTitle("TamagotchiFX");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // Aplica o estilo do arquivo CSS
         scene.getStylesheets().add(getClass().getResource("/view/styles.css").toExternalForm());
+
+        primaryStage.setOnCloseRequest(e -> {
+            controller.finalizar();
+            Platform.exit();
+        });
     }
 
     private ProgressBar criarProgressBar() {
@@ -165,29 +174,22 @@ public class MainFX extends Application {
 
         Button button = new Button();
         button.setGraphic(imageView);
-        button.getStyleClass().add("button"); // Aplica estilo CSS
+        button.getStyleClass().add("button");
         return button;
     }
 
-    private void atualizarTela(String acao) {
-        LocalDateTime agora = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        String timestamp = agora.format(formatter);
-
-        String logMessage = "[" + timestamp + "] - O " + controller.getNome() + " " + acao.toLowerCase() + "\n";
-        logArea.insertText(0, logMessage);
-
-        // Atualiza a imagem do Tamagotchi
+    public void atualizarTela() {
         atualizarImagemTamagotchi();
-
-        // Atualiza a imagem do estado de vida
         atualizarImagemEstadoVida();
-
-        // Atualiza as barras de progresso
         atualizarBarrasDeProgresso();
     }
 
     private void atualizarImagemTamagotchi() {
+        if (controller.isMorto()) {
+            controller.mostrarMorte();
+            return;
+        }
+
         try {
             String caminhoImagem;
             if (controller.isDoente()) {
@@ -210,14 +212,8 @@ public class MainFX extends Application {
     private void atualizarImagemEstadoVida() {
         try {
             String caminhoImagem = controller.getImagemEstadoVida();
-            System.out.println("Carregando imagem do estado de vida: " + caminhoImagem);
-
             Image imagem = new Image(getClass().getResourceAsStream(caminhoImagem));
-            if (imagem.isError()) {
-                System.err.println("Erro ao carregar imagem: " + caminhoImagem);
-            } else {
-                estadoVidaImageView.setImage(imagem);
-            }
+            estadoVidaImageView.setImage(imagem);
         } catch (Exception e) {
             System.err.println("Erro ao carregar imagem do estado de vida: " + e.getMessage());
         }
@@ -249,20 +245,6 @@ public class MainFX extends Application {
             } else {
                 barra.setStyle("-fx-accent: green;");
             }
-        }
-    }
-
-    private void mostrarMorte() {
-        try {
-            Image imagem = new Image(getClass().getResourceAsStream("/assets/images/morto.png"));
-            tamagotchiImageView.setImage(imagem);
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Tamagotchi Morreu!");
-            alert.setHeaderText("Seu Tamagotchi morreu!");
-            alert.setContentText("Tente cuidar melhor da próxima vez.");
-            alert.showAndWait();
-        } catch (Exception e) {
-            System.err.println("Erro ao carregar imagem de morte: " + e.getMessage());
         }
     }
 
